@@ -214,18 +214,16 @@ new Chart(ctx3, {
     'Setor A',
     'Setor B',
     'Setor C',
-    'Setor D',
-    'Setor E'
+    'Setor D'
   ],
   datasets: [{
     label: 'Quantidade de sensores',
-    data: [8, 7, 4, 3, 2],
+    data: [8, 7, 4, 3],
     backgroundColor: [
       'rgba(80, 160, 22, 1)',
       'rgb(54, 162, 235)',
       'rgb(255, 205, 86)',
-      'rgba(216, 36, 168, 1)',
-      'rgba(117, 12, 203, 1)'
+      'rgba(216, 36, 168, 1)'
     ],
     hoverOffset: 4,
   }]
