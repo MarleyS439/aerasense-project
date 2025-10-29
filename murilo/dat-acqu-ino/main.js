@@ -19,8 +19,8 @@ const serial = async (
     let poolBancoDados = mysql.createPool(
         {
             host: '127.0.0.1',
-            user: 'aluno',
-            password: 'Sptech#2024',
+            user: 'aerasense',
+            password: 'Sptech#2025',
             database: 'aerasense',
             port: 3307
         }
@@ -50,7 +50,7 @@ const serial = async (
     arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
         console.log(data);
         const valores = data.split(';');
-        const sensorDigital = parseInt(valores[1]);
+        const sensorDigital = parseFloat(valores[1]);
 
         // armazena os valores dos sensores nos arrays correspondentes
         valoresSensorDigital.push(sensorDigital);
@@ -60,8 +60,8 @@ const serial = async (
 
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                'INSERT INTO medicao(fk_id_sensor,fk_id_setor,fk_id_empresa,valor_medicao) VALUES (?, ?, ?, ?)',
-                [1, 1, 1, sensorDigital]
+                'INSERT INTO medicao(valor_medicao, fk_id_sensor) VALUES (?, ?)',
+                [sensorDigital, 1]
             );
             console.log("valores inseridos no banco: ", sensorDigital);
 

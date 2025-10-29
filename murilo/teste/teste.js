@@ -7,8 +7,8 @@ let val2 = 0;
 let poolBancoDados = mysql.createPool(
     {
         host: '127.0.0.1',
-        user: 'aluno',
-        password: 'Sptech#2024',
+        user: 'aerasense',
+        password: 'Sptech#2025',
         database: 'aerasense',
         port: 3307
     }
@@ -16,8 +16,8 @@ let poolBancoDados = mysql.createPool(
 
 function rand() {
 
-    val1 = Math.random() * (100.00 - 0);
-    val2 = Math.random() * (100.00 - 0);
+    val1 = Math.random() * (0.3 - 0);
+    val2 = Math.random() * (3.9 - 0);
 
 }
 
@@ -51,13 +51,13 @@ const pros = async (ArrayVal1,Arrayval2) => {
         rand();
 
         poolBancoDados.execute(
-            'INSERT INTO medicao(fk_id_sensor,fk_id_setor,fk_id_empresa,valor_medicao) VALUES (?, ?, ?, ?)',
-            [1, 1, 1, val1]
+            'INSERT INTO medicao(valor_medicao, fk_id_sensor) VALUES (?, ?)',
+                [val1, 1]
         );
 
         poolBancoDados.execute(
-            'INSERT INTO medicao(fk_id_sensor,fk_id_setor,fk_id_empresa,valor_medicao) VALUES (?, ?, ?, ?)',
-            [2, 2, 2, val2]
+           'INSERT INTO medicao(valor_medicao, fk_id_sensor) VALUES (?, ?)',
+                [val2, 2]
         );
 
         console.log('dados inseridos');
