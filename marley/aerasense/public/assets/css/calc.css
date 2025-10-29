@@ -252,9 +252,25 @@ main .details .number #sem {
     margin: 10px 0px;
 }
 
+main .details .title h2 {
+    color: var(--color-very-dark-blue);
+}
+
+main .details .title h2 span {
+    color: var(--color-bright-blue);
+}
+
+main .details .title h2 p {
+    color: var(--color-very-dark-blue);
+}
+
 main .details .number #com {
     color: #166534;
     margin: 10px 0px;
+}
+
+main .details .number ul li {
+    color: var(--color-very-dark-blue);
 }
 
 main .real .number {
@@ -338,47 +354,6 @@ main .real .custos-int {
 main .container-risco {
     display: flex;
     justify-content: space-between;
-}
-
-main .pontuacao {
-    display: flex;
-    background-color: var(--color-white);
-    justify-content: space-between;
-    margin-top: 5%;
-    padding: 5%;
-    border-radius: 16px;
-    background-color: var(--color-white);
-    margin: 5%;
-}
-
-main .pontuacao .title h2 {
-    color: var(--color-very-dark-blue);
-    font-size: 2rem;
-}
-
-main .pontuacao .title h2 span {
-    color: var(--color-bright-blue);
-}
-
-main .pontuacao .title p {
-    color: var(--color-very-dark-blue);
-    font-size: 1.5rem;
-    padding: 2% 0px;
-}
-
-main .pontuacao-imagem {
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--color-bright-blue);
-    border-radius: 16px;
-    width: 50px;
-    height: 50px;
-}
-main .pontuacao-imagem img {
-    width: 20px;
-    height: 20px;
 }
 
 main .calcule {

@@ -367,31 +367,6 @@
                 <div id="div_resultado"></div>
             </section>
 
-            <section class="pontuacao" id="pontuacao" style="display: none">
-                <div class="container-risco">
-                    <div class="title">
-                        <h2>
-                            A <span>Pontuação de Risco</span> de um acidente
-                        </h2>
-                        <div>
-                            <p>
-                                1: LEL inferior a 10% <br />
-                                5: LEL superior ou igual a 10% <br />
-                                10: LEL superior ou igual a 10% <br />
-                                15: LEL superior ou igual a 50% <br />
-                                20: LEL superior ou igual a 100% <br />
-                            </p>
-                        </div>
-                    </div>
-                    <div class="pontuacao-imagem">
-                        <img
-                            id="caution"
-                            src="public/assets/images/caution.png"
-                        />
-                    </div>
-                </div>
-            </section>
-
             <section class="real" id="real" style="display: none">
                 <div class="container">
                     <div class="title">
@@ -509,7 +484,7 @@
                     <div class="number">
                         <div class="cards" id="sem_sensor">
                             <div class="title" id="sem">Cenário SEM Sensor</div>
-                            <div class="">
+                            <div class="list">
                                 <ul>
                                     <li><span>T+0s:</span> Vazamento inicia</li>
                                     <li>
@@ -881,7 +856,7 @@
                     var concentracaoVol =
                         (volumeGasAcumulado / volumeTotalAmbiente) * 100;
 
-                    // LEL autaul (% LEL)
+                    // LEL Atual (% LEL)
                     var lelAtual = (concentracaoVol / lelGLP) * 100;
 
                     // Define que o % LEL deve ser igual a 100 no máximo
