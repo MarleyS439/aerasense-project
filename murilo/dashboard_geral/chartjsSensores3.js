@@ -137,7 +137,7 @@ new Chart((GraphMomentoSensor), {
       title: {
 
         display: true,
-        text: "Dados mais recentes",
+        text: "Dados em tempo real",
         position: "top",
         align: "start",
         font: {
