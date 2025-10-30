@@ -24,7 +24,7 @@ header {
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    font-size: 14px;
+    font-size: 1.2rem;
 }
 
 /* Navbar */
@@ -125,33 +125,40 @@ nav #register a:hover {
     display: flex;
     flex-direction: column;
     text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
 }
 
-.conteudo-section h1 {
-    margin-top: 130px;
-}
 
 .conteudo-section span {
     width: 450px;
-    margin: auto;
+    /* margin: auto; */
     font-size: 1.2rem;
     text-align: center;
     color: rgb(59, 158, 219);
 }
 
 .image {
-    display: flex;
-    align-items: left;
-    margin-left: -12px;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    
+}
+.image img{
+    width: 40%;
+    height: 40%;
+    margin-bottom: 0.1%;
 }
 
 /* Conteúdo Section1 */
 .conteudo-section1 h2 {
-    font-size: 14px;
+    display: none;
+    font-size: 1.2rem;
     text-align: left;
     margin-top: 70px;
     margin-bottom: -15px;
-    font-weight: normal;
+    font-weight: 1.2rem;
 }
 
 .conteudo-section1 img {
@@ -160,9 +167,10 @@ nav #register a:hover {
 }
 
 .conteudo-section1 span {
+    margin-top: 10%;
     display: flex;
     width: 1010px;
-    text-align: left;
+    text-align: center;
     color: #757575;
 }
 
@@ -184,13 +192,14 @@ nav #register a:hover {
 
 .card-texto {
     width: 300px;
+    font-size: 1rem;
 }
 
 .card-texto h3 {
     display: flex;
     justify-content: center;
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 1.2rem;
+    font-weight: 1.2rem;
     margin: 50px 0px 10px 0px;
 }
 
@@ -204,7 +213,7 @@ nav #register a:hover {
 }
 
 .conteudo-section3 h4 {
-    font-size: 2rem;
+    font-size: 1.2rem;
     margin: 0;
 }
 
@@ -215,7 +224,7 @@ nav #register a:hover {
 }
 
 .conteudo-section3 p {
-    font-size: 18px;
+    font-size: 1.2rem;
     color: black;
     margin-top: 5px;
     margin-bottom: 40px;
