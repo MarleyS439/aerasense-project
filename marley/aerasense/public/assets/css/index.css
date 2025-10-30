@@ -335,6 +335,36 @@ main .how {
     margin-top: 5%;
 }
 
+main .how .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+main .how .center p {
+    margin: 2% 0%;
+    color: var(--color-very-dark-blue);
+}
+
+main .how .center a {
+    padding: 20px 60px;
+    background-color: var(--color-bright-blue);
+    border-radius: 16px;
+    color: var(--color-white);
+    font-weight: medium;
+    text-decoration: none;
+}
+
+main .how .center a {
+    padding: 20px 60px;
+    background-color: var(--color-bright-blue);
+    border-radius: 16px;
+    color: var(--color-white);
+    font-weight: medium;
+    text-decoration: none;
+}
+
 main .how .container .title {
     width: 100%;
     padding: 3% 0%;
@@ -731,7 +761,6 @@ main .contact .content .checkbox input {
 /* Footer */
 footer {
     background-color: var(--color-very-dark-blue);
-    height: 100vh;
     margin-top: 10%;
     padding: 5%;
     border-radius: 16px 16px 0px 0px;
@@ -807,7 +836,7 @@ footer .links a:hover {
 footer .other {
     display: flex;
     justify-content: space-between;
-    padding: 5% 0%;
+    padding: 5% 0% 5% 0%;
 }
 
 footer .newsletter form label {

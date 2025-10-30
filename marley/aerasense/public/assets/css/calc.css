@@ -28,7 +28,7 @@ header .risco {
     background-color: var(--color-white);
     height: max-content;
     margin: 10% 5% 5% 5%;
-    padding: 3%;
+    padding: 5%;
     border-radius: 16px;
     z-index: 2;
 }
@@ -446,6 +446,7 @@ main .calcule .resultado {
 /*Footer*/
 footer {
     margin-top: 0;
+    border-radius: 16px;
 }
 
 footer .links {
