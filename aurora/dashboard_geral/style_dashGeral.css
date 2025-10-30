@@ -1,7 +1,7 @@
 .container {
   margin-bottom: 1.25rem;
   /* espaçamento acompanha o tamanho do texto (em) */
-  padding: min(3em, 15%);
+  padding: 3em;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
