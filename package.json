@@ -1,14 +1,21 @@
 {
   "name": "aerasense",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Projeto em Grupo SPTECH",
-  "homepage": "https://github.com/arthurrogeriozip/aerasensewebdata#readme",
+  "keywords": [
+    "GLP",
+    "Gás",
+    "Sensor",
+    "Arduino",
+    "Acadêmico"
+  ],
+  "homepage": "https://github.com/MarleyS439/aerasense/tree/master?tab=readme-ov-file#aerasense---tecnologia-que-detecta-seguran%C3%A7a-que-protege",
   "bugs": {
-    "url": "https://github.com/arthurrogeriozip/aerasensewebdata/issues"
+    "url": "https://github.com/MarleyS439/aerasense/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arthurrogeriozip/aerasensewebdata.git"
+    "url": "git+https://github.com/MarleyS439/aerasense.git"
   },
   "license": "MIT",
   "author": "Feito pelos desenvolvedores @ São Paulo Tech School / Bandtec Digital School",
@@ -25,5 +32,6 @@
     "mysql2": "^3.9.4",
     "nodemon": "^2.0.7",
     "path": "^0.12.7"
-  }
+  },
+  "devDependencies": {}
 }
