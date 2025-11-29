@@ -1,6 +1,7 @@
 CREATE DATABASE aerasense;
 USE aerasense;
 
+
 CREATE TABLE empresa (
 id INT PRIMARY KEY AUTO_INCREMENT,
 nome_fantasia VARCHAR(45) NOT NULL,
