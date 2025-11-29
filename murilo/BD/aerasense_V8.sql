@@ -1,7 +1,6 @@
 CREATE DATABASE aerasense;
 USE aerasense;
 
-
 CREATE TABLE empresa (
 id INT PRIMARY KEY AUTO_INCREMENT,
 nome_fantasia VARCHAR(45) NOT NULL,
@@ -31,7 +30,6 @@ matriz TINYINT NOT NULL,
 data_hora_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP,
 data_hora_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 fk_id_empresa INT,
-CONSTRAINT chkSeMatriz CHECK(matriz IN(0,1)),
 CONSTRAINT fkEmpresaEndereco
 		FOREIGN KEY (fk_id_empresa)
 			REFERENCES empresa (id),
@@ -53,7 +51,7 @@ id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(45) NOT NULL,
 sobrenome VARCHAR(60) NOT NULL,
 email VARCHAR(255) UNIQUE NOT NULL,
-hash_senha VARCHAR(255) NOT NULL,
+senha VARCHAR(50) NOT NULL,
 tipo_usuario VARCHAR(15) NOT NULL DEFAULT 'comum',
 status_usuario VARCHAR(9) NOT NULL DEFAULT 'ativo',
 data_hora_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -66,6 +64,22 @@ CONSTRAINT fkEmpresaUsuario
 FOREIGN KEY (fk_id_empresa) REFERENCES empresa (id),
 CONSTRAINT fkAdmUsuario
 FOREIGN KEY (fk_id_adm) REFERENCES usuario (id)
+);
+
+create table acesso(
+idAcesso int auto_increment,
+fkUsuario int,
+fkEmpresa int,
+dtHrLogin datetime default current_timestamp,
+dtHrLogout datetime default null,
+constraint pkComposta
+	primary key(idAcesso,fkUsuario,fkEmpresa),
+constraint fkUsuario
+	foreign key (fkUsuario)
+    references usuario(id),
+constraint fkEmpresa 
+	foreign key (fkEmpresa)
+    references empresa(id)
 );
 
 CREATE TABLE setor (
@@ -110,6 +124,24 @@ CONSTRAINT pkCompostaSensorMedicao
 PRIMARY KEY (id, fk_id_sensor),
 CONSTRAINT fkSensorMedicao
 FOREIGN KEY (fk_id_sensor) REFERENCES sensor (id)
+);
+
+create table alerta(
+idAlerta int auto_increment,
+idMedicao int,
+idSensor int,
+dtHr datetime default current_timestamp,
+nivel varchar(45),
+constraint chkNivel 
+	check (nivel in ('Crítico','Risco')),
+constraint pkComposta 
+	primary key (idAlerta,idMedicao,idSensor),
+constraint fkMedicao
+	foreign key (idMedicao)
+    references medicao(id),
+constraint fkSensor 
+	foreign key (idSensor)
+    references sensor(id)
 );
 
 INSERT INTO empresa VALUES
