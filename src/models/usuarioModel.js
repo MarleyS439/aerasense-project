@@ -14,7 +14,7 @@ function autenticar(email, senha) {
            fk_id_empresa AS idEmpresa
     FROM usuario
     WHERE email = '${email}'
-        AND senha = '${senha}';
+        AND senha = '${senha}' LIMIT 1;
   `;
 
   console.log("Executando a instrução SQL: \n" + sql);

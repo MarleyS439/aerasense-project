@@ -135,3 +135,29 @@
     margin-left: 5px;
     color: var(--color-danger);
 }
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-very-dark-blue);
+}
+
+.loading img {
+    width: 25px;
+    height: 25px;
+    margin-right: 3px;
+}
+
+.loading2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-success);
+}
+
+.loading2 img {
+    width: 25px;
+    height: 25px;
+    margin-right: 3px;
+}
