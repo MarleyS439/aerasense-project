@@ -18,7 +18,7 @@
     "url": "git+https://github.com/MarleyS439/aerasense.git"
   },
   "license": "MIT",
-  "author": "Feito pelos desenvolvedores @ São Paulo Tech School / Bandtec Digital School",
+  "author": "Feito pelos desenvolvedores @São Paulo Tech School / Bandtec Digital School",
   "type": "commonjs",
   "main": "app.js",
   "scripts": {

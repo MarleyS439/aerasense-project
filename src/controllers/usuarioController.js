@@ -1,27 +1,39 @@
-const { response } = require("express");
 var usuarioModel = require("../models/usuarioModel");
 
+// Função para autenticar o usuário
 function autenticar(req, res) {
-  var email = req.body.emailServer;
-  var senha = req.body.senhaServer;
+  // E-mail do corpo da requisição
+  var email = req.body.email;
 
+  // Senha do corpo da requisição
+  var senha = req.body.senha;
+
+  // Validação dos valores das requisições
   if (email == undefined) {
-    res.status(400).send("Seu email está undefined!");
+    // Envia HTTP 400 - E-mail undefined
+    return res.status(400).send("Seu email está undefined!");
   } else if (senha == undefined) {
-    res.status(400).send("Sua senha está indefinida!");
+    // Envia HTTP 400 - Senha undefined
+    return res.status(400).send("Sua senha está indefinida!");
   } else {
     usuarioModel
       .autenticar(email, senha)
-      .then(function (resultadoAutenticar) {
-        console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
-        console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
+      .then(function (resultado) {
+        console.log(
+          `Foi encontrado ${resultado.length} resultado: `,
+          resultado,
+        );
 
-        if (resultadoAutenticar.length == 1) {
-          res.json(resultadoAutenticar);
-        } else if (resultadoAutenticar.length == 0) {
-          res.status(403).send("Email e/ou senha inválido(s)");
+        console.log(`Resultados: ${JSON.stringify(resultado)}`);
+
+        if (resultado.length == 1) {
+          return res.json(resultado);
+        } else if (resultado.length == 0) {
+          return res.status(403).send("Email e/ou senha inválido(s)");
         } else {
-          res.status(403).send("Mais de um usuário com o mesmo login e senha!");
+          return res
+            .status(403)
+            .send("Mais de um usuário com o mesmo login e senha!");
         }
       })
       .catch(function (erro) {
@@ -30,7 +42,7 @@ function autenticar(req, res) {
           "\nHouve um erro ao realizar o login! Erro: ",
           erro.sqlMessage,
         );
-        res.status(500).json(erro.sqlMessage);
+        return res.status(500).json(erro.sqlMessage);
       });
   }
 }

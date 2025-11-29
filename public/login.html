@@ -1,159 +1,94 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!doctype html>
+<html lang="pt-br" dir="ltr">
+    <head>
+        <!--HTML Meta Tags-->
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="Marley de S. Santos" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--Stylesheet-->
+        <link rel="stylesheet" href="assets/css/login.css" />
 
-    <title>Aerasense | Login</title>
+        <!--Google Fonts-->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet"
+        />
 
-    <script src="./js/sessao.js"></script>
+        <!--Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico" />
 
-    <link rel="stylesheet" href="./css/login.css">
-    <link rel="icon" href="./assets/icons/favicon.ico">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-</head>
-
-<body>
-    <div class="main-container">
-
-        <div class="header">
-            <a href="index.html">
-                <img src="./assets/images/logo-logo.svg" alt="Aerasense Logo" class="logo">
-            </a>
-            
-        </div>
-
-
-        <h2 class="titulo">Faça login</h2>
-
-        <div>
-
-            <label>E-mail</label>
-            <input id="ipt_email" class="inputEMAIL" type="email" placeholder="Digite seu E-mail cadastrado">
-
-            <label>Senha</label>
-            <input id="ipt_senha" class="inputSENHA" type="password" placeholder="Digite sua senha cadastrada">
-
-            <!-- <div id="div_mensagemErro" class="mensagemErro">
-                <span>E-mail ou senha incorretos</span>
-            </div> -->
-
-            <div class="recuperarSenha">
-                Não consegue entrar?                 
-                <a href="#">
-                    <u>Recuperar senha</u>
-                </a>
-
+        <!--Title-->
+        <title>Login</title>
+    </head>
+    <body>
+        <div class="container">
+            <div href="../aerasense/index.html" class="logo">
+                <img src="assets/images/logo-logo.svg" alt="" />
             </div>
 
-            <button onclick="entrar()" class="botaoEntrar">Entrar na conta</button>
+            <div class="title">
+                <h2>Faça login na sua conta</h2>
+            </div>
+            <div class="form">
+                <div class="inputs">
+                    <label for="input_email">E-mail</label>
+                    <input
+                        type="email"
+                        placeholder="email@email.com"
+                        required
+                        id="input_email"
+                    />
+                </div>
 
-            <div id="div_mensagem"></div>
-            
+                <div class="inputs">
+                    <label for="input_senha">Senha</label>
+                    <input
+                        type="password"
+                        required
+                        placeholder="********"
+                        id="input_senha"
+                    />
+                </div>
+
+                <div id="mensagem"></div>
+
+                <div class="reset-password">
+                    <span
+                        >Esqueceu a senha? <a href="#">Recuperar senha</a></span
+                    >
+                </div>
+                <div class="button">
+                    <button
+                        onclick="validarCredenciais()"
+                        type="button"
+                        id="login"
+                    >
+                        Entrar na conta
+                    </button>
+                </div>
+            </div>
+
+            <div class="register">
+                <span
+                    >Não possui conta?
+                    <a href="cadastro.html">Cadastre-se</a></span
+                >
+            </div>
+
+            <div class="go-back">
+                <a href="index.html">Voltar para o início</a>
+            </div>
         </div>
 
-        <div class="registro">
-            <span>Não possui cadastro? 
+        <!--Login-->
+        <script src="assets/javascript/login.js"></script>
 
-                <a href="cadastro.html">
-                    <u>Cadastre-se</u> 
-                </a>
-
-            </span>
-        </div>
-
-    </div>
-    
-</body>
-
+        <!--Redirecionar-->
+        <script src="assets/javascript/redirect.js"></script>
+    </body>
 </html>
-
-<script>
-
-
-    function entrar() {
-
-        var emailVar = ipt_email.value;
-        var senhaVar = ipt_senha.value;
-
-        if (emailVar == "" || senhaVar == "") {
-            console.log('Ensira suas credenciais corretamente');
-            return false;
-        }
-
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
-
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json[0].email;
-                    sessionStorage.NOME_USUARIO = json[0].nome;
-                    sessionStorage.ID_USUARIO = json[0].id;
-                    sessionStorage.ID_EMPRESA = json[0].empresaId;
-
-                    CriarLog(json[0].id,json[0].empresaId);
-
-                    setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
-                    }, 1000); 
-
-                });
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
-    }
-
-    function CriarLog(idUsuario,idEmpresa){
-
-         fetch("/usuarios/CriarLog", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                idUsuario: idUsuario,
-                idEmpresa: idEmpresa
-            })
-        }).then(function (resultado){
-
-            if(resultado.ok){
-
-                console.log('Okey Dokey');
-
-            }
-
-        })
-
-    }
-
-</script>
