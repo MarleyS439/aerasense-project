@@ -138,6 +138,7 @@ nav .buttons select {
     padding: 2px 5px;
     cursor: pointer;
     transition: 250ms ease-in-out;
+    outline: none;
 }
 
 nav #login,

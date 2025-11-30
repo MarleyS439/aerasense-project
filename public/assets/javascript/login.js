@@ -40,6 +40,8 @@ function validarCredenciais() {
   } else {
     emailInput.style.border = "1px solid var(--color-very-dark-blue)";
     senhaInput.style.border = "1px solid var(--color-very-dark-blue)";
+
+    // Caso a função de login dê erro, aumenta a quantidade de tentativas
     if (!login(email, senha)) {
       quantidadeTentativas++;
     }
