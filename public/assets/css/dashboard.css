@@ -146,21 +146,34 @@ body {
     font-size: 0.8rem;
 }
 
-.container {
-    overflow-y: auto;
+.other-kpi {
+    display: flex;
+    margin: 20px 0px;
+    color: var(--color-white);
 }
 
-#media_setor {
-    padding: 10px;
-    width: 100% !important;
-    height: 90% !important;
+.other-kpi .infor {
+    margin-right: 10px;
+    background-color: var(--color-very-dark-blue);
+    padding: 10px 15px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+}
+.other-kpi .dado {
+    font-size: 1.5rem;
+    margin: 5px;
+}
+
+.container {
+    overflow-y: auto;
 }
 
 .modal-logout {
     background-color: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(2px);
     position: fixed;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     z-index: 200;
@@ -210,4 +223,28 @@ body {
 
 .alerta-message {
     padding: 20px 0px;
+}
+
+.charts {
+    display: flex;
+    justify-content: space-between;
+}
+
+#quantidade_sensores {
+    width: 300px !important;
+    height: 300px !important;
+    border: 1px solid red;
+}
+
+#alertas_por_setor {
+    width: 500px !important;
+    height: 280px !important;
+    border: 1px solid red;
+}
+
+#media_setor {
+    padding: 10px;
+    margin: 20px 0px;
+    width: 100% !important;
+    height: 90% !important;
 }
