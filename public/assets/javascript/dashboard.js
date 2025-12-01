@@ -2,142 +2,9 @@ const ctx = document.getElementById("media_setor");
 const ctx1 = document.getElementById("alertas_por_setor");
 const ctx2 = document.getElementById("comparar_alertas");
 
-const limiteExplosividade = 1.9;
+function gerarGraficoAlertasSetor() {}
 
-const chart = new Chart(ctx, {
-  type: "line",
-  data: {
-    labels: [
-      0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-      21, 22, 23,
-    ],
-    datasets: [
-      {
-        label: "Setor A",
-        data: [
-          0.05, 0.06, 0.07, 0.08, 0.1, 0.11, 0.12, 0.13, 0.15, 0.16, 0.17, 0.18,
-          0.19, 0.2, 0.21, 0.22, 0.23, 0.24, 0.25, 0.26, 0.27, 0.28, 0.29, 0.3,
-        ],
-        backgroundColor: "#1f77b4",
-        borderWidth: 3,
-        borderColor: "#1f77b4",
-      },
-      {
-        label: "Setor B",
-        data: [
-          0.12, 0.12, 0.13, 0.13, 0.14, 0.14, 0.14, 0.13, 0.13, 0.14, 0.15,
-          0.15, 0.15, 0.16, 0.16, 0.16, 0.17, 0.17, 0.17, 0.18, 0.18, 0.19,
-          0.18, 0.18,
-        ],
-        backgroundColor: "#17becf",
-        borderWidth: 3,
-        borderColor: "#17becf",
-      },
-      {
-        label: "Setor C",
-        data: [
-          0.3, 0.31, 0.33, 0.34, 0.36, 0.37, 0.39, 0.4, 0.42, 0.43, 0.45, 0.47,
-          0.49, 0.5, 0.52, 0.54, 0.56, 0.58, 0.6, 0.62, 0.64, 0.66, 0.68, 0.7,
-        ],
-        backgroundColor: "#2ca02c",
-        borderWidth: 3,
-        borderColor: "#2ca02c",
-      },
-      {
-        label: "Setor D",
-        data: [
-          0.3, 0.34, 0.38, 0.43, 0.48, 0.54, 0.6, 0.67, 0.74, 0.82, 0.9, 0.99,
-          1.08, 1.18, 1.28, 1.39, 1.51, 1.63, 1.76, 1.9, 2.04, 2.19, 2.3, 2.4,
-        ],
-        backgroundColor: "#9467bd",
-        borderWidth: 3,
-        borderColor: "#9467bd",
-      },
-    ],
-  },
-  options: {
-    scales: {
-      y: {
-        title: {
-          display: true,
-          text: "Concentração de GLP (%)",
-          color: "#555",
-          font: { size: 12, weight: "600", family: "Kanit" },
-        },
-        beginAtZero: true,
-      },
-      x: {
-        title: {
-          display: true,
-          text: "Hora do dia (0–23)",
-          color: "#555",
-          font: { size: 12, weight: "600", family: "Kanit" },
-          padding: { top: 8 },
-        },
-        ticks: {
-          font: {
-            weight: "bold",
-            family: "Kanit",
-          },
-        },
-      },
-    },
-
-    plugins: {
-      annotation: {
-        drawtime: "afterdraw",
-        annotations: {
-          linhaLimite: {
-            type: "line",
-            yMin: limiteExplosividade,
-            yMax: limiteExplosividade,
-            borderWidth: 3,
-            borderColor: "#ff0000",
-            borderDash: [8, 4],
-            label: {
-              display: false,
-              content: "Valor limítrofe de explosividade",
-              position: "end",
-              backgroundColor: "rgba(255,0,0,0.65)",
-              color: "white",
-              padding: 6,
-              borderRadius: 6,
-              font: {
-                weight: "bold",
-              },
-            },
-            enter: function (ctx2, event) {
-              ctx2.element.label.options.display = true;
-              ctx2.chart.draw(); //aparece a box na linha fixa
-            },
-            leave: function (ctx2, event) {
-              ctx2.element.label.options.display = false;
-              ctx2.chart.draw(); //some a box da linha fixa
-            },
-          },
-        },
-      },
-      legend: {
-        labels: {
-          font: {},
-        },
-      },
-      title: {
-        background: "#fff",
-        display: true,
-        text: "Concentração média por setor",
-        position: "top",
-        align: "start",
-        font: {
-          size: 20,
-          family: "Kanit",
-        },
-      },
-    },
-  },
-});
-
-const char2 = new Chart(ctx1, {
+const alertasSetor = new Chart(ctx1, {
   type: "bar",
   data: {
     labels: ["Setor A", "Setor B", "Setor C", "Setor D"],
@@ -147,12 +14,15 @@ const char2 = new Chart(ctx1, {
         data: [10, 6, 13, 8],
         backgroundColor: "rgb(24, 98, 141)",
         borderWidth: 1,
+        borderRadius: 10,
       },
+
       {
         label: "Quantidade de alertas críticos (>= 1,9%)",
         data: [4, 1, 2, 3],
         backgroundColor: "rgb(255, 58, 58)",
         borderWidth: 1,
+        borderRadius: 10,
       },
     ],
   },
@@ -160,7 +30,10 @@ const char2 = new Chart(ctx1, {
     plugins: {
       legend: {
         labels: {
-          font: {},
+          font: {
+            family: "Kanit",
+          },
+          color: "rgb(10, 43, 64)",
         },
       },
       title: {
@@ -170,7 +43,9 @@ const char2 = new Chart(ctx1, {
         align: "center",
         font: {
           size: 20,
+          family: "Kanit",
         },
+        color: "rgb(10, 43, 64)",
       },
     },
     scales: {

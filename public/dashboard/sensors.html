@@ -27,7 +27,7 @@
         <link rel="stylesheet" href="../assets/css/dashboard.css" />
 
         <!--Title-->
-        <title id="titulo_dash">Empresa X | Dashboard</title>
+        <title id="titulo_dash">Sensores</title>
     </head>
     <body>
         <!--Sidebar-->
@@ -78,7 +78,7 @@
                 <div class="links-container">
                     <ul>
                         <!--Dashboard-->
-                        <li style="background-color: var(--color-bright-blue)">
+                        <li onclick="redirecionar('dashboard.html')">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 height="24px"
@@ -110,7 +110,7 @@
                         </li>
 
                         <!--Sensores-->
-                        <li onclick="redirecionar('sensors.html')">
+                        <li style="background-color: var(--color-bright-blue)">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 height="24px"
@@ -178,190 +178,11 @@
         <div class="body">
             <!--Title-->
             <div class="title">
-                <h2>Dashboard</h2>
+                <h2>Sensores</h2>
             </div>
 
             <!--Container-->
-            <div class="container">
-                <!--KPI-->
-                <div class="kpi">
-                    <!--Card-->
-                    <div class="card1">
-                        <span>Maior proporção de críticos *</span>
-                        <span class="info"
-                            >Setor A ·
-                            <span style="color: var(--color-danger)"
-                                >4</span
-                            ></span
-                        >
-                        <span class="information"
-                            >* alertas críticos/total de alertas.</span
-                        >
-                    </div>
-                    <div class="card2">
-                        <span>Maior leitura registrada * </span>
-                        <span class="info"
-                            >Setor D ·
-                            <span style="color: var(--color-danger)"
-                                >2,4%</span
-                            ></span
-                        >
-                        <span class="information"
-                            >* leitura diária, concentração de GLP.
-                        </span>
-                    </div>
-                    <div class="card3">
-                        <span>Maior incidência de alertas * </span>
-                        <span class="info"
-                            >Setor C ·
-                            <span style="color: var(--color-alert)"
-                                >13</span
-                            ></span
-                        >
-                        <span class="information">* incidência diária</span>
-                    </div>
-                    <div class="card4">
-                        <span>Sensores ativos</span>
-                        <span class="info" style="color: var(--color-success)"
-                            >24 / 24 sensores</span
-                        >
-                        <span class="information"
-                            >* distribuição por setor no gráfico 3
-                        </span>
-                    </div>
-                    <div class="quantidade_sensores">
-                        <canvas id="quantidade_sensores"></canvas>
-                    </div>
-                </div>
-
-                <div class="other-kpi">
-                    <div class="infor">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            height="24px"
-                            viewBox="0 -960 960 960"
-                            width="24px"
-                            fill="#fff"
-                        >
-                            <path
-                                d="M340-360q-25 0-42.5-17.5T280-420q0-25 17.5-42.5T340-480q25 0 42.5 17.5T400-420q0 25-17.5 42.5T340-360Zm140 120q-25 0-42.5-17.5T420-300q0-25 17.5-42.5T480-360q25 0 42.5 17.5T540-300q0 25-17.5 42.5T480-240ZM340-120q-25 0-42.5-17.5T280-180q0-25 17.5-42.5T340-240q25 0 42.5 17.5T400-180q0 25-17.5 42.5T340-120Zm280-240q-25 0-42.5-17.5T560-420q0-25 17.5-42.5T620-480q25 0 42.5 17.5T680-420q0 25-17.5 42.5T620-360Zm0 240q-25 0-42.5-17.5T560-180q0-25 17.5-42.5T620-240q25 0 42.5 17.5T680-180q0 25-17.5 42.5T620-120Zm140-120q-25 0-42.5-17.5T700-300q0-25 17.5-42.5T760-360q25 0 42.5 17.5T820-300q0 25-17.5 42.5T760-240Zm-560 0q-25 0-42.5-17.5T140-300q0-25 17.5-42.5T200-360q25 0 42.5 17.5T260-300q0 25-17.5 42.5T200-240Zm136-320q-26 0-47-15.5T260-616l-20-64h-40q-33 0-56.5-23.5T120-760v-120h720v120q0 33-23.5 56.5T760-680h-40l-26 68q-9 23-29 37.5T620-560H336ZM200-800v40h560v-40H200Zm124 120 12 40h288l12-40H324ZM200-800v40-40Z"
-                            />
-                        </svg>
-                        <span class="dado">0</span>
-                        <span>Sensores com problema</span>
-                        <span
-                            style="
-                                content: &quot;&quot;;
-                                height: 10px;
-                                width: 10px;
-                                background-color: var(--color-success);
-                                border-radius: 16px;
-                                margin: 5px;
-                            "
-                        ></span>
-                    </div>
-
-                    <div class="infor">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            height="24px"
-                            viewBox="0 -960 960 960"
-                            width="24px"
-                            fill="#fff"
-                        >
-                            <path
-                                d="M340-360q-25 0-42.5-17.5T280-420q0-25 17.5-42.5T340-480q25 0 42.5 17.5T400-420q0 25-17.5 42.5T340-360Zm140 120q-25 0-42.5-17.5T420-300q0-25 17.5-42.5T480-360q25 0 42.5 17.5T540-300q0 25-17.5 42.5T480-240ZM340-120q-25 0-42.5-17.5T280-180q0-25 17.5-42.5T340-240q25 0 42.5 17.5T400-180q0 25-17.5 42.5T340-120Zm280-240q-25 0-42.5-17.5T560-420q0-25 17.5-42.5T620-480q25 0 42.5 17.5T680-420q0 25-17.5 42.5T620-360Zm0 240q-25 0-42.5-17.5T560-180q0-25 17.5-42.5T620-240q25 0 42.5 17.5T680-180q0 25-17.5 42.5T620-120Zm140-120q-25 0-42.5-17.5T700-300q0-25 17.5-42.5T760-360q25 0 42.5 17.5T820-300q0 25-17.5 42.5T760-240Zm-560 0q-25 0-42.5-17.5T140-300q0-25 17.5-42.5T200-360q25 0 42.5 17.5T260-300q0 25-17.5 42.5T200-240Zm136-320q-26 0-47-15.5T260-616l-20-64h-40q-33 0-56.5-23.5T120-760v-120h720v120q0 33-23.5 56.5T760-680h-40l-26 68q-9 23-29 37.5T620-560H336ZM200-800v40h560v-40H200Zm124 120 12 40h288l12-40H324ZM200-800v40-40Z"
-                            />
-                        </svg>
-                        <span class="dado">0</span>
-                        <span>Alertas críticos</span>
-                        <span
-                            style="
-                                content: &quot;&quot;;
-                                height: 10px;
-                                width: 10px;
-                                background-color: var(--color-success);
-                                border-radius: 16px;
-                                margin: 5px;
-                            "
-                        ></span>
-                    </div>
-
-                    <div class="infor">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            height="24px"
-                            viewBox="0 -960 960 960"
-                            width="24px"
-                            fill="#fff"
-                        >
-                            <path
-                                d="M220-80q-58 0-99-41t-41-99q0-58 41-99t99-41q18 0 35 4.5t32 12.5l153-153v-110q-44-13-72-49.5T340-740q0-58 41-99t99-41q58 0 99 41t41 99q0 48-28 84.5T520-606v110l154 153q15-8 31.5-12.5T740-360q58 0 99 41t41 99q0 58-41 99t-99 41q-58 0-99-41t-41-99q0-18 4.5-35t12.5-32L480-424 343-287q8 15 12.5 32t4.5 35q0 58-41 99t-99 41Zm520-80q25 0 42.5-17.5T800-220q0-25-17.5-42.5T740-280q-25 0-42.5 17.5T680-220q0 25 17.5 42.5T740-160ZM480-680q25 0 42.5-17.5T540-740q0-25-17.5-42.5T480-800q-25 0-42.5 17.5T420-740q0 25 17.5 42.5T480-680ZM220-160q25 0 42.5-17.5T280-220q0-25-17.5-42.5T220-280q-25 0-42.5 17.5T160-220q0 25 17.5 42.5T220-160Z"
-                            />
-                        </svg>
-                        <span class="dado">4</span>
-                        <span>Setores cadastrados</span>
-                    </div>
-                </div>
-
-                <!--Média por setor-->
-                <!--<canvas id="media_setor"></canvas>-->
-
-                <div class="charts">
-                    <div class="container-alertas">
-                        <canvas id="alertas_por_setor" style=""></canvas>
-                    </div>
-                    <div class="ranking">
-                        <div class="title-ranking">
-                            <h2>Ranking de alertas por setor</h2>
-                        </div>
-                        <div class="sectores">
-                            <ul>
-                                <li>
-                                    <span class="setor">Setor A</span>
-                                    <span class="quantidade">13</span>
-                                </li>
-                                <li>
-                                    <span class="setor">Setor A</span>
-                                    <span class="quantidade">13</span>
-                                </li>
-                                <li>
-                                    <span class="setor">Setor A</span>
-                                    <span class="quantidade">13</span>
-                                </li>
-                                <li>
-                                    <span class="setor">Setor A</span>
-                                    <span class="quantidade">13</span>
-                                </li>
-                                <li>
-                                    <span class="setor">Setor A</span>
-                                    <span class="quantidade">13</span>
-                                </li>
-                                <li>
-                                    <span class="setor">Setor A</span>
-                                    <span class="quantidade">13</span>
-                                </li>
-                                <li>
-                                    <span class="setor">Setor A</span>
-                                    <span class="quantidade">13</span>
-                                </li>
-                                <li>
-                                    <span class="setor">Setor A</span>
-                                    <span class="quantidade">13</span>
-                                </li>
-                                <li>
-                                    <span class="setor">Setor A</span>
-                                    <span class="quantidade">13</span>
-                                </li>
-                                <li>
-                                    <span class="setor">Setor A</span>
-                                    <span class="quantidade">13</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="container"></div>
         </div>
 
         <!--Modal de Logout-->
@@ -392,16 +213,6 @@
             </div>
         </div>
 
-        <!--ChartJS-->
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3"></script>
-
-        <!--Charts-->
-        <script src="../assets/javascript/dashboard.js"></script>
-
-        <!--Sensores-->
-        <script src="../assets/javascript/sensores.js"></script>
-
         <!--Redirect-->
         <script src="../assets/javascript/redirect.js"></script>
 
@@ -417,10 +228,6 @@
             function abrirModalLogout() {
                 modalLogout.style.display = "flex";
             }
-
-            document.addEventListener("DOMContentLoaded", () => {
-                gerarGraficoDistribuicaoSensores();
-            });
         </script>
     </body>
 </html>

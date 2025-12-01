@@ -80,6 +80,7 @@ body {
     justify-content: space-evenly;
     border-radius: 16px;
     margin: 0px 5px;
+    margin-bottom: 20px;
 }
 
 .logout button {
@@ -118,6 +119,7 @@ body {
 }
 
 .kpi {
+    padding: 0px 0px 20px 0px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 0.5fr 0.5fr;
@@ -127,6 +129,7 @@ body {
     grid-template-areas:
         "card1 card2 quantidade_sensores quantidade_sensores"
         "card3 card4 quantidade_sensores quantidade_sensores";
+    border-bottom: 1px solid var(--color-very-dark-blue);
 }
 
 .card1 {
@@ -251,6 +254,10 @@ body {
     border: 1px solid var(--color-danger);
 }
 
+#confirm:hover {
+    opacity: 0.8;
+}
+
 #cancel {
     background-color: var(--color-very-dark-blue);
     border: 1px solid var(--color-very-dark-blue);
@@ -258,6 +265,7 @@ body {
 
 #cancel:hover {
     background-color: var(--color-dark-blue);
+    border: 1px solid var(--color-dark-blue);
 }
 
 .alerta-message {
@@ -266,21 +274,54 @@ body {
 
 .charts {
     display: flex;
+    width: 100%;
 }
 
 #alertas_por_setor {
     margin-left: 10px;
-    width: 500px !important;
-    height: 280px !important;
     box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.3);
     border-radius: 16px;
     margin: 5px;
     padding: 5px;
 }
 
-#media_setor {
-    padding: 10px;
-    margin: 20px 0px;
-    width: 100% !important;
-    height: 90% !important;
+.container-alertas {
+    width: 65%;
+}
+
+.ranking {
+    padding: 2% 1%;
+    margin: 5px 5px 5px 20px;
+    width: 50%;
+    border-radius: 16px;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.3);
+}
+
+.ranking .title-ranking {
+    font-size: 1rem;
+    color: var(--color-very-dark-blue);
+    margin-bottom: 10px;
+}
+
+.sectores {
+    height: 200px;
+    overflow-y: scroll;
+    scrollbar-width: 2px;
+    border: 1px solid var(--color-very-dark-blue);
+    border-radius: 10px;
+}
+
+.sectores ul {
+    padding: 0px 5px;
+}
+
+.sectores ul li {
+    padding: 5px;
+    border-bottom: 1px solid var(--color-very-dark-blue);
+    display: flex;
+    justify-content: space-between;
+}
+
+.quantidade {
+    font-size: 1.1rem;
 }
