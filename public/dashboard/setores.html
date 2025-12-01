@@ -122,11 +122,13 @@
 
         <!--Container-->
         <div class="container">
-            <div>X Sensores</div>
+            <div id="QtdSetoresID">X Setores</div>
 
-            <div class="sensores-container">
+            <div class="sensores-container" id="setores-containerID">
 
-                <div class="card-sensor">
+
+                <!-- CARD SETOR EXEMPLO -->
+                <!-- <div class="card-sensor">
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                             fill="#fff">
@@ -141,7 +143,7 @@
                         <span style="color: var(--color-success)">Ativo</span></span>
                     <span>Setor A</span>
                     <span>#BTJ0001</span>
-                </div>
+                </div> -->
 
 
 
@@ -198,6 +200,67 @@
         // Função para abrir o modal de logout
         function abrirModalLogout() {
             modalLogout.style.display = "flex";
+        }
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            fetch("/dashboard/pegarsetores", {
+                method: "GET",
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                   
+                    return resposta.json();
+                } else {
+                    resposta.text().then(texto => {
+                        console.error("Erro na resposta do servidor: " + texto);
+                    });
+                    throw new Error('Erro na resposta da API');
+                }
+            }).then(function (resposta) {
+
+                console.log("Tranformado para JSON com sucesso, RESULTADO:")
+                console.log(JSON.stringify(resposta))
+                var QtdSetores = document.getElementById('QtdSetoresID')
+                QtdSetores.innerHTML = `Setores: ${resposta.length}`
+                resposta.forEach(setor => {
+                    plotarSetores(setor)
+                });
+
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+
+
+        });
+        function plotarSetores(setor){
+            var ContainerPaiSetores = document.getElementById('setores-containerID')
+            
+            console.log("Plotando setor: " + setor.descricao)
+            
+            ContainerPaiSetores.innerHTML += `
+            
+                 <div class="card-sensor" id='CardSetor-${setor.id}'>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                            fill="#000">
+                            <path
+                                d="M220-80q-58 0-99-41t-41-99q0-58 41-99t99-41q18 0 35 4.5t32 12.5l153-153v-110q-44-13-72-49.5T340-740q0-58 41-99t99-41q58 0 99 41t41 99q0 48-28 84.5T520-606v110l154 153q15-8 31.5-12.5T740-360q58 0 99 41t41 99q0 58-41 99t-99 41q-58 0-99-41t-41-99q0-18 4.5-35t12.5-32L480-424 343-287q8 15 12.5 32t4.5 35q0 58-41 99t-99 41Zm520-80q25 0 42.5-17.5T800-220q0-25-17.5-42.5T740-280q-25 0-42.5 17.5T680-220q0 25 17.5 42.5T740-160ZM480-680q25 0 42.5-17.5T540-740q0-25-17.5-42.5T480-800q-25 0-42.5 17.5T420-740q0 25 17.5 42.5T480-680ZM220-160q25 0 42.5-17.5T280-220q0-25-17.5-42.5T220-280q-25 0-42.5 17.5T160-220q0 25 17.5 42.5T220-160Z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3>Setor ${setor.nome}</h3>
+                    </div>
+                    <span>Operando:
+                        <span style="color: var(--color-success)">Ativo</span></span>
+                    <span>${setor.descricao}</span>
+                    <span>${setor.categoria}</span>
+                    <span>${setor.codigo_setor}</span>
+                </div>
+            
+            
+            `
         }
     </script>
 </body>
