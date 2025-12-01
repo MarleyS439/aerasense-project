@@ -7,4 +7,8 @@ router.get("/pegarsetores", function (req, res) {
 });
 
 
+router.post("/pegarKPISensorproblema", function (req, res) {
+  dashboardController.pegarKPISensorproblema(req, res);
+});
+
 module.exports = router;
