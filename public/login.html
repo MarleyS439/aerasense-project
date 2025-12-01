@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-br" dir="ltr">
+    <head>
+        <!--HTML Meta Tags-->
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="Marley de S. Santos" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+
+        <!--Stylesheet-->
+        <link rel="stylesheet" href="assets/css/login.css" />
+
+        <!--Google Fonts-->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet"
+        />
+
+        <!--Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico" />
+
+        <!--Title-->
+        <title>Login</title>
+    </head>
+    <body>
+        <div class="container">
+            <div href="../aerasense/index.html" class="logo">
+                <img src="assets/images/logo-logo.svg" alt="" />
+            </div>
+
+            <div class="title">
+                <h2>Faça login na sua conta</h2>
+            </div>
+            <div class="form">
+                <div class="inputs">
+                    <label for="input_email">E-mail</label>
+                    <input
+                        type="email"
+                        placeholder="email@email.com"
+                        required
+                        id="input_email"
+                    />
+                </div>
+
+                <div class="inputs">
+                    <label for="input_senha">Senha</label>
+                    <input
+                        type="password"
+                        required
+                        placeholder="********"
+                        id="input_senha"
+                    />
+                </div>
+
+                <div class="loading" id="status"></div>
+
+                <div id="mensagem"></div>
+
+                <div class="reset-password">
+                    <span
+                        >Esqueceu a senha? <a href="#">Recuperar senha</a></span
+                    >
+                </div>
+                <div class="button">
+                    <button
+                        onclick="validarCredenciais()"
+                        type="button"
+                        id="login"
+                    >
+                        Entrar na conta
+                    </button>
+                </div>
+            </div>
+
+            <div class="register">
+                <span
+                    >Não possui conta?
+                    <a href="cadastro.html">Cadastre-se</a></span
+                >
+            </div>
+
+            <div class="go-back">
+                <a href="index.html">Voltar para o início</a>
+            </div>
+        </div>
+
+        <!--Login-->
+        <script src="assets/javascript/login.js"></script>
+
+        <!--Redirecionar-->
+        <script src="assets/javascript/redirect.js"></script>
+    </body>
+</html>
