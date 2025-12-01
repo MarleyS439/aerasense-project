@@ -161,7 +161,7 @@
                     />
                 </svg>
                 <span>Fernando Brandão</span>
-                <button type="button" title="Sair">
+                <button type="button" title="Sair" onclick="abrirModalLogout()">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         height="24px"
@@ -237,10 +237,63 @@
             </div>
         </div>
 
+        <!--Modal de Logout-->
+        <div class="modal-logout" id="modal-logout">
+            <!--Container Modal-->
+            <div class="container-modal">
+                <div class="title-modal">
+                    <h3>Você tem certeza?</h3>
+                </div>
+
+                <div class="alerta-message">
+                    <p>Você deseja deslogar de sua conta?</p>
+                </div>
+
+                <!--Buttons-->
+                <div class="buttons">
+                    <button type="button" onclick="logout()" id="confirm">
+                        Fazer logout
+                    </button>
+                    <button
+                        type="button"
+                        onclick="cancelarLogout()"
+                        id="cancel"
+                    >
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!--Sensores-->
+        <script src="../assets/javascript/sensores.js"></script>
+
         <!--Redirect-->
         <script src="../assets/javascript/redirect.js"></script>
 
+        <!--Sessão-->
+        <script src="../assets/javascript/session.js"></script>
+
         <!--Logout-->
         <script src="../assets/javascript/logout.js"></script>
+
+        <script>
+            var modalLogout = document.getElementById("modal-logout");
+
+            // Função para cancelar o Logout
+            function cancelarLogout() {
+                modalLogout.style.display = "none";
+            }
+
+            // Função para abrir o modal de logout
+            function abrirModalLogout() {
+                modalLogout.style.display = "flex";
+            }
+
+            // Chama a função de gerar a distribuição em gráfico de sensores por setor (ao cerregar a página)
+            document.addEventListener("DOMContentLoaded", () => {
+                validarSessao();
+            });
+        </script>
     </body>
 </html>

@@ -50,6 +50,10 @@ td {
     fill: yellow;
 }
 
+#marcar_lido {
+    border: 1px solid red;
+}
+
 #marcar_lido:hover {
     cursor: pointer;
     text-decoration: underline;

@@ -27,7 +27,7 @@
         <link rel="stylesheet" href="../assets/css/dashboard.css" />
 
         <!--Title-->
-        <title id="titulo_dash">Empresa X | Dashboard</title>
+        <title id="titulo_dash">Dashboard</title>
     </head>
     <body>
         <!--Sidebar-->
@@ -408,6 +408,9 @@
         <!--Sessão-->
         <script src="../assets/javascript/session.js"></script>
 
+        <!--Logout-->
+        <script src="../assets/javascript/logout.js"></script>
+
         <script>
             var modalLogout = document.getElementById("modal-logout");
 
@@ -419,12 +422,6 @@
             // Função para abrir o modal de logout
             function abrirModalLogout() {
                 modalLogout.style.display = "flex";
-            }
-
-            // Função para fazer o logout do usuário
-            function logout() {
-                sessionStorage.clear();
-                redirecionar("../login.html");
             }
 
             // Chama a função de gerar a distribuição em gráfico de sensores por setor (ao cerregar a página)
