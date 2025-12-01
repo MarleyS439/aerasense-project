@@ -128,6 +128,8 @@ function login(email, senha) {
 
 function CriarLog() {
 
+  
+
   fetch('usuarios/criarLog', {
 
     method: 'POST',
