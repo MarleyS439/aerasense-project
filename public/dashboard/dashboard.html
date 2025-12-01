@@ -186,14 +186,14 @@
                 <!--KPI-->
                 <div class="kpi">
                     <!--Card-->
-                    <div class="card">
+                    <div class="card1">
                         <span>Maior proporção de críticos *</span>
                         <span class="info">Setor A · 4</span>
                         <span class="information"
                             >* alertas críticos/total de alertas.</span
                         >
                     </div>
-                    <div class="card">
+                    <div class="card2">
                         <span>Maior leitura registrada * </span>
                         <span class="info"
                             >Setor D ·
@@ -205,12 +205,12 @@
                             >* leitura diária, concentração de GLP.
                         </span>
                     </div>
-                    <div class="card">
+                    <div class="card3">
                         <span>Maior incidência de alertas * </span>
                         <span class="info">Setor C · 13</span>
                         <span class="information">* incidência diária</span>
                     </div>
-                    <div class="card">
+                    <div class="card4">
                         <span>Sensores ativos</span>
                         <span class="info" style="color: var(--color-success)"
                             >24 / 24 sensores</span
@@ -218,6 +218,9 @@
                         <span class="information"
                             >* distribuição por setor no gráfico 3
                         </span>
+                    </div>
+                    <div class="quantidade_sensores">
+                        <canvas id="quantidade_sensores"></canvas>
                     </div>
                 </div>
 
@@ -270,11 +273,13 @@
 
                 <!--Two Charts-->
                 <div class="charts">
-                    <canvas id="alertas_por_setor"></canvas>
-                    <canvas
-                        id="quantidade_sensores"
-                        style="width: 250px !important"
-                    ></canvas>
+                    <div class="container-alertas">
+                        <canvas id="alertas_por_setor"></canvas>
+                    </div>
+
+                    <!--<div class="quantidade_sensores">
+                        <canvas id="quantidade_sensores"></canvas>
+                    </div>-->
                 </div>
             </div>
         </div>

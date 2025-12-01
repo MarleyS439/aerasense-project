@@ -118,19 +118,58 @@ body {
 }
 
 .kpi {
-    width: 100%;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 0.5fr 0.5fr;
+    gap: 5px 20px;
+    align-items: center;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "card1 card2 quantidade_sensores quantidade_sensores"
+        "card3 card4 quantidade_sensores quantidade_sensores";
 }
 
-.card {
+.card1 {
+    grid-area: card1;
+    height: min-content;
+}
+
+.card2 {
+    grid-area: card2;
+}
+
+.card3 {
+    grid-area: card3;
+}
+
+.card4 {
+    grid-area: card4;
+}
+
+.quantidade_sensores {
+    display: flex;
+    justify-content: center;
+    grid-area: quantidade_sensores;
+    height: 300px;
+    width: 95%;
+    margin-top: 5px;
+    padding: 0px 10px;
+    border-radius: 16px;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.3);
+}
+
+.card1,
+.card2,
+.card3,
+.card4 {
     background-color: var(--color-very-dark-blue);
-    padding: 10px;
+    padding: 20px 25px;
     display: flex;
     flex-direction: column;
-    margin-right: 10px;
     border-radius: 16px;
     color: var(--color-white);
-    width: 250px;
+    width: 300px;
+    height: min-content;
 }
 
 .card span {
@@ -153,7 +192,7 @@ body {
 }
 
 .other-kpi .infor {
-    margin-right: 10px;
+    margin-right: 25px;
     background-color: var(--color-very-dark-blue);
     padding: 10px 15px;
     border-radius: 16px;
@@ -227,19 +266,16 @@ body {
 
 .charts {
     display: flex;
-    justify-content: space-between;
-}
-
-#quantidade_sensores {
-    width: 300px !important;
-    height: 300px !important;
-    border: 1px solid red;
 }
 
 #alertas_por_setor {
+    margin-left: 10px;
     width: 500px !important;
     height: 280px !important;
-    border: 1px solid red;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
+    margin: 5px;
+    padding: 5px;
 }
 
 #media_setor {
