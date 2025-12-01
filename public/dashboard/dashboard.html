@@ -405,6 +405,9 @@
         <!--Redirect-->
         <script src="../assets/javascript/redirect.js"></script>
 
+        <!--Sessão-->
+        <script src="../assets/javascript/session.js"></script>
+
         <script>
             var modalLogout = document.getElementById("modal-logout");
 
@@ -418,8 +421,16 @@
                 modalLogout.style.display = "flex";
             }
 
+            // Função para fazer o logout do usuário
+            function logout() {
+                sessionStorage.clear();
+                redirecionar("../login.html");
+            }
+
+            // Chama a função de gerar a distribuição em gráfico de sensores por setor (ao cerregar a página)
             document.addEventListener("DOMContentLoaded", () => {
                 gerarGraficoDistribuicaoSensores();
+                validarSessao();
             });
         </script>
     </body>
