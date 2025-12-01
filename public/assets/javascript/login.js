@@ -111,9 +111,9 @@ function login(email, senha) {
           }, 3000);
 
           // Chama a função redirecionar, após 2.5 segundos
-          // setTimeout(() => {
-          //   redirecionar("dashboard/dashboard.html");
-          // }, 4000);
+          setTimeout(() => {
+            redirecionar("dashboard/dashboard.html");
+          }, 4000);
 
           return true;
         });
@@ -128,7 +128,7 @@ function login(email, senha) {
 
 function CriarLog() {
 
-  
+
 
   fetch('usuarios/criarLog', {
 
@@ -151,3 +151,62 @@ function CriarLog() {
   })
 
 }
+
+// function Checkout() {
+
+//   fetch('usuarios/checkout', {
+
+//     method: 'POST',
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify({
+
+//       idAcesso: sessionStorage.ID_ACESSO
+
+//     }),
+
+//   })
+//     .then(function (resposta) {
+
+//       console.log(resposta)
+
+//       if (resposta.ok) {
+
+//         console.log(`
+//         I'm gonna fight 'em off
+//         A seven nation army couldn't hold me back
+//         They're gonna rip it off
+//         Takin' their time right behind my back
+//         And I'm talkin' to myself at night
+//         Because I can't forget
+//         Back and forth through my mind
+//         Behind a cigarette
+//         And the message comin' from my eyes
+//         Says, "Leave it alone"
+//         Don't wanna hear about it
+//         Every single one's got a story to tell
+//         Everyone knows about it
+//         From the Queen of England to the Hounds of Hell
+//         And if I catch it comin' back my way
+//         I'm gonna serve it to you
+//         And that ain't what you want to hear
+//         But that's what I'll do
+//         And the feelin' comin' from my bones
+//         Says, "Find a home"
+//         I'm goin' to Wichita
+//         Far from this opera forevermore
+//         I'm gonna work the straw
+//         Make the sweat drip out of every pore
+//         And I'm bleedin', and I'm bleedin', and I'm bleedin'
+//         Right before the Lord
+//         All the words are gonna bleed from me
+//         And I will think no more
+//         And the stains comin' from my blood
+//         Tell me, "Go back home"
+  
+//         `);
+
+//       }
+
+//     })
+
+// }

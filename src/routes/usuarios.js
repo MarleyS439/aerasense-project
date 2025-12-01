@@ -20,4 +20,8 @@ router.post("/registrar/log/", function (req, res) {
   usuarioController.criarLogUsuario(req, res);
 });
 
+router.post('/checkout', function(req,res){
+  usuarioController.Checkout(req,res);
+})
+
 module.exports = router;

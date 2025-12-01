@@ -165,9 +165,25 @@ function criarLogUsuario(req, res) {
     });
 }
 
+function Checkout(req, res) {
+
+  var id = req.body.idAcesso;
+
+  usuarioModel.Checkout(id)
+    .then(function (resposta) {
+
+      console.log('rizz');
+      res.status(200).send('Tudo Certo')
+
+
+    })
+
+}
+
 module.exports = {
   autenticar,
   cadastrar,
   CriarLog,
   criarLogUsuario,
+  Checkout
 };

@@ -68,10 +68,21 @@ function criarLogUsuario(idUsuario, idEmpresa) {
   return database.executar(sql);
 }
 
+function Checkout(id){
+
+  var sql = `
+  update acesso set dtHrLogout = default where idAcesso = ${id}
+  `;
+  console.log("Executando a seguinte instrução SQL: \n", sql);
+  return database.executar(sql);
+
+}
+
 module.exports = {
   autenticar,
   cadastrar,
   VerificacaoEmpresa,
   CriarLog,
   criarLogUsuario,
+  Checkout
 };
