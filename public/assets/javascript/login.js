@@ -75,6 +75,10 @@ function login(email, senha) {
         resposta.json().then((json) => {
           // Armazena no sessionStorage, um item de nome EMAIL_USUARIO o item email do JSON de resposta
           sessionStorage.EMAIL_USUARIO = JSON.stringify(json[0].email);
+          sessionStorage.ID_USUARIO = JSON.stringify(json[0].id);
+          sessionStorage.ID_EMPRESA = JSON.stringify(json[0].idEmpresa);
+
+          CriarLog();
 
           // Restaura as bordas dos inputs ao formato original
           emailInput.style.border = "1px solid var(--color-very-dark-blue)";
@@ -107,9 +111,9 @@ function login(email, senha) {
           }, 3000);
 
           // Chama a função redirecionar, após 2.5 segundos
-          setTimeout(() => {
-            redirecionar("dashboard/dashboard.html");
-          }, 4000);
+          // setTimeout(() => {
+          //   redirecionar("dashboard/dashboard.html");
+          // }, 4000);
 
           return true;
         });
@@ -120,4 +124,28 @@ function login(email, senha) {
     });
 
   return false;
+}
+
+function CriarLog() {
+
+  fetch('usuarios/criarLog', {
+
+    method: 'POST',
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+
+      idUsuario: sessionStorage.ID_USUARIO,
+      idEmpresa: sessionStorage.ID_EMPRESA
+
+    }),
+
+  }).then(function (resposta) {
+    console.log(resposta)
+    resposta.json().then((json) => {
+      sessionStorage.ID_ACESSO = JSON.stringify(json.id);
+      console.log(JSON.stringify(json))
+    });
+
+  })
+
 }

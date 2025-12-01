@@ -59,20 +59,20 @@ function cadastrar(req, res) {
   var TokenEmpresa = req.body.tokenempresaServer;
   console.log(
     +nome +
-      "/" +
-      +sobrenome +
-      "/" +
-      +empresa +
-      "/" +
-      +cnpjempresa +
-      "/" +
-      +celular +
-      "/" +
-      +email +
-      "/" +
-      +senha +
-      "/" +
-      +TokenEmpresa,
+    "/" +
+    +sobrenome +
+    "/" +
+    +empresa +
+    "/" +
+    +cnpjempresa +
+    "/" +
+    +celular +
+    "/" +
+    +email +
+    "/" +
+    +senha +
+    "/" +
+    +TokenEmpresa,
   );
 
   // Faça as validações dos valores
@@ -131,9 +131,15 @@ function CriarLog(req, res) {
   var idEmpresa = req.body.idEmpresa;
 
   usuarioModel.CriarLog(idUsuario, idEmpresa).then(function (resposta) {
-    if (resposta.ok) {
-      res.send("Tudo Certo");
-    }
+
+    console.log(JSON.stringify(resposta));
+    console.log(`${JSON.stringify(resposta.insertId)}`);
+    // res.send(`${JSON.stringify(resposta.insertId)}`);
+
+    res.json({
+      id: resposta.insertId
+    })
+
   });
 }
 
