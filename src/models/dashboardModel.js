@@ -116,8 +116,21 @@ function pegarSetoresCadastrados(idEmpresa) {
 }
 
 
-
-
+function KPISensoresAtivos(idEmpresa) {
+ var sql = `
+select emp.nome_fantasia as 'Empresa',
+count(sen.id) as 'Sensores_Ativos',
+    sum(case when sen.status_sensor != 'ativo' then 1 else 0 end) as 'Sensores_Inativos'
+    from empresa as emp join setor as str
+    on str.fk_id_empresa = emp.id
+    join sensor as sen
+    on sen.fk_id_setor = str.id
+    where str.fk_id_empresa = ${idEmpresa}
+    group by emp.nome_fantasia;
+    `;
+  console.log("Executando a seguinte instrução SQL: \n", sql);
+  return database.executar(sql);
+}
 
 module.exports = {
   pegarsetores,
@@ -128,5 +141,6 @@ module.exports = {
   setoresCadastrados,
   pegarSetoresCadastrados,
   KPIMaiorPropCriticos,
-  pegarKPIMaiorLeitura
+  pegarKPIMaiorLeitura,
+  KPISensoresAtivos
 };

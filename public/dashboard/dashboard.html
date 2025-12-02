@@ -223,7 +223,7 @@
                     </div>
                     <div class="card4">
                         <span>Sensores ativos</span>
-                        <span class="info" style="color: var(--color-success)"
+                        <span id="Sensores_Ativos" class="info" style="color: var(--color-success)"
                             >24 / 24 sensores</span
                         >
                         <span class="information"
@@ -447,6 +447,7 @@
                 pegarKPIAlertasCriticos();
                 pegarKPIMaiorLeitura();
                 pegarSetoresCadastrados();
+                KPISensoresAtivos();
             }
 
             function pegarKPIMaiorLeitura() {
@@ -649,6 +650,44 @@
 
                         setoresCadastrados.innerHTML =
                             resposta[0].setoresCadastrados;
+                    })
+                    .catch(function (resposta) {
+                        console.log(`#ERRO: ${resposta}`);
+                    });
+            }
+
+            function KPISensoresAtivos() {
+                var idEmpresa = sessionStorage.getItem("ID_EMPRESA");
+
+                fetch("/dashboard/KPISensoresAtivos", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        ID_EMPRESA: idEmpresa,
+                    }),
+                })
+                    .then(function (resposta) {
+                        if (resposta) {
+                            return resposta.json();
+                        } else {
+                            resposta.text().then((texto) => {
+                                console.error(
+                                    "Erro na resposta do servidor: " + texto,
+                                );
+                            });
+                            throw new Error("Erro na resposta da API");
+                        }
+                    })
+                    .then(function (resposta) {
+                        console.log(
+                            "Tranformado para JSON com sucesso, RESULTADO:",
+                        );
+                        console.log('flamengo')
+                        console.log(resposta[0].Sensores_Ativos)
+                        console.log(resposta[0].Sensores_Inativos)
+                        Sensores_Ativos.innerHTML = `${resposta[0].Sensores_Ativos} / ${Number(resposta[0].Sensores_Ativos) + Number(resposta[0].Sensores_Inativos)} sensores`
                     })
                     .catch(function (resposta) {
                         console.log(`#ERRO: ${resposta}`);
