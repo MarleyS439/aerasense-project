@@ -8,13 +8,15 @@ function autenticar(email, senha) {
 
   // Instrução SQL a ser executada
   var sql = `
-    SELECT id,
-           nome,
-           email,
-           fk_id_empresa AS idEmpresa
-    FROM usuario
-    WHERE email = '${email}'
-        AND senha = '${senha}' LIMIT 1;
+    SELECT u.id,
+           u.nome,
+           u.email,
+           u.fk_id_empresa AS idEmpresa,
+           e.nome_fantasia as 'Nome_Empresa'
+    FROM usuario as u join empresa as e
+    on u.fk_id_empresa = e.id
+    WHERE u.email = '${email}'
+        AND u.senha = '${senha}' LIMIT 1;
   `;
 
   console.log("Executando a instrução SQL: \n" + sql);
@@ -68,10 +70,21 @@ function criarLogUsuario(idUsuario, idEmpresa) {
   return database.executar(sql);
 }
 
+function Checkout(id){
+
+  var sql = `
+  update acesso set dtHrLogout = default where idAcesso = ${id}
+  `;
+  console.log("Executando a seguinte instrução SQL: \n", sql);
+  return database.executar(sql);
+
+}
+
 module.exports = {
   autenticar,
   cadastrar,
   VerificacaoEmpresa,
   CriarLog,
   criarLogUsuario,
+  Checkout
 };

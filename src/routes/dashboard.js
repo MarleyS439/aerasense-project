@@ -15,4 +15,8 @@ router.post("/updateLido", function (req, res) {
   dashboardController.updateLido(req, res);
 });
 
+router.post("/pegarKPISensorproblema", function (req, res) {
+  dashboardController.pegarKPISensorproblema(req, res);
+});
+
 module.exports = router;
