@@ -1,135 +1,130 @@
-const toggleButton = document.getElementById("toggle-btn");
-const sidebar = document.getElementById("sidebar");
-const subMenu = document.getElementById("subMenu");
-const botaoSub = document.getElementById("botaoSub");
-
 Chart.register(window["chartjs-plugin-annotation"]);
-
-Chart.register(window["chartjs-plugin-annotation"]);
-
 const limiteExplosivo = 1.9;
 
-var GraphMomentoSensor = document.getElementById(`GraficoMomentoSensor1`);
+const GraphMomentoSensor = document.getElementById(`GraficoMomentoSensor1`);
 const GraphDiaSensor = document.getElementById(`GraficoDiaSensor1`);
 const GraphSemanaSensor = document.getElementById(`GraficoSemanaSensor1`);
 const GraphMesSensor = document.getElementById(`GraficoMesSensor1`);
 
-document.addEventListener("DOMContentLoaded", () => {
-  gerarGraficoTempoReal();
-});
-
-function gerarGraficoTempoReal() {
-  var opcoes = {
-    type: "line",
-    data: {
-      labels: [
-        "22:10",
-        "22:11",
-        "22:12",
-        "22:13",
-        "22:14",
-        "22:15",
-        "22:16",
-        "22:17",
-        "22:18",
-        "22:19",
-      ],
-      datasets: [
-        {
-          label: "Dados Recentes (Últimos 10 minutos)",
-          data: [0.3, 0.1, 0.4, 0.2, 0.7, 0.2, 0.6, 0.2, 0.4, 0.1],
-          backgroundColor: "#1f77b4",
-          borderWidth: 3,
-          borderColor: "#1f77b4",
+new Chart(GraphMomentoSensor, {
+  type: "line",
+  data: {
+    labels: [
+      "22:10",
+      "22:11",
+      "22:12",
+      "22:13",
+      "22:14",
+      "22:15",
+      "22:16",
+      "22:17",
+      "22:18",
+      "22:19",
+    ],
+    datasets: [
+      {
+        label: "Dados Recentes (Últimos 10 minutos)",
+        data: [0.3, 0.1, 0.4, 0.2, 0.7, 0.2, 0.6, 0.2, 0.4, 0.1],
+        backgroundColor: "#1f77b4",
+        borderWidth: 3,
+        borderColor: "#1f77b4",
+        font: {
+          family: "Kanit",
         },
-      ],
-    },
-    options: {
-      scales: {
-        y: {
-          title: {
-            display: true,
-            text: "Concentração de GLP (%)",
-            color: "#555",
-            font: { size: 12, weight: "600" },
-            padding: { bottom: 8 },
-          },
-          beginAtZero: true,
-        },
-        x: {
-          title: {
-            display: true,
-            text: "Horário da Medição",
-            color: "#555",
-            font: { size: 12, weight: "600" },
-            padding: { top: 8 },
-          },
-          ticks: {
-            font: {
-              weight: "bold",
-            },
-          },
-        },
+        color: "rgb(10, 43, 64)",
       },
-
-      plugins: {
-        annotation: {
-          drawtime: "afterdraw",
-          annotations: {
-            linhaLimite: {
-              type: "line",
-              yMin: limiteExplosivo,
-              yMax: limiteExplosivo,
-              borderWidth: 3,
-              borderColor: "#ff0000",
-              borderDash: [8, 4],
-              label: {
-                display: false,
-                content: "Valor limítrofe de explosividade",
-                position: "end",
-                backgroundColor: "rgba(255,0,0,0.65)",
-                color: "white",
-                padding: 6,
-                borderRadius: 6,
-                font: {
-                  weight: "bold",
-                },
-              },
-              enter: function (GraphMomentoSensor, event) {
-                GraphMomentoSensor.element.label.options.display = true;
-                GraphMomentoSensor.chart.draw(); //aparece a box na linha fixa
-              },
-              leave: function (GraphMomentoSensor, event) {
-                GraphMomentoSensor.element.label.options.display = false;
-                GraphMomentoSensor.chart.draw(); //some a box da linha fixa
-              },
-            },
-          },
-        },
-
-        legend: {
-          labels: {
-            font: {},
-          },
-        },
-
+    ],
+  },
+  options: {
+    scales: {
+      y: {
         title: {
           display: true,
-          text: "Dados em tempo real",
-          position: "top",
-          align: "start",
+          text: "Concentração de GLP (%)",
           font: {
-            size: 20,
+            size: 12,
+            weight: "600",
+            family: "Kanit",
           },
+          color: "rgb(10, 43, 64)",
+          padding: { bottom: 8 },
+        },
+        beginAtZero: true,
+      },
+      x: {
+        title: {
+          display: true,
+          text: "Horário da Medição",
+          color: "#555",
+          font: { size: 12, weight: "600" },
+          padding: { top: 8 },
+        },
+        ticks: {
+          font: {
+            weight: "bold",
+            family: "Kanit",
+          },
+          color: "rgb(10, 43, 64)",
         },
       },
     },
-  };
 
-  new Chart(GraphDiaSensor, opcoes);
-}
+    plugins: {
+      annotation: {
+        drawtime: "afterdraw",
+        annotations: {
+          linhaLimite: {
+            type: "line",
+            yMin: limiteExplosivo,
+            yMax: limiteExplosivo,
+            borderWidth: 3,
+            borderColor: "#ff0000",
+            borderDash: [8, 4],
+            label: {
+              display: false,
+              content: "Valor limítrofe de explosividade",
+              position: "end",
+              backgroundColor: "rgba(255,0,0,0.65)",
+              color: "white",
+              padding: 6,
+              borderRadius: 6,
+              font: {
+                weight: "bold",
+                family: "Kanit",
+              },
+            },
+            enter: function (GraphMomentoSensor, event) {
+              GraphMomentoSensor.element.label.options.display = true;
+              GraphMomentoSensor.chart.draw(); //aparece a box na linha fixa
+            },
+            leave: function (GraphMomentoSensor, event) {
+              GraphMomentoSensor.element.label.options.display = false;
+              GraphMomentoSensor.chart.draw(); //some a box da linha fixa
+            },
+          },
+        },
+      },
 
-new Chart(GraphMomentoSensor);
+      legend: {
+        labels: {
+          font: {},
+        },
+      },
+
+      title: {
+        display: true,
+        text: "Dados em tempo real",
+        position: "top",
+        align: "center",
+        font: {
+          size: 20,
+          family: "Kanit",
+        },
+        color: "rgb(10, 43, 64)",
+      },
+    },
+  },
+});
 
 new Chart(GraphDiaSensor, {
   type: "line",

@@ -46,44 +46,6 @@ function gerarGraficoDistribuicaoSensores() {
   new Chart(ctxSensores, opcoes);
 }
 
-// const ctx3 = document.getElementById("qtdSensores");
-
-// new Chart(ctx3, {
-//   type: "doughnut",
-//   data: {
-//     labels: ["Setor A", "Setor B", "Setor C", "Setor D"],
-//     datasets: [
-//       {
-//         label: "Quantidade de sensores",
-//         data: [8, 7, 4, 3],
-//         backgroundColor: [
-//           "rgba(80, 160, 22, 1)",
-//           "rgb(54, 162, 235)",
-//           "rgb(255, 205, 86)",
-//           "rgba(216, 36, 168, 1)",
-//         ],
-//         hoverOffset: 4,
-//       },
-//     ],
-//   },
-//   options: {
-//     plugins: {
-//       legend: {
-//         position: "right",
-//       },
-//       title: {
-//         display: true,
-//         text: "Quantidade total de sensores por setor",
-//         position: "top",
-//         align: "start",
-//         font: {
-//           size: 20,
-//         },
-//       },
-//     },
-//   },
-// });
-
 // Função de listar os sensores pelo ID da empresa
 function listarSensores() {
   // ID da empresa
@@ -111,7 +73,7 @@ function listarSensores() {
 
           sensores.forEach((sensor) => {
             document.getElementById("sensor-container").innerHTML += `
-            <div class="card-sensor" onclick="">
+            <div class="card-sensor" onclick="modalSensor(${sensor.id})">
                 <div>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
