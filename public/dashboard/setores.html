@@ -226,9 +226,12 @@
                 console.log(JSON.stringify(resposta))
                 var QtdSetores = document.getElementById('QtdSetoresID')
                 QtdSetores.innerHTML = `Setores: ${resposta.length}`
-                resposta.forEach(setor => {
-                    plotarSetores(setor)
-                });
+                // resposta.forEach(setor => {
+                //     plotarSetores(setor)
+                // });
+                for (var i = 0; i < resposta.length; i++) {
+                    plotarSetores(resposta[i])
+                }
 
             }).catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);

@@ -115,6 +115,23 @@ function pegarSetoresCadastrados(idEmpresa) {
   return database.executar(sql);
 }
 
+
+function KPISensoresAtivos(idEmpresa) {
+ var sql = `
+select emp.nome_fantasia as 'Empresa',
+count(sen.id) as 'Sensores_Ativos',
+    sum(case when sen.status_sensor != 'ativo' then 1 else 0 end) as 'Sensores_Inativos'
+    from empresa as emp join setor as str
+    on str.fk_id_empresa = emp.id
+    join sensor as sen
+    on sen.fk_id_setor = str.id
+    where str.fk_id_empresa = ${idEmpresa}
+    group by emp.nome_fantasia;
+    `;
+    console.log("Executando a seguinte instrução SQL: \n", sql);
+  return database.executar(sql);
+}
+
 function pegarKPIMairIncidencia(idEmpresa) {
   var sql = `
   select str.id as Setor,
@@ -134,7 +151,7 @@ group by str.id;
 
 function obterdadosDonuts(idEmpresa) {
   var sql = `
-      select setor.nome, COUNT(sensor.id) from sensor
+      select setor.nome as setorname, COUNT(sensor.id) as valor from sensor
         JOIN setor on setor.id = sensor.fk_id_setor
         where fk_EmpresaSetor = ${idEmpresa}
         GROUP BY setor.nome;
@@ -145,11 +162,20 @@ function obterdadosDonuts(idEmpresa) {
 
 function obterdadosBarra(idEmpresa) {
   var sql = `
-  SELECT COUNT(id) as 'setoresCadastrados' FROM setor WHERE ${idEmpresa} = fk_id_empresa;
+   select str.nome as Setor,
+      sum(case when a.nivel = 'Crítico' then 1 else 0 end) as 'Alertas_Críticos',
+      sum(case when a.nivel = 'Risco' then 1 else 0 end) as 'Alertas_Risco'
+      from alerta as a join sensor as sen 
+      on a.idSensor = sen.id 
+      join setor as str 
+      on sen.fk_id_setor = str.id 
+      where str.fk_id_empresa = ${idEmpresa}
+      group by str.id;
   `;
   console.log("Executando a seguinte instrução SQL: \n", sql);
   return database.executar(sql);
 }
+
 
 function obterdadosRanking(idEmpresa) {
   var sql = `
@@ -170,9 +196,12 @@ module.exports = {
   KPIMaiorPropCriticos,
   pegarKPIMaiorLeitura,
   pegarKPIMairIncidencia,
+  KPISensoresAtivos,
+  
   // GRAFICOS
   obterdadosDonuts,
   obterdadosBarra,
   obterdadosRanking
 
+ 
 };

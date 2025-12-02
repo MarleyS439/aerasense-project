@@ -222,8 +222,8 @@
                     </div>
                     <div class="card4">
                         <span>Sensores ativos</span>
-                        <span class="info" style="color: var(--color-success)"
-                            >24 / 24 sensores</span
+                        <span id="Sensores_Ativos" class="info" style="color: var(--color-success)"
+                            ></span
                         >
                         <span class="information"
                             >* distribuição por setor no gráfico 3
@@ -308,9 +308,11 @@
                 <!--<canvas id="media_setor"></canvas>-->
 
                 <div class="charts">
+                    
                     <div class="container-alertas">
                         <canvas id="alertas_por_setor"></canvas>
                     </div>
+
                     <div class="ranking">
                         <div class="title-ranking">
                             <h2>Ranking de alertas por setor</h2>
@@ -435,10 +437,10 @@
 
             // Chama a função de gerar a distribuição em gráfico de sensores por setor (ao cerregar a página)
             document.addEventListener("DOMContentLoaded", () => {
-                gerarGraficoDistribuicaoSensores();
+                
                 validarSessao();
                 KPIS();
-                ObterDadosGraficos;
+                ObterDadosGraficos();
             });
 
             function KPIS() {
@@ -447,8 +449,11 @@
                 pegarKPIAlertasCriticos();
                 pegarKPIMaiorLeitura();
                 pegarSetoresCadastrados();
+                KPISensoresAtivos();
                 pegarKPIMairIncidencia();
             }
+
+
 
 
             var dadosGraficoDonuts = []
@@ -476,24 +481,75 @@
                     console.log( "Tranformado para JSON com sucesso, RESULTADO MAIOR INCIDENCIA DE ALERTAS:" );
                     console.log(JSON.stringify(resposta));  
                     dadosGraficoDonuts = resposta  
-                    PlotarGraficos('GraficoDonuts')
+                    PlotarGraficos('GraficoDonuts');
+
                 }).catch(function (resposta) {
                     console.log(`#ERRO: ${resposta}`);
                 });
 
 
 
+                fetch("/dashboard/obterdadosBarra", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        ID_EMPRESA: idEmpresa,
+                    }),
+                }).then(function (resposta) {
+                    if (resposta) {
+                            return resposta.json();
+                    }else{
+                        resposta.text().then((texto) => { console.error("Erro na resposta do servidor: " + texto,) });
+                        throw new Error("Erro na resposta da API");
+                    }
+                }).then(function (resposta) {
+                    console.log( "Tranformado para JSON com sucesso, RESULTADO GRAFICO BARRAS:" );
+                    console.log(JSON.stringify(resposta));  
+                    dadosGraficoBarras = resposta
+                    PlotarGraficos('GraficoBarra')
+
+                }).catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+
+
             }
              function PlotarGraficos(tipoGrafico){
                 // PLOTAR
                 if(tipoGrafico == 'GraficoDonuts'){
+                    console.log("GRAFICO DONUTS DADOS: " + JSON.stringify(dadosGraficoDonuts))
+                    var setores = []
+                    var valores = []
+                    for (var i = 0; i < dadosGraficoDonuts.length; i++) {
+                        setores.push(dadosGraficoDonuts[i].setorname)
+                    }
+                     for (var i = 0; i < dadosGraficoDonuts.length; i++) {
+                        valores.push(dadosGraficoDonuts[i].valor)
+                    }
+                    gerarGraficoDistribuicaoSensores(setores, valores);
 
+                }else if (tipoGrafico == 'GraficoBarra'){
+                    console.log("GRAFICO BARRAS DADOS: " + JSON.stringify(dadosGraficoBarras))
+
+                    var setores = []
+                    var qtdAlertasTotais = []
+                    var QtdAlertasRiscos = []
+                    for (var i = 0; i < dadosGraficoBarras.length; i++) {
+                        setores.push(dadosGraficoBarras[i].Setor)
+                    }
+                     for (var i = 0; i < dadosGraficoBarras.length; i++) {
+                        qtdAlertasTotais.push(dadosGraficoBarras[i].Alertas_Críticos)
+                    }
+                    for (var i = 0; i < dadosGraficoBarras.length; i++) {
+                        QtdAlertasRiscos.push(dadosGraficoBarras[i].Alertas_Risco)
+                    }
+                    gerarGraficoAlertasSetor(setores,qtdAlertasTotais,QtdAlertasRiscos)
                 }
 
             }
-            function AtualizarGrafico(){
-                // ATUALIZAR
-            }
+      
 
             function pegarKPIMairIncidencia(){
                   var idEmpresa = sessionStorage.getItem("ID_EMPRESA");
@@ -736,6 +792,45 @@
                         console.log(`#ERRO: ${resposta}`);
                     });
             }
+
+            function KPISensoresAtivos() {
+                var idEmpresa = sessionStorage.getItem("ID_EMPRESA");
+
+                fetch("/dashboard/KPISensoresAtivos", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        ID_EMPRESA: idEmpresa,
+                    }),
+                })
+                    .then(function (resposta) {
+                        if (resposta) {
+                            return resposta.json();
+                        } else {
+                            resposta.text().then((texto) => {
+                                console.error(
+                                    "Erro na resposta do servidor: " + texto,
+                                );
+                            });
+                            throw new Error("Erro na resposta da API");
+                        }
+                    })
+                    .then(function (resposta) {
+                        console.log(
+                            "Tranformado para JSON com sucesso, RESULTADO:",
+                        );
+                        console.log('flamengo')
+                        console.log(resposta[0].Sensores_Ativos)
+                        console.log(resposta[0].Sensores_Inativos)
+                        Sensores_Ativos.innerHTML = `${resposta[0].Sensores_Ativos} / ${Number(resposta[0].Sensores_Ativos) + Number(resposta[0].Sensores_Inativos)} sensores`
+                    })
+                    .catch(function (resposta) {
+                        console.log(`#ERRO: ${resposta}`);
+                    });
+            }
+            
         </script>
     </body>
 </html>

@@ -2,22 +2,23 @@ const ctx = document.getElementById("media_setor");
 const ctx1 = document.getElementById("alertas_por_setor");
 const ctx2 = document.getElementById("comparar_alertas");
 
-function gerarGraficoAlertasSetor() {}
+function gerarGraficoAlertasSetor(setores,qtdAlertasTotais,QtdAlertasRiscos){
 
-const alertasSetor = new Chart(ctx1, {
+  
+  const alertasSetor = new Chart(ctx1, {
   type: "bar",
   data: {
-    labels: ["Setor A", "Setor B", "Setor C", "Setor D"],
+    labels: setores,
     datasets: [
       {
         label: "Quantidade de alertas totais",
-        data: [10, 6, 13, 8],
+        data: qtdAlertasTotais,
         backgroundColor: "rgb(24, 98, 141)",
         borderWidth: 1,
         borderRadius: 10,
       },{
         label: "Quantidade de alertas críticos (>= 1,9%)",
-        data: [4, 1, 2, 3],
+        data: QtdAlertasRiscos,
         backgroundColor: "rgb(255, 58, 58)",
         borderWidth: 1,
         borderRadius: 10,
@@ -75,3 +76,5 @@ const alertasSetor = new Chart(ctx1, {
     },
   },
 });
+
+}
