@@ -23,6 +23,10 @@ router.post("/pegarKPIAlertasCriticos", function (req, res) {
   dashboardController.pegarKPIAlertasCriticos(req, res)
 });
 
+router.post("/pegarSetoresCadastrados", function (req, res) {
+  dashboardController.pegarSetoresCadastrados(req, res);
+});
+
 module.exports = router;
 
 

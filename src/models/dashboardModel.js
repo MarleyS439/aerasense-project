@@ -80,11 +80,25 @@ function setoresCadastrados(idEmpresa) {
 
 
 
+
+function pegarSetoresCadastrados(idEmpresa) {
+  var sql = `
+  SELECT COUNT(id) as 'setoresCadastrados' FROM setor WHERE ${idEmpresa} = fk_id_empresa;
+  `;
+  console.log("Executando a seguinte instrução SQL: \n", sql);
+  return database.executar(sql);
+}
+
+
+
+
+
 module.exports = {
   pegarsetores,
   pegaralertas,
   updateLido,
   pegarKPISensorproblema,
   pegarKPIAlertasCriticos,
-  setoresCadastrados
+  setoresCadastrados,
+  pegarSetoresCadastrados
 };
