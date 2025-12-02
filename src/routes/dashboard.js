@@ -22,4 +22,10 @@ router.post("/KPIMaiorPropCriticos", function (req, res) {
   dashboardController.KPIMaiorPropCriticos(req, res);
 });
 
+router.post("/pegarKPIAlertasCriticos", function (req, res) {
+  dashboardController.pegarKPIAlertasCriticos(req, res)
+});
+
 module.exports = router;
+
+

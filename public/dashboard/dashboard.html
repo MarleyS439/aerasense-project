@@ -396,10 +396,65 @@
             }).then(function (resposta) {
 
                 console.log("Tranformado para JSON com sucesso, RESULTADO:")
-                console.log(JSON.stringify(resposta))
+                console.log(JSON.stringify(resposta[0]))
+                var resu = JSON.stringify(resposta[0]);
+                console.log('RESU:'+resu);
                 
                 var sensoresProblemas = document.getElementById('sensoresProblemas')
-                sensoresProblemas.innerHTML = resposta[0].qtdSensorProblema
+
+                console.log(resu.inativos);
+    
+                sensoresProblemas.innerHTML = JSON.parse(resu).inativos
+                
+
+
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+
+        }
+
+
+
+
+
+
+
+              
+        function pegarKPIAlertasCriticos() {
+            var fk_EmpresaSetor = sessionStorage.getItem('ID_EMPRESA')
+              console.log("PEGANDOA")
+
+            fetch("/dashboard/pegarKPIAlertasCriticos", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    ID_EMPRESA: fk_EmpresaSetor
+                }),
+
+            }).then(function (resposta) {
+                console.log("efgh")
+
+                if (resposta) {
+
+                    return resposta.json();
+                } else {
+                    resposta.text().then(texto => {
+                        console.error("Erro na resposta do servidor: " + texto);
+                    });
+                    throw new Error('Erro na resposta da API');
+                }
+                
+            }).then(function (resposta) {
+
+                console.log("Tranformado para JSON com sucesso, RESULTADO:")
+                console.log(JSON.stringify(resposta))
+                
+                var alertasCriticos = document.getElementById('alertasCriticos')
+                alertasCriticos.innerHTML = resposta[0].qtdAlertasCriticos
 
 
             }).catch(function (resposta) {
@@ -414,3 +469,13 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
