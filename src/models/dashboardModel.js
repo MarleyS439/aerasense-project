@@ -128,6 +128,8 @@ count(sen.id) as 'Sensores_Ativos',
     where str.fk_id_empresa = ${idEmpresa}
     group by emp.nome_fantasia;
     `;
+    console.log("Executando a seguinte instrução SQL: \n", sql);
+  return database.executar(sql);
 }
 
 function pegarKPIMairIncidencia(idEmpresa) {
