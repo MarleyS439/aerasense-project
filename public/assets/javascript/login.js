@@ -59,6 +59,7 @@ function validarCredenciais() {
 
 // Função para executar o login
 function login(email, senha) {
+  
   fetch("/usuarios/autenticar", {
     method: "POST",
     headers: {
@@ -75,6 +76,8 @@ function login(email, senha) {
         resposta.json().then((json) => {
           // Armazena no sessionStorage, um item de nome EMAIL_USUARIO o item email do JSON de resposta
           sessionStorage.EMAIL_USUARIO = JSON.stringify(json[0].email);
+          sessionStorage.NOME_USUARIO = JSON.stringify(json[0].nome);
+          sessionStorage.NOME_EMPRESA = JSON.stringify(json[0].Nome_Empresa);
           sessionStorage.ID_USUARIO = JSON.stringify(json[0].id);
           sessionStorage.ID_EMPRESA = JSON.stringify(json[0].idEmpresa);
 
