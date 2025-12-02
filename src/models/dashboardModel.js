@@ -9,6 +9,7 @@ function pegarsetores() {
   console.log("Executando a seguinte instrução SQL: \n", sql);
   return database.executar(sql);
 }
+
 function pegaralertas() {
   var sql = `
     SELECT alerta.*, setor.*, sensor.* FROM alerta join sensor on alerta.idSensor = sensor.id JOIN setor ON sensor.fk_id_setor = setor.id ;
@@ -16,6 +17,7 @@ function pegaralertas() {
   console.log("Executando a seguinte instrução SQL: \n", sql);
   return database.executar(sql);
 }
+
 function updateLido(idAlerta,Lido) {
   if(!Lido){
     var sql = `
@@ -30,9 +32,6 @@ function updateLido(idAlerta,Lido) {
   return database.executar(sql);
 }
 
-
-
-
 function pegarKPISensorproblema() {
   var sql = `
       SELECT length(sensor.id) as qtdSensorProblema
@@ -43,11 +42,6 @@ function pegarKPISensorproblema() {
   return database.executar(sql);
 }
 
-
-
-
-
-
 function alertasCriticos() {
   var sql = `
     SELECT * FROM setor;
@@ -55,11 +49,6 @@ function alertasCriticos() {
   console.log("Executando a seguinte instrução SQL: \n", sql);
   return database.executar(sql);
 }
-
-
-
-
-
 
 function setoresCadastrados() {
   var sql = `
@@ -69,7 +58,13 @@ function setoresCadastrados() {
   return database.executar(sql);
 }
 
-
+function KPIMaiorPropCriticos() {
+  var sql = `
+    SELECT * FROM setor;
+  `;
+  console.log("Executando a seguinte instrução SQL: \n", sql);
+  return database.executar(sql);
+}
 
 
 
@@ -79,5 +74,6 @@ module.exports = {
   updateLido,
   pegarKPISensorproblema,
   alertasCriticos,
-  setoresCadastrados
+  setoresCadastrados,
+  KPIMaiorPropCriticos
 };

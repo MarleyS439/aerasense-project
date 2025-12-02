@@ -127,8 +127,7 @@
                 <!--Card-->
                 <div class="card1">
                     <span>Maior proporção de críticos *</span>
-                    <span class="info">Setor A ·
-                        <span style="color: var(--color-danger)">4</span></span>
+                    <span class="info" id="IDMaiorProporçãoCriticos ">Setor A · <span style="color: var(--color-danger)">4</span></span>
                     <span class="information">* alertas críticos/total de alertas.</span>
                 </div>
                 <div class="card2">
@@ -326,12 +325,49 @@
         document.addEventListener("DOMContentLoaded", () => {
             gerarGraficoDistribuicaoSensores();
             validarSessao();
-            pegarKPISensorproblema();
+            KPIS();
         });
 
+        function KPIS(){
+            pegarKPISensorproblema()
+            KPIMaiorPropCriticos()
+        }
+        function KPIMaiorPropCriticos(){
+            var idEmpresa = sessionStorage.getItem('ID_EMPRESA')
+              fetch("/dashboard/KPIMaiorPropCriticos", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    ID_EMPRESA: idEmpresa
+                }),
+            }).then(function (resposta) {
+               
+                if (resposta) {
+                    return resposta.json();
+                } else {
+                    resposta.text().then(texto => {
+                        console.error("Erro na resposta do servidor: " + texto);
+                    });
+                    throw new Error('Erro na resposta da API');
+                }
+            }).then(function (resposta) {
+
+                console.log("Tranformado para JSON com sucesso, RESULTADO:")
+                console.log(JSON.stringify(resposta))
+                
+               
+
+
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+        }
         function pegarKPISensorproblema() {
             var idEmpresa = sessionStorage.getItem('ID_EMPRESA')
-              console.log("PEGANDOA")
+           
 
             fetch("/dashboard/pegarKPISensorproblema", {
                 method: "POST",
@@ -348,6 +384,7 @@
                 if (resposta) {
 
                     return resposta.json();
+                    
                 } else {
                     resposta.text().then(texto => {
                         console.error("Erro na resposta do servidor: " + texto);
@@ -371,6 +408,8 @@
 
 
         }
+
+
     </script>
 </body>
 
