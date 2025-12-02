@@ -213,8 +213,7 @@
                     </div>
                     <div class="card3">
                         <span>Maior incidência de alertas * </span>
-                        <span class="info"
-                            >Setor C ·
+                        <span class="info" id="IDMaiorIncidencia">Setor C ·
                             <span style="color: var(--color-alert)"
                                 >13</span
                             ></span
@@ -447,8 +446,43 @@
                 pegarKPIAlertasCriticos();
                 pegarKPIMaiorLeitura();
                 pegarSetoresCadastrados();
+                pegarKPIMairIncidencia();
             }
-
+            function pegarKPIMairIncidencia(){
+                  var idEmpresa = sessionStorage.getItem("ID_EMPRESA");
+                fetch("/dashboard/pegarKPIMairIncidencia", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        ID_EMPRESA: idEmpresa,
+                    }),
+                })
+                    .then(function (resposta) {
+                        if (resposta) {
+                            return resposta.json();
+                        } else {
+                            resposta.text().then((texto) => {
+                                console.error(
+                                    "Erro na resposta do servidor: " + texto,
+                                );
+                            });
+                            throw new Error("Erro na resposta da API");
+                        }
+                    })
+                    .then(function (resposta) {
+                        console.log( "Tranformado para JSON com sucesso, RESULTADO MAIOR INCIDENCIA DE ALERTAS:" );
+                        console.log(JSON.stringify(resposta));
+                        var IDMaiorIncidencia = document.getElementById('IDMaiorIncidencia')
+                        IDMaiorIncidencia.innerHTML = `
+                            Setor ${resposta[0].Setor} · <span style="color: var(--color-alert)">${resposta[0].Alertas}</span
+                        `
+                    })
+                    .catch(function (resposta) {
+                        console.log(`#ERRO: ${resposta}`);
+                    });
+            }
            
             function pegarKPIMaiorLeitura() {
                 var idEmpresa = sessionStorage.getItem("ID_EMPRESA");

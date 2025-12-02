@@ -33,6 +33,10 @@ router.post("/pegarSetoresCadastrados", function (req, res) {
   dashboardController.pegarSetoresCadastrados(req, res);
 });
 
+router.post("/pegarKPIMairIncidencia", function (req, res) {
+  dashboardController.pegarKPIMairIncidencia(req, res);
+});
+
 module.exports = router;
 
 
