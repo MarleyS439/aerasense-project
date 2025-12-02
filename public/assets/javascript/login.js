@@ -111,9 +111,9 @@ function login(email, senha) {
           }, 3000);
 
           // Chama a função redirecionar, após 2.5 segundos
-          // setTimeout(() => {
-          //   redirecionar("dashboard/dashboard.html");
-          // }, 4000);
+          setTimeout(() => {
+            redirecionar("dashboard/dashboard.html");
+          }, 4000);
 
           return true;
         });

@@ -158,6 +158,9 @@ CREATE TABLE alerta (
     idSensor INT, -- ID do sensor
     dtHr DATETIME DEFAULT CURRENT_TIMESTAMP, -- Data e hora do alerta
     nivel VARCHAR(45), -- Nível do alerta
+    lido VARCHAR(45),
+    CONSTRAINT chkLido
+        CHECK (lido in('Lido', '!Lido'))
     CONSTRAINT chkNivel
     	CHECK (nivel in ('Crítico', 'Risco')),
     CONSTRAINT pkComposta

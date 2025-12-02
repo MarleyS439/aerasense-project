@@ -6,5 +6,13 @@ router.get("/pegarsetores", function (req, res) {
   dashboardController.pegarsetores(req, res);
 });
 
+router.get("/pegaralertas", function (req, res) {
+  dashboardController.pegaralertas(req, res);
+});
+
+
+router.post("/updateLido", function (req, res) {
+  dashboardController.updateLido(req, res);
+});
 
 module.exports = router;
