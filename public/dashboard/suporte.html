@@ -20,10 +20,10 @@
         rel="stylesheet" />
 
     <!--Stylessheet-->
-    <link rel="stylesheet" href="../assets/css/sensors.css" />
+    <link rel="stylesheet" href="../assets/css/dashboard.css" />
 
     <!--Title-->
-    <title id="titulo_dash">Setores</title>
+    <title id="titulo_dash">Dashboard</title>
 </head>
 
 <body>
@@ -48,50 +48,32 @@
                         </g>
                     </g>
                 </svg>
-                <span id="nome_empresa"></span>
+                <span id="nome_empresa">Empresa X</span>
             </div>
 
             <!--Links container-->
             <div class="links-container">
                 <ul>
-                    <!--Dashboard-->
-                    <li onclick="redirecionar('dashboard.html')">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                            fill="#fff">
-                            <path
-                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h240v-560H200v560Zm320 0h240v-280H520v280Zm0-360h240v-200H520v200Z" />
-                        </svg>
-                        <span>Dashboard</span>
+                    <li style="background-color: var(--color-bright-blue)">
+                        <svg style="fill: #fff;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M160-360q-50 0-85-35t-35-85q0-50 35-85t85-35v-80q0-33 23.5-56.5T240-760h120q0-50 35-85t85-35q50 0 85 35t35 85h120q33 0 56.5 23.5T800-680v80q50 0 85 35t35 85q0 50-35 85t-85 35v160q0 33-23.5 56.5T720-120H240q-33 0-56.5-23.5T160-200v-160Zm200-80q25 0 42.5-17.5T420-500q0-25-17.5-42.5T360-560q-25 0-42.5 17.5T300-500q0 25 17.5 42.5T360-440Zm240 0q25 0 42.5-17.5T660-500q0-25-17.5-42.5T600-560q-25 0-42.5 17.5T540-500q0 25 17.5 42.5T600-440ZM320-280h320v-80H320v80Zm-80 80h480v-480H240v480Zm240-240Z"/></svg>
+                        <span>BobIA</span>
+                    </li>
+                    <!--Baixa a documentação-->
+                    <li>
+                        <svg style="fill: #fff;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-640v560h560v-560h-80v280l-100-60-100 60v-280H200Zm0 560v-560 560Z"/></svg>
+                        <span>Documentação</span>
                     </li>
 
-                    <!--Setores-->
-                    <li onclick="redirecionar('setores.html')" style="background-color: var(--color-bright-blue)">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                            fill="#fff">
-                            <path
-                                d="M220-80q-58 0-99-41t-41-99q0-58 41-99t99-41q18 0 35 4.5t32 12.5l153-153v-110q-44-13-72-49.5T340-740q0-58 41-99t99-41q58 0 99 41t41 99q0 48-28 84.5T520-606v110l154 153q15-8 31.5-12.5T740-360q58 0 99 41t41 99q0 58-41 99t-99 41q-58 0-99-41t-41-99q0-18 4.5-35t12.5-32L480-424 343-287q8 15 12.5 32t4.5 35q0 58-41 99t-99 41Zm520-80q25 0 42.5-17.5T800-220q0-25-17.5-42.5T740-280q-25 0-42.5 17.5T680-220q0 25 17.5 42.5T740-160ZM480-680q25 0 42.5-17.5T540-740q0-25-17.5-42.5T480-800q-25 0-42.5 17.5T420-740q0 25 17.5 42.5T480-680ZM220-160q25 0 42.5-17.5T280-220q0-25-17.5-42.5T220-280q-25 0-42.5 17.5T160-220q0 25 17.5 42.5T220-160Z" />
-                        </svg>
-                        <span>Setores</span>
+                    <!--Redireciona para o Jira Help Desk-->
+                    <li>
+                        <svg style="rotate: 180deg; fill: #fff;"  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M200-200v-440h80v360h360v80H200Zm200-200v-440h80v360h360v80H400Z"/></svg>
+                        <span>Área de Suporte</span>
                     </li>
 
-                    <!--Sensores-->
-                    <li onclick="redirecionar('sensors.html')">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                            fill="#fff">
-                            <path
-                                d="M197-197q-54-55-85.5-127.5T80-480q0-84 31.5-156.5T197-763l57 57q-44 44-69 102t-25 124q0 67 25 125t69 101l-57 57Zm113-113q-32-33-51-76.5T240-480q0-51 19-94.5t51-75.5l57 57q-22 22-34.5 51T320-480q0 33 12.5 62t34.5 51l-57 57Zm170-90q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm170 90-57-57q22-22 34.5-51t12.5-62q0-33-12.5-62T593-593l57-57q32 32 51 75.5t19 94.5q0 50-19 93.5T650-310Zm113 113-57-57q44-44 69-102t25-124q0-67-25-125t-69-101l57-57q54 54 85.5 126.5T880-480q0 83-31.5 155.5T763-197Z" />
-                        </svg>
-                        <span>Sensores</span>
-                    </li>
-
-                    <!--Alertas-->
-                    <li onclick="redirecionar('alerts.html')">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                            fill="#fff">
-                            <path
-                                d="M120-160v-80h480v80H120Zm520-280q-83 0-141.5-58.5T440-640q0-83 58.5-141.5T640-840q83 0 141.5 58.5T840-640q0 83-58.5 141.5T640-440Zm-520-40v-80h252q7 22 16 42t22 38H120Zm0 160v-80h376q23 14 49 23.5t55 13.5v43H120Zm500-280h40v-160h-40v160Zm20 80q8 0 14-6t6-14q0-8-6-14t-14-6q-8 0-14 6t-6 14q0 8 6 14t14 6Z" />
-                        </svg>
-                        <span>Alertas</span>
+                    <!--Baixa o manual de instalação dos sensores-->
+                    <li>
+                        <svg style="fill: #fff;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M300-80q-58 0-99-41t-41-99v-520q0-58 41-99t99-41h500v600q-25 0-42.5 17.5T740-220q0 25 17.5 42.5T800-160v80H300Zm-60-267q14-7 29-10t31-3h20v-440h-20q-25 0-42.5 17.5T240-740v393Zm160-13h320v-440H400v440Zm-160 13v-453 453Zm60 187h373q-6-14-9.5-28.5T660-220q0-16 3-31t10-29H300q-26 0-43 17.5T240-220q0 26 17 43t43 17Z"/></svg>
+                        <span>Manual de Instalação</span>
                     </li>
                 </ul>
             </div>
@@ -103,53 +85,13 @@
                 <path
                     d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z" />
             </svg>
-            <span id="nome_usuario"></span>
+            <span>Fernando Brandão</span>
             <button type="button" title="Sair" onclick="abrirModalLogout()">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff">
                     <path
                         d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
                 </svg>
             </button>
-        </div>
-    </div>
-
-    <!--Body-->
-    <div class="body">
-        <!--Title-->
-        <div class="title">
-            <h2>Setores</h2>
-        </div>
-
-        <!--Container-->
-        <div class="container">
-            <div id="QtdSetoresID">X Setores</div>
-
-            <div class="sensores-container" id="setores-containerID">
-
-
-                <!-- CARD SETOR EXEMPLO -->
-                <!-- <div class="card-sensor">
-                    <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                            fill="#fff">
-                            <path
-                                d="M220-80q-58 0-99-41t-41-99q0-58 41-99t99-41q18 0 35 4.5t32 12.5l153-153v-110q-44-13-72-49.5T340-740q0-58 41-99t99-41q58 0 99 41t41 99q0 48-28 84.5T520-606v110l154 153q15-8 31.5-12.5T740-360q58 0 99 41t41 99q0 58-41 99t-99 41q-58 0-99-41t-41-99q0-18 4.5-35t12.5-32L480-424 343-287q8 15 12.5 32t4.5 35q0 58-41 99t-99 41Zm520-80q25 0 42.5-17.5T800-220q0-25-17.5-42.5T740-280q-25 0-42.5 17.5T680-220q0 25 17.5 42.5T740-160ZM480-680q25 0 42.5-17.5T540-740q0-25-17.5-42.5T480-800q-25 0-42.5 17.5T420-740q0 25 17.5 42.5T480-680ZM220-160q25 0 42.5-17.5T280-220q0-25-17.5-42.5T220-280q-25 0-42.5 17.5T160-220q0 25 17.5 42.5T220-160Z" />
-                        </svg>
-                    </div>
-                    <div>
-                        <h3>Setor GLP0010001</h3>
-                    </div>
-                    <span>Status:
-                        <span style="color: var(--color-success)">Ativo</span></span>
-                    <span>Setor A</span>
-                    <span>#BTJ0001</span>
-                </div> -->
-
-
-
-
-
-            </div>
         </div>
     </div>
 
@@ -177,6 +119,13 @@
         </div>
     </div>
 
+    <!--ChartJS-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3"></script>
+
+    <!--Charts-->
+    <script src="../assets/javascript/dashboard.js"></script>
+
     <!--Sensores-->
     <script src="../assets/javascript/sensores.js"></script>
 
@@ -190,9 +139,6 @@
     <script src="../assets/javascript/logout.js"></script>
 
     <script>
-        nome_empresa.innerHTML = sessionStorage.NOME_EMPRESA.replaceAll('"', '');;
-        nome_usuario.innerHTML = sessionStorage.NOME_USUARIO.replaceAll('"', '');;
-
         var modalLogout = document.getElementById("modal-logout");
 
         // Função para cancelar o Logout
@@ -205,14 +151,31 @@
             modalLogout.style.display = "flex";
         }
 
+        // Chama a função de gerar a distribuição em gráfico de sensores por setor (ao cerregar a página)
+        document.addEventListener("DOMContentLoaded", () => {
+            gerarGraficoDistribuicaoSensores();
+            validarSessao();
+            pegarKPISensorproblema();
+        });
 
-        document.addEventListener("DOMContentLoaded", function () {
+        function pegarKPISensorproblema() {
+            var idEmpresa = sessionStorage.getItem('ID_EMPRESA')
+              console.log("PEGANDOA")
 
-            fetch("/dashboard/pegarsetores", {
-                method: "GET",
+            fetch("/dashboard/pegarKPISensorproblema", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    ID_EMPRESA: idEmpresa
+                }),
+
             }).then(function (resposta) {
-                if (resposta.ok) {
-                   
+                console.log("abcd")
+
+                if (resposta) {
+
                     return resposta.json();
                 } else {
                     resposta.text().then(texto => {
@@ -220,50 +183,22 @@
                     });
                     throw new Error('Erro na resposta da API');
                 }
+
+                
             }).then(function (resposta) {
 
                 console.log("Tranformado para JSON com sucesso, RESULTADO:")
                 console.log(JSON.stringify(resposta))
-                var QtdSetores = document.getElementById('QtdSetoresID')
-                QtdSetores.innerHTML = `Setores: ${resposta.length}`
-                resposta.forEach(setor => {
-                    plotarSetores(setor)
-                });
+                
+                var sensoresProblemas = document.getElementById('sensoresProblemas')
+                sensoresProblemas.innerHTML = resposta[0].qtdSensorProblema
+
 
             }).catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
             });
 
 
-
-        });
-        function plotarSetores(setor){
-            var ContainerPaiSetores = document.getElementById('setores-containerID')
-            
-            console.log("Plotando setor: " + setor.descricao)
-            
-            ContainerPaiSetores.innerHTML += `
-            
-                 <div class="card-sensor" id='CardSetor-${setor.id}'>
-                    <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                            fill="#000">
-                            <path
-                                d="M220-80q-58 0-99-41t-41-99q0-58 41-99t99-41q18 0 35 4.5t32 12.5l153-153v-110q-44-13-72-49.5T340-740q0-58 41-99t99-41q58 0 99 41t41 99q0 48-28 84.5T520-606v110l154 153q15-8 31.5-12.5T740-360q58 0 99 41t41 99q0 58-41 99t-99 41q-58 0-99-41t-41-99q0-18 4.5-35t12.5-32L480-424 343-287q8 15 12.5 32t4.5 35q0 58-41 99t-99 41Zm520-80q25 0 42.5-17.5T800-220q0-25-17.5-42.5T740-280q-25 0-42.5 17.5T680-220q0 25 17.5 42.5T740-160ZM480-680q25 0 42.5-17.5T540-740q0-25-17.5-42.5T480-800q-25 0-42.5 17.5T420-740q0 25 17.5 42.5T480-680ZM220-160q25 0 42.5-17.5T280-220q0-25-17.5-42.5T220-280q-25 0-42.5 17.5T160-220q0 25 17.5 42.5T220-160Z" />
-                        </svg>
-                    </div>
-                    <div>
-                        <h3>Setor ${setor.nome}</h3>
-                    </div>
-                    <span>Operando:
-                        <span style="color: var(--color-success)">Ativo</span></span>
-                    <span>${setor.descricao}</span>
-                    <span>${setor.categoria}</span>
-                    <span>${setor.codigo_setor}</span>
-                </div>
-            
-            
-            `
         }
     </script>
 </body>

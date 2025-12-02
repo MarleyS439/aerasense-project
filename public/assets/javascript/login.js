@@ -59,6 +59,7 @@ function validarCredenciais() {
 
 // Função para executar o login
 function login(email, senha) {
+  
   fetch("/usuarios/autenticar", {
     method: "POST",
     headers: {
@@ -73,8 +74,11 @@ function login(email, senha) {
       // Valida se no corpo da resposta, possui item OK (HTTP 200)
       if (resposta.ok) {
         resposta.json().then((json) => {
+
           // Armazena no sessionStorage, um item de nome EMAIL_USUARIO o item email do JSON de resposta
           sessionStorage.EMAIL_USUARIO = JSON.stringify(json[0].email);
+          sessionStorage.NOME_USUARIO = JSON.stringify(json[0].nome);
+          sessionStorage.NOME_EMPRESA = JSON.stringify(json[0].Nome_Empresa);
           sessionStorage.ID_USUARIO = JSON.stringify(json[0].id);
           sessionStorage.ID_EMPRESA = JSON.stringify(json[0].idEmpresa);
 
@@ -111,9 +115,26 @@ function login(email, senha) {
           }, 3000);
 
           // Chama a função redirecionar, após 2.5 segundos
-          setTimeout(() => {
-            redirecionar("dashboard/dashboard.html");
-          }, 4000);
+
+          console.log(JSON.stringify(json[0].id));
+
+          var x = JSON.stringify(json[0].id);
+          console.log(x);
+          
+          if(x != 3){
+            
+            setTimeout(() => {
+              redirecionar("dashboard/dashboard.html");
+            }, 4000);
+
+          }else{
+
+            setTimeout(() => {
+              redirecionar("http://localhost:3001");
+            }, 4000);
+
+          }
+
 
           return true;
         });
