@@ -127,7 +127,7 @@
                 <!--Card-->
                 <div class="card1">
                     <span>Maior proporção de críticos *</span>
-                    <span class="info" id="IDMaiorProporçãoCriticos ">Setor A · <span style="color: var(--color-danger)">4</span></span>
+                    <span class="info" id="IDMaiorProporçãoCriticosSetor">Setor A · <span style="color: var(--color-danger)">4</span></span>
                     <span class="information">* alertas críticos/total de alertas.</span>
                 </div>
                 <div class="card2">
@@ -329,8 +329,9 @@
         });
 
         function KPIS(){
-            pegarKPISensorproblema()
-            KPIMaiorPropCriticos()
+            pegarKPISensorproblema();
+            KPIMaiorPropCriticos();
+            pegarKPIAlertasCriticos();
         }
         function KPIMaiorPropCriticos(){
             var idEmpresa = sessionStorage.getItem('ID_EMPRESA')
@@ -354,12 +355,13 @@
                 }
             }).then(function (resposta) {
 
-                console.log("Tranformado para JSON com sucesso, RESULTADO:")
+                console.log("Tranformado para JSON com sucesso, RESULTADO MAIOR PROP Critico:")
                 console.log(JSON.stringify(resposta))
+                var MaiorPropSetor = document.getElementById('IDMaiorProporçãoCriticosSetor')
+                MaiorPropSetor.innerHTML = `
+                    Setor ${resposta[0].Setor} · <span style="color: var(--color-danger)">${resposta[0].Alertas_Críticos}</span>
+                `
                 
-               
-
-
             }).catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
             });
@@ -450,11 +452,11 @@
                 
             }).then(function (resposta) {
 
-                console.log("Tranformado para JSON com sucesso, RESULTADO:")
+                console.log("Tranformado para JSON com sucesso, RESULTADO ALerta CRITICO:")
                 console.log(JSON.stringify(resposta))
                 
                 var alertasCriticos = document.getElementById('alertasCriticos')
-                alertasCriticos.innerHTML = resposta[0].qtdAlertasCriticos
+                alertasCriticos.innerHTML = resposta[0].Alertas_Críticos
 
 
             }).catch(function (resposta) {

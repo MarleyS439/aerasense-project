@@ -114,10 +114,7 @@ function pegarKPIAlertasCriticos(req, res) {
 }
 
 function KPIMaiorPropCriticos(req, res) {
-  
-
   var IdEmpresa = req.body.ID_EMPRESA
-
   
   dashboardModel.KPIMaiorPropCriticos(IdEmpresa).then(function (resposta) {
       if (resposta) {
@@ -139,6 +136,5 @@ module.exports = {
   pegarKPIAlertasCriticos,
   pegaralertas,
   updateLido,
-  pegarKPISensorproblema,
   KPIMaiorPropCriticos
 };
