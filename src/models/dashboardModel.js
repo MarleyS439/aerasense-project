@@ -116,6 +116,7 @@ function pegarSetoresCadastrados(idEmpresa) {
 }
 
 
+<<<<<<< HEAD
 function KPISensoresAtivos(idEmpresa) {
  var sql = `
 select emp.nome_fantasia as 'Empresa',
@@ -128,6 +129,21 @@ count(sen.id) as 'Sensores_Ativos',
     where str.fk_id_empresa = ${idEmpresa}
     group by emp.nome_fantasia;
     `;
+=======
+
+
+function pegarKPIMairIncidencia(idEmpresa) {
+  var sql = `
+  select str.id as Setor,
+count(a.idAlerta) as 'Alertas' 
+from alerta as a join sensor as sen 
+on a.idSensor = sen.id 
+join setor as str 
+on sen.fk_id_setor = str.id 
+where str.fk_id_empresa = ${idEmpresa}
+group by str.id;
+  `;
+>>>>>>> 7910b29c5a8340af0d99f136d28da3e42660f7b1
   console.log("Executando a seguinte instrução SQL: \n", sql);
   return database.executar(sql);
 }
@@ -142,5 +158,9 @@ module.exports = {
   pegarSetoresCadastrados,
   KPIMaiorPropCriticos,
   pegarKPIMaiorLeitura,
+<<<<<<< HEAD
   KPISensoresAtivos
+=======
+  pegarKPIMairIncidencia
+>>>>>>> 7910b29c5a8340af0d99f136d28da3e42660f7b1
 };

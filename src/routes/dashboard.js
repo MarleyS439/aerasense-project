@@ -33,8 +33,13 @@ router.post("/pegarSetoresCadastrados", function (req, res) {
   dashboardController.pegarSetoresCadastrados(req, res);
 });
 
+<<<<<<< HEAD
 router.post("/KPISensoresAtivos", function (req, res) {
   dashboardController.KPISensoresAtivos(req, res);
+=======
+router.post("/pegarKPIMairIncidencia", function (req, res) {
+  dashboardController.pegarKPIMairIncidencia(req, res);
+>>>>>>> 7910b29c5a8340af0d99f136d28da3e42660f7b1
 });
 
 module.exports = router;
