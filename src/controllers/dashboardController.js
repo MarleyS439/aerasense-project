@@ -1,178 +1,166 @@
 var dashboardModel = require("../models/dashboardModel");
 
-
 function pegarsetores(req, res) {
-
-  dashboardModel.pegarsetores().then(function (resposta) {
-    if (resposta) {
-      console.log("Quey feita com sucesso");
-      return res.status(200).send(resposta);
-    } else {
-      console.log("Quey NÂO feita com sucesso");
-
-    }
-  }).catch(function (erro) {
-    console.log("Ocorreu um erro ao realizar a requisição: ", erro);
-    return res.status(500).send(erro);
-  });
+  dashboardModel
+    .pegarsetores()
+    .then(function (resposta) {
+      if (resposta) {
+        console.log("Quey feita com sucesso");
+        return res.status(200).send(resposta);
+      } else {
+        console.log("Quey NÂO feita com sucesso");
+      }
+    })
+    .catch(function (erro) {
+      console.log("Ocorreu um erro ao realizar a requisição: ", erro);
+      return res.status(500).send(erro);
+    });
 }
-
-
-
 
 //sensoresProblemas
 function pegarKPISensorproblema(req, res) {
-  console.log("PEGANDOBBBBBBBBBBb")
-  var idEmpresa = req.body.ID_EMPRESA
+  console.log("PEGANDOBBBBBBBBBBb");
+  var idEmpresa = req.body.ID_EMPRESA;
 
-  dashboardModel.pegarKPISensorproblema(idEmpresa)
+  dashboardModel
+    .pegarKPISensorproblema(idEmpresa)
     .then(function (dadosSensorProblema) {
-      console.log("PEGANDOB")
+      console.log("PEGANDOB");
       if (dadosSensorProblema) {
         console.log("Quey feita com sucesso");
-       return res.status(200).send(dadosSensorProblema);
-  
-
+        return res.status(200).send(dadosSensorProblema);
       } else {
         console.log("Quey NÂO feita com sucesso");
       }
-    }).catch(function (erro) {
+    })
+    .catch(function (erro) {
       console.log("Ocorreu um erro ao realizar a requisição: ", erro);
       return res.status(500).send(erro);
     });
-
-
-
 }
 function pegaralertas(req, res) {
-  
-  dashboardModel.pegaralertas().then(function (resposta) {
+  dashboardModel
+    .pegaralertas()
+    .then(function (resposta) {
       if (resposta) {
         console.log("Quey feita com sucesso");
         return res.status(200).send(resposta);
-      }else{
+      } else {
         console.log("Quey NÂO feita com sucesso");
-
       }
-    }).catch(function (erro) {
+    })
+    .catch(function (erro) {
       console.log("Ocorreu um erro ao realizar a requisição: ", erro);
       return res.status(500).send(erro);
     });
 }
-
 
 function updateLido(req, res) {
-  
+  var idAlerta = req.body.idAlerta;
+  var Lido = req.body.lido;
 
-  var idAlerta = req.body.idAlerta
-  var Lido = req.body.lido
-  
-  dashboardModel.updateLido(idAlerta,Lido).then(function (resposta) {
+  dashboardModel
+    .updateLido(idAlerta, Lido)
+    .then(function (resposta) {
       if (resposta) {
         console.log("Quey feita com sucesso");
         return res.status(200).send(resposta);
-      }else{
+      } else {
         console.log("Quey NÂO feita com sucesso");
       }
-    }).catch(function (erro) {
+    })
+    .catch(function (erro) {
       console.log("Ocorreu um erro ao realizar a requisição: ", erro);
       return res.status(500).send(erro);
     });
 }
-
-
-
-
-
-
-
-
-
-
 
 //alertasCriticos
 function pegarKPIAlertasCriticos(req, res) {
-  console.log("PEGANDOBBBBBBBBBBb")
-  var idEmpresa = req.body.ID_EMPRESA
+  console.log("PEGANDOBBBBBBBBBBb");
+  var idEmpresa = req.body.ID_EMPRESA;
 
-  dashboardModel.pegarKPIAlertasCriticos(idEmpresa)
+  dashboardModel
+    .pegarKPIAlertasCriticos(idEmpresa)
     .then(function (dadosAlertasCriticos) {
-      console.log("PEGANDOB")
+      console.log("PEGANDOB");
       if (dadosAlertasCriticos) {
         console.log("Quey feita com sucesso");
-       return res.status(200).send(dadosAlertasCriticos);
-  
-
+        return res.status(200).send(dadosAlertasCriticos);
       } else {
         console.log("Quey NÂO feita com sucesso");
       }
-    }).catch(function (erro) {
+    })
+    .catch(function (erro) {
       console.log("Ocorreu um erro ao realizar a requisição: ", erro);
       return res.status(500).send(erro);
     });
-
 }
 
 function KPIMaiorPropCriticos(req, res) {
-  var IdEmpresa = req.body.ID_EMPRESA
-  
-  dashboardModel.KPIMaiorPropCriticos(IdEmpresa).then(function (resposta) {
+  var IdEmpresa = req.body.ID_EMPRESA;
+
+  dashboardModel
+    .KPIMaiorPropCriticos(IdEmpresa)
+    .then(function (resposta) {
       if (resposta) {
         console.log("Quey feita com sucesso");
         return res.status(200).send(resposta);
-      }else{
+      } else {
         console.log("Quey NÂO feita com sucesso");
       }
-    }).catch(function (erro) {
+    })
+    .catch(function (erro) {
       console.log("Ocorreu um erro ao realizar a requisição: ", erro);
       return res.status(500).send(erro);
     });
 }
 function pegarKPIMaiorLeitura(req, res) {
-  var IdEmpresa = req.body.ID_EMPRESA
-  
-  dashboardModel.pegarKPIMaiorLeitura(IdEmpresa).then(function (resposta) {
+  var IdEmpresa = req.body.ID_EMPRESA;
+
+  dashboardModel
+    .pegarKPIMaiorLeitura(IdEmpresa)
+    .then(function (resposta) {
       if (resposta) {
         console.log("Quey feita com sucesso");
         return res.status(200).send(resposta);
-      }else{
+      } else {
         console.log("Quey NÂO feita com sucesso");
       }
-    }).catch(function (erro) {
+    })
+    .catch(function (erro) {
       console.log("Ocorreu um erro ao realizar a requisição: ", erro);
       return res.status(500).send(erro);
     });
 }
 
-
-
 function pegarSetoresCadastrados(req, res) {
+  var idEmpresa = req.body.ID_EMPRESA;
 
-  var idEmpresa = req.body.ID_EMPRESA
-
-  dashboardModel.pegarSetoresCadastrados(idEmpresa)
-  .then(function (resposta) {
-    if (resposta) {
-      console.log("Quey feita com sucesso");
-      return res.status(200).send(resposta);
-    } else {
-      console.log("Quey NÂO feita com sucesso");
-
-    }
-  }).catch(function (erro) {
-    console.log("Ocorreu um erro ao realizar a requisição: ", erro);
-    return res.status(500).send(erro);
-  });
+  dashboardModel
+    .pegarSetoresCadastrados(idEmpresa)
+    .then(function (resposta) {
+      if (resposta) {
+        console.log("Quey feita com sucesso");
+        return res.status(200).send(resposta);
+      } else {
+        console.log("Quey NÂO feita com sucesso");
+      }
+    })
+    .catch(function (erro) {
+      console.log("Ocorreu um erro ao realizar a requisição: ", erro);
+      return res.status(500).send(erro);
+    });
 }
-
 
 module.exports = {
   pegarsetores,
-  pegarKPISensorproblema,
   pegarKPIAlertasCriticos,
+  pegarKPISensorproblema,
   pegarSetoresCadastrados,
   pegaralertas,
   updateLido,
   KPIMaiorPropCriticos,
+
   pegarKPIMaiorLeitura
 };
