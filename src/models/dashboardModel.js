@@ -88,6 +88,21 @@ function KPIMaiorPropCriticos(idempresa) {
   console.log("Executando a seguinte instrução SQL: \n", sql);
   return database.executar(sql);
 }
+function pegarKPIMaiorLeitura(idempresa) {
+  var sql = `
+   select str.id as Setor,
+    MAX(m.valor_medicao) as 'Maior_Medição'
+    from setor as str join sensor as sen
+    on sen.fk_id_setor = str.id
+    join medicao as m
+    on m.fk_id_sensor = sen.id
+    where str.fk_id_empresa = ${idempresa}
+    group by str.id
+    LIMIT 1;
+  `;
+  console.log("Executando a seguinte instrução SQL: \n", sql);
+  return database.executar(sql);
+}
 
 
 
@@ -98,5 +113,6 @@ module.exports = {
   pegarKPISensorproblema,
   pegarKPIAlertasCriticos,
   setoresCadastrados,
-  KPIMaiorPropCriticos
+  KPIMaiorPropCriticos,
+  pegarKPIMaiorLeitura
 };

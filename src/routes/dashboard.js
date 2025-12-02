@@ -25,6 +25,9 @@ router.post("/KPIMaiorPropCriticos", function (req, res) {
 router.post("/pegarKPIAlertasCriticos", function (req, res) {
   dashboardController.pegarKPIAlertasCriticos(req, res)
 });
+router.post("/pegarKPIMaiorLeitura", function (req, res) {
+  dashboardController.pegarKPIMaiorLeitura(req, res)
+});
 
 module.exports = router;
 

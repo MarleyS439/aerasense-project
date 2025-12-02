@@ -132,7 +132,7 @@
                 </div>
                 <div class="card2">
                     <span>Maior leitura registrada * </span>
-                    <span class="info">Setor D ·
+                    <span class="info" id="IDMaiorLeitura">Setor D ·
                         <span style="color: var(--color-danger)">2,4%</span></span>
                     <span class="information">* leitura diária, concentração de GLP.
                     </span>
@@ -332,7 +332,42 @@
             pegarKPISensorproblema();
             KPIMaiorPropCriticos();
             pegarKPIAlertasCriticos();
+            pegarKPIMaiorLeitura();
         }
+        function pegarKPIMaiorLeitura(){
+            var idEmpresa = sessionStorage.getItem('ID_EMPRESA')
+              fetch("/dashboard/pegarKPIMaiorLeitura", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    ID_EMPRESA: idEmpresa
+                }),
+            }).then(function (resposta) {
+               
+                if (resposta) {
+                    return resposta.json();
+                } else {
+                    resposta.text().then(texto => {
+                        console.error("Erro na resposta do servidor: " + texto);
+                    });
+                    throw new Error('Erro na resposta da API');
+                }
+            }).then(function (resposta) {
+
+                console.log("Tranformado para JSON com sucesso, RESULTADO MAIOR LEITURA REGISTRADA:")
+                console.log(JSON.stringify(resposta))
+                var MaiorLeitura = document.getElementById('IDMaiorLeitura')
+               MaiorLeitura.innerHTML = `
+                Setor ${resposta[0].Setor} · <span style="color: var(--color-danger)">${resposta[0].Maior_Medição}</span>
+               `
+                
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+        }
+
         function KPIMaiorPropCriticos(){
             var idEmpresa = sessionStorage.getItem('ID_EMPRESA')
               fetch("/dashboard/KPIMaiorPropCriticos", {
