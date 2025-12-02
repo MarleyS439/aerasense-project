@@ -170,12 +170,9 @@ module.exports = {
   pegarsetores,
   pegarKPISensorproblema,
   pegarKPIAlertasCriticos,
-<<<<<<< HEAD
-  pegarSetoresCadastrados
-=======
+  pegarSetoresCadastrados,
   pegaralertas,
   updateLido,
   KPIMaiorPropCriticos,
   pegarKPIMaiorLeitura
->>>>>>> 5878bd666e9c3badf29647ecd113b48ab93021d2
 };
