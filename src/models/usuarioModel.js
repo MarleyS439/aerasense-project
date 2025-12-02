@@ -13,7 +13,7 @@ function autenticar(email, senha) {
            u.email,
            u.fk_id_empresa AS idEmpresa,
            e.nome_fantasia as 'Nome_Empresa'
-    FROM usuario as u join empresa as e
+    FROM usuario as u left join empresa as e
     on u.fk_id_empresa = e.id
     WHERE u.email = '${email}'
         AND u.senha = '${senha}' LIMIT 1;
