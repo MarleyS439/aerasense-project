@@ -113,6 +113,36 @@ function pegarKPIAlertasCriticos(req, res) {
 
 }
 
+function KPIMaiorPropCriticos(req, res) {
+  var IdEmpresa = req.body.ID_EMPRESA
+  
+  dashboardModel.KPIMaiorPropCriticos(IdEmpresa).then(function (resposta) {
+      if (resposta) {
+        console.log("Quey feita com sucesso");
+        return res.status(200).send(resposta);
+      }else{
+        console.log("Quey NÂO feita com sucesso");
+      }
+    }).catch(function (erro) {
+      console.log("Ocorreu um erro ao realizar a requisição: ", erro);
+      return res.status(500).send(erro);
+    });
+}
+function pegarKPIMaiorLeitura(req, res) {
+  var IdEmpresa = req.body.ID_EMPRESA
+  
+  dashboardModel.pegarKPIMaiorLeitura(IdEmpresa).then(function (resposta) {
+      if (resposta) {
+        console.log("Quey feita com sucesso");
+        return res.status(200).send(resposta);
+      }else{
+        console.log("Quey NÂO feita com sucesso");
+      }
+    }).catch(function (erro) {
+      console.log("Ocorreu um erro ao realizar a requisição: ", erro);
+      return res.status(500).send(erro);
+    });
+}
 
 
 
@@ -140,5 +170,12 @@ module.exports = {
   pegarsetores,
   pegarKPISensorproblema,
   pegarKPIAlertasCriticos,
+<<<<<<< HEAD
   pegarSetoresCadastrados
+=======
+  pegaralertas,
+  updateLido,
+  KPIMaiorPropCriticos,
+  pegarKPIMaiorLeitura
+>>>>>>> 5878bd666e9c3badf29647ecd113b48ab93021d2
 };

@@ -127,13 +127,12 @@
                 <!--Card-->
                 <div class="card1">
                     <span>Maior proporção de críticos *</span>
-                    <span class="info">Setor A ·
-                        <span style="color: var(--color-danger)">4</span></span>
+                    <span class="info" id="IDMaiorProporçãoCriticosSetor">Setor A · <span style="color: var(--color-danger)">4</span></span>
                     <span class="information">* alertas críticos/total de alertas.</span>
                 </div>
                 <div class="card2">
                     <span>Maior leitura registrada * </span>
-                    <span class="info">Setor D ·
+                    <span class="info" id="IDMaiorLeitura">Setor D ·
                         <span style="color: var(--color-danger)">2,4%</span></span>
                     <span class="information">* leitura diária, concentração de GLP.
                     </span>
@@ -326,13 +325,91 @@
         document.addEventListener("DOMContentLoaded", () => {
             gerarGraficoDistribuicaoSensores();
             validarSessao();
+<<<<<<< HEAD
             pegarKPISensorproblema();
             pegarSetoresCadastrados();
+=======
+            KPIS();
+>>>>>>> 5878bd666e9c3badf29647ecd113b48ab93021d2
         });
 
+        function KPIS(){
+            pegarKPISensorproblema();
+            KPIMaiorPropCriticos();
+            pegarKPIAlertasCriticos();
+            pegarKPIMaiorLeitura();
+        }
+        function pegarKPIMaiorLeitura(){
+            var idEmpresa = sessionStorage.getItem('ID_EMPRESA')
+              fetch("/dashboard/pegarKPIMaiorLeitura", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    ID_EMPRESA: idEmpresa
+                }),
+            }).then(function (resposta) {
+               
+                if (resposta) {
+                    return resposta.json();
+                } else {
+                    resposta.text().then(texto => {
+                        console.error("Erro na resposta do servidor: " + texto);
+                    });
+                    throw new Error('Erro na resposta da API');
+                }
+            }).then(function (resposta) {
+
+                console.log("Tranformado para JSON com sucesso, RESULTADO MAIOR LEITURA REGISTRADA:")
+                console.log(JSON.stringify(resposta))
+                var MaiorLeitura = document.getElementById('IDMaiorLeitura')
+               MaiorLeitura.innerHTML = `
+                Setor ${resposta[0].Setor} · <span style="color: var(--color-danger)">${resposta[0].Maior_Medição}</span>
+               `
+                
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+        }
+
+        function KPIMaiorPropCriticos(){
+            var idEmpresa = sessionStorage.getItem('ID_EMPRESA')
+              fetch("/dashboard/KPIMaiorPropCriticos", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    ID_EMPRESA: idEmpresa
+                }),
+            }).then(function (resposta) {
+               
+                if (resposta) {
+                    return resposta.json();
+                } else {
+                    resposta.text().then(texto => {
+                        console.error("Erro na resposta do servidor: " + texto);
+                    });
+                    throw new Error('Erro na resposta da API');
+                }
+            }).then(function (resposta) {
+
+                console.log("Tranformado para JSON com sucesso, RESULTADO MAIOR PROP Critico:")
+                console.log(JSON.stringify(resposta))
+                var MaiorPropSetor = document.getElementById('IDMaiorProporçãoCriticosSetor')
+                MaiorPropSetor.innerHTML = `
+                    Setor ${resposta[0].Setor} · <span style="color: var(--color-danger)">${resposta[0].Alertas_Críticos}</span>
+                `
+                
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+        }
         function pegarKPISensorproblema() {
             var idEmpresa = sessionStorage.getItem('ID_EMPRESA')
-              console.log("PEGANDOA")
+           
 
             fetch("/dashboard/pegarKPISensorproblema", {
                 method: "POST",
@@ -349,6 +426,7 @@
                 if (resposta) {
 
                     return resposta.json();
+                    
                 } else {
                     resposta.text().then(texto => {
                         console.error("Erro na resposta do servidor: " + texto);
@@ -414,11 +492,11 @@
                 
             }).then(function (resposta) {
 
-                console.log("Tranformado para JSON com sucesso, RESULTADO:")
+                console.log("Tranformado para JSON com sucesso, RESULTADO ALerta CRITICO:")
                 console.log(JSON.stringify(resposta))
                 
                 var alertasCriticos = document.getElementById('alertasCriticos')
-                alertasCriticos.innerHTML = resposta[0].qtdAlertasCriticos
+                alertasCriticos.innerHTML = resposta[0].Alertas_Críticos
 
 
             }).catch(function (resposta) {
@@ -429,6 +507,7 @@
         }
 
 
+<<<<<<< HEAD
 
 
 
@@ -472,6 +551,8 @@
 
 
         }
+=======
+>>>>>>> 5878bd666e9c3badf29647ecd113b48ab93021d2
     </script>
 </body>
 
