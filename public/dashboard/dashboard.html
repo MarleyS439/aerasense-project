@@ -438,6 +438,7 @@
                 gerarGraficoDistribuicaoSensores();
                 validarSessao();
                 KPIS();
+                ObterDadosGraficos;
             });
 
             function KPIS() {
@@ -448,6 +449,52 @@
                 pegarSetoresCadastrados();
                 pegarKPIMairIncidencia();
             }
+
+
+            var dadosGraficoDonuts = []
+            var dadosGraficoBarras = []
+            var dadosRanking = []
+            function ObterDadosGraficos(){
+                // OBTER DADOS GRAFICO DUNUTS
+                 var idEmpresa = sessionStorage.getItem("ID_EMPRESA");
+                fetch("/dashboard/obterdadosDonuts", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        ID_EMPRESA: idEmpresa,
+                    }),
+                }).then(function (resposta) {
+                    if (resposta) {
+                            return resposta.json();
+                    }else{
+                        resposta.text().then((texto) => { console.error("Erro na resposta do servidor: " + texto,) });
+                        throw new Error("Erro na resposta da API");
+                    }
+                }).then(function (resposta) {
+                    console.log( "Tranformado para JSON com sucesso, RESULTADO MAIOR INCIDENCIA DE ALERTAS:" );
+                    console.log(JSON.stringify(resposta));  
+                    dadosGraficoDonuts = resposta  
+                    PlotarGraficos('GraficoDonuts')
+                }).catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+
+
+
+            }
+             function PlotarGraficos(tipoGrafico){
+                // PLOTAR
+                if(tipoGrafico == 'GraficoDonuts'){
+
+                }
+
+            }
+            function AtualizarGrafico(){
+                // ATUALIZAR
+            }
+
             function pegarKPIMairIncidencia(){
                   var idEmpresa = sessionStorage.getItem("ID_EMPRESA");
                 fetch("/dashboard/pegarKPIMairIncidencia", {
@@ -692,5 +739,5 @@
         </script>
     </body>
 </html>
-7
+
 

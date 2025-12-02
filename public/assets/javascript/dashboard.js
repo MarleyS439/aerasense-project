@@ -15,9 +15,7 @@ const alertasSetor = new Chart(ctx1, {
         backgroundColor: "rgb(24, 98, 141)",
         borderWidth: 1,
         borderRadius: 10,
-      },
-
-      {
+      },{
         label: "Quantidade de alertas críticos (>= 1,9%)",
         data: [4, 1, 2, 3],
         backgroundColor: "rgb(255, 58, 58)",

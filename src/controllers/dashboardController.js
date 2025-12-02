@@ -172,6 +172,62 @@ function pegarKPIMairIncidencia(req, res) {
 }
 
 
+////////////////////// GRAFICOS 
+
+function obterdadosDonuts(req, res) {
+  var idEmpresa = req.body.ID_EMPRESA;
+
+  dashboardModel.obterdadosDonuts(idEmpresa)
+    .then(function (resposta) {
+      if (resposta) {
+        console.log("Quey feita com sucesso");
+        return res.status(200).send(resposta);
+      } else {
+        console.log("Quey NÂO feita com sucesso");
+      }
+    })
+    .catch(function (erro) {
+      console.log("Ocorreu um erro ao realizar a requisição: ", erro);
+      return res.status(500).send(erro);
+    });
+}
+
+function obterdadosBarra(req, res) {
+  var idEmpresa = req.body.ID_EMPRESA;
+
+  dashboardModel.obterdadosBarra(idEmpresa)
+    .then(function (resposta) {
+      if (resposta) {
+        console.log("Quey feita com sucesso");
+        return res.status(200).send(resposta);
+      } else {
+        console.log("Quey NÂO feita com sucesso");
+      }
+    })
+    .catch(function (erro) {
+      console.log("Ocorreu um erro ao realizar a requisição: ", erro);
+      return res.status(500).send(erro);
+    });
+}
+
+function obterdadosRanking(req, res) {
+  var idEmpresa = req.body.ID_EMPRESA;
+
+  dashboardModel.obterdadosRanking(idEmpresa)
+    .then(function (resposta) {
+      if (resposta) {
+        console.log("Quey feita com sucesso");
+        return res.status(200).send(resposta);
+      } else {
+        console.log("Quey NÂO feita com sucesso");
+      }
+    })
+    .catch(function (erro) {
+      console.log("Ocorreu um erro ao realizar a requisição: ", erro);
+      return res.status(500).send(erro);
+    });
+}
+
 
 module.exports = {
   pegarsetores,
@@ -182,5 +238,13 @@ module.exports = {
   updateLido,
   KPIMaiorPropCriticos,
   pegarKPIMairIncidencia,
-  pegarKPIMaiorLeitura
+  pegarKPIMaiorLeitura,
+  // GRAFICOS
+
+  obterdadosDonuts,
+  obterdadosBarra,
+  obterdadosRanking
+
+
+
 };

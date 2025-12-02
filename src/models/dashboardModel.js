@@ -88,6 +88,8 @@ function KPIMaiorPropCriticos(idempresa) {
   console.log("Executando a seguinte instrução SQL: \n", sql);
   return database.executar(sql);
 }
+
+
 function pegarKPIMaiorLeitura(idempresa) {
   var sql = `
    select str.id as Setor,
@@ -105,8 +107,6 @@ function pegarKPIMaiorLeitura(idempresa) {
 }
 
 
-
-
 function pegarSetoresCadastrados(idEmpresa) {
   var sql = `
   SELECT COUNT(id) as 'setoresCadastrados' FROM setor WHERE ${idEmpresa} = fk_id_empresa;
@@ -114,9 +114,6 @@ function pegarSetoresCadastrados(idEmpresa) {
   console.log("Executando a seguinte instrução SQL: \n", sql);
   return database.executar(sql);
 }
-
-
-
 
 function pegarKPIMairIncidencia(idEmpresa) {
   var sql = `
@@ -133,6 +130,35 @@ group by str.id;
   return database.executar(sql);
 }
 
+///////////////// GRAFICOS
+
+function obterdadosDonuts(idEmpresa) {
+  var sql = `
+      select setor.nome, COUNT(sensor.id) from sensor
+        JOIN setor on setor.id = sensor.fk_id_setor
+        where fk_EmpresaSetor = ${idEmpresa}
+        GROUP BY setor.nome;
+  `;    
+  console.log("Executando a seguinte instrução SQL: \n", sql);
+  return database.executar(sql);
+}
+
+function obterdadosBarra(idEmpresa) {
+  var sql = `
+  SELECT COUNT(id) as 'setoresCadastrados' FROM setor WHERE ${idEmpresa} = fk_id_empresa;
+  `;
+  console.log("Executando a seguinte instrução SQL: \n", sql);
+  return database.executar(sql);
+}
+
+function obterdadosRanking(idEmpresa) {
+  var sql = `
+  SELECT COUNT(id) as 'setoresCadastrados' FROM setor WHERE ${idEmpresa} = fk_id_empresa;
+  `;
+  console.log("Executando a seguinte instrução SQL: \n", sql);
+  return database.executar(sql);
+}
+
 module.exports = {
   pegarsetores,
   pegaralertas,
@@ -143,5 +169,10 @@ module.exports = {
   pegarSetoresCadastrados,
   KPIMaiorPropCriticos,
   pegarKPIMaiorLeitura,
-  pegarKPIMairIncidencia
+  pegarKPIMairIncidencia,
+  // GRAFICOS
+  obterdadosDonuts,
+  obterdadosBarra,
+  obterdadosRanking
+
 };
