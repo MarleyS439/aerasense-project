@@ -16,6 +16,7 @@ var app = express();
 var indexRouter = require("./src/routes/RotasAntigas/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var dashboardRouter = require("./src/routes/dashboard");
+var sensoresRouter = require("./src/routes/sensores");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -26,6 +27,7 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/dashboard", dashboardRouter);
+app.use("/sensores", sensoresRouter);
 
 app.listen(PORTA_APP, function () {
   console.log(
