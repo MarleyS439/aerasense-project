@@ -161,5 +161,6 @@ module.exports = {
   pegaralertas,
   updateLido,
   KPIMaiorPropCriticos,
-  pegarKPIMaiorLeitura,
+
+  pegarKPIMaiorLeitura
 };
