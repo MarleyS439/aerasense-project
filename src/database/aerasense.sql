@@ -201,3 +201,5 @@ DROP DATABASE aerasense;
 
 SELECT * FROM usuario JOIN empresa;
 
+
+

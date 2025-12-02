@@ -11,4 +11,10 @@ router.post("/pegarKPISensorproblema", function (req, res) {
   dashboardController.pegarKPISensorproblema(req, res);
 });
 
+router.post("/pegarKPIAlertasCriticos", function (req, res) {
+  dashboardController.pegarKPIAlertasCriticos(req, res)
+});
+
 module.exports = router;
+
+

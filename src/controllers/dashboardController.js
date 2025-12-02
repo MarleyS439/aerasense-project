@@ -20,7 +20,7 @@ function pegarsetores(req, res) {
 
 
 
-
+//sensoresProblemas
 function pegarKPISensorproblema(req, res) {
   console.log("PEGANDOBBBBBBBBBBb")
   var idEmpresa = req.body.ID_EMPRESA
@@ -46,7 +46,41 @@ function pegarKPISensorproblema(req, res) {
 }
 
 
+
+
+
+
+
+
+
+
+
+//alertasCriticos
+function pegarKPIAlertasCriticos(req, res) {
+  console.log("PEGANDOBBBBBBBBBBb")
+  var idEmpresa = req.body.ID_EMPRESA
+
+  dashboardModel.pegarKPIAlertasCriticos(idEmpresa)
+    .then(function (dadosAlertasCriticos) {
+      console.log("PEGANDOB")
+      if (dadosAlertasCriticos) {
+        console.log("Quey feita com sucesso");
+       return res.status(200).send(dadosAlertasCriticos);
+  
+
+      } else {
+        console.log("Quey NÂO feita com sucesso");
+      }
+    }).catch(function (erro) {
+      console.log("Ocorreu um erro ao realizar a requisição: ", erro);
+      return res.status(500).send(erro);
+    });
+
+}
+
+
 module.exports = {
   pegarsetores,
-  pegarKPISensorproblema
+  pegarKPISensorproblema,
+  pegarKPIAlertasCriticos
 };
