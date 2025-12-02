@@ -18,9 +18,19 @@ router.post("/updateLido", function (req, res) {
 router.post("/pegarKPISensorproblema", function (req, res) {
   dashboardController.pegarKPISensorproblema(req, res);
 });
+router.post("/KPIMaiorPropCriticos", function (req, res) {
+  dashboardController.KPIMaiorPropCriticos(req, res);
+});
 
 router.post("/pegarKPIAlertasCriticos", function (req, res) {
   dashboardController.pegarKPIAlertasCriticos(req, res)
+});
+router.post("/pegarKPIMaiorLeitura", function (req, res) {
+  dashboardController.pegarKPIMaiorLeitura(req, res)
+});
+
+router.post("/pegarSetoresCadastrados", function (req, res) {
+  dashboardController.pegarSetoresCadastrados(req, res);
 });
 
 module.exports = router;

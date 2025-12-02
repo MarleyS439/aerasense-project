@@ -250,17 +250,21 @@
                 console.log(JSON.stringify(resposta))
                 var QtdAlerta = document.getElementById('IdQuantidadeAlertas')
                 QtdAlerta.innerHTML = resposta.length
+                
                 resposta.forEach(alerta => {
                     plotarAlertas(alerta)
                 });
 
-
+             
+            
             }).catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
             });
 
         })
 
+
+       
         function plotarAlertas(alerta) {
             var ContainerAlerta = document.getElementById('container-alertarID')
 
