@@ -200,10 +200,7 @@ module.exports = {
   pegaralertas,
   updateLido,
   KPIMaiorPropCriticos,
-<<<<<<< HEAD
   KPISensoresAtivos,
-=======
   pegarKPIMairIncidencia,
->>>>>>> 7910b29c5a8340af0d99f136d28da3e42660f7b1
   pegarKPIMaiorLeitura
 };
