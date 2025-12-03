@@ -683,26 +683,31 @@
                             "IDMaiorProporçãoCriticosSetor",
                         );
                         var valor = [];
+                        
                         for (var i = 0; i < resposta.length; i++) {
-                            var a =
-                                resposta[i].Alertas_Críticos /
-                                (resposta[i].Alertas_Críticos +
-                                    resposta[i].Alertas_Risco);
+                            console.log("AAAAAAAAAAAAAAAAAAAAAAA" + i+"/"+ resposta.length)
+                            var a = resposta[i].Alertas_Críticos / (resposta[i].Alertas_Críticos + resposta[i].Alertas_Risco);
                             console.log("A", a, resposta[i].Alertas_Críticos);
-                            valor.push(a);
-                            i++;
+                            valor.push({
+                                nome: resposta[i].nome,
+                                MaiorProp: a
+                            });
+                      
+                            
                         }
-                        MaiorProp = 0;
-                        console.log("TESTE: " + valor);
+                        var MaiorProp = 0;
+                        console.log("TESTE: " + JSON.stringify(valor));
+                        var ResultadoMaior = 0;
                         for (var i = 0; i < valor.length; i++) {
-                            if (valor[i] > MaiorProp) {
-                                MaiorProp = valor[i];
+                            if (valor[i].MaiorProp > MaiorProp) {
+                                MaiorProp = valor[i].MaiorProp;
+                                ResultadoMaior = valor[i]
                             }
-                            i++;
+                            
                         }
 
                         MaiorPropSetor.innerHTML = `
-                    Setor ${resposta[0].Setor} · <span style="color: var(--color-danger)">${MaiorProp}</span>
+                    Setor ${resposta[0].Setor} · <span style="color: var(--color-danger)">${ResultadoMaior.nome}</span>
                 `;
                     })
                     .catch(function (resposta) {

@@ -198,5 +198,56 @@ JOIN sensor ON setor.id = sensor.fk_id_setor -- Junta setor e sensor pelo ID do 
 AND empresa.id = sensor.fk_empresasetor -- Junta empresa e sensor pelo ID da empresa
 JOIN medicao ON sensor.id = medicao.fk_id_sensor;
 
+
+-- ////////////////////////// VIEW ///////////////////
+CREATE VIEW vw_KPISensorProblema AS
+	select emp.nome_fantasia as 'Empresa',
+    sum(case when sen.status_sensor != 'ativo' then 1 else 0 end) as 'inativos'
+    from empresa as emp
+		join setor as str on str.fk_id_empresa = emp.id
+		join sensor as sen on sen.fk_id_setor = str.id
+    group by emp.nome_fantasia;
+    
+CREATE VIEW vw_KPIAlertasCriticos AS 
+select emp.id as Empresa, str.fk_id_empresa as fk_id_empresa,
+    sum(case when a.nivel = 'Crítico' then 1 else 0 end) as 'Alertas_Críticos'
+    from alerta as a join sensor as sen
+    on a.idSensor = sen.id
+    join setor as str
+    on sen.fk_id_setor = str.id
+    join empresa as emp
+    on str.fk_id_empresa = emp.id
+  group by emp.id, fk_id_empresa;   
+ 
+  
+  CREATE VIEW vw_ranking AS
+   select str.nome as Setor, str.fk_id_empresa as fk_id_empresa, 
+      sum(case when a.nivel = 'Crítico' then 1 else 0 end) as 'Alertas_Criticos',
+      sum(case when a.nivel = 'Risco' then 1 else 0 end) as 'Alertas_Risco'
+      from alerta as a join sensor as sen
+      on a.idSensor = sen.id
+      join setor as str
+      on sen.fk_id_setor = str.id
+      group by str.id, str.fk_id_empresa;
+      
+    
+      
+CREATE VIEW vw_MaiorPropCriticos AS
+select str.id as Setor, str.fk_id_empresa, str.nome,
+      sum(case when a.nivel = 'Crítico' then 1 else 0 end) as 'Alertas_Críticos',
+      sum(case when a.nivel = 'Risco' then 1 else 0 end) as 'Alertas_Risco'
+      from alerta as a join sensor as sen
+      on a.idSensor = sen.id
+      join setor as str
+      on sen.fk_id_setor = str.id
+      group by str.id,str.fk_id_empresa ;
+      
+      
+
+
+
+
+
 -- Excluir o banco de dados
-DROP DATABASE aerasense;
+-- DROP DATABASE aerasense;
+
