@@ -6,11 +6,10 @@ let val2 = 0;
 
 let poolBancoDados = mysql
   .createPool({
-    host: "localhost",
-    user: "aerasense",
-    password: "Sptech#2025",
-    database: "aerasense",
-    port: 3307,
+    host: "",
+    user: "",
+    password: "",
+    port: 3306,
   })
   .promise();
 
@@ -51,6 +50,7 @@ const pros = async (ArrayVal1, Arrayval2) => {
 
     poolBancoDados.execute(
       "INSERT INTO medicao(valor_medicao, fk_id_sensor) VALUES (?, ?)",
+
       [val1, 1],
     );
 

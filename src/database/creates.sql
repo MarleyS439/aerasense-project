@@ -200,9 +200,3 @@ JOIN medicao ON sensor.id = medicao.fk_id_sensor;
 
 -- Excluir o banco de dados
 DROP DATABASE aerasense;
-
-
-SELECT * FROM usuario JOIN empresa;
-
-
-
