@@ -11,7 +11,7 @@ function pegarsetores() {
 
 function pegaralertas() {
   var sql = `
-    SELECT alerta.*, setor.*, sensor.* FROM alerta join sensor on alerta.idSensor = sensor.id JOIN setor ON sensor.fk_id_setor = setor.id ;
+    SELECT alerta.*, setor.*, sensor.* FROM alerta join sensor on alerta.idSensor = sensor.id JOIN setor ON sensor.fk_id_setor = setor.id order by alerta.idAlerta desc;
   `;
   console.log("Executando a seguinte instrução SQL: \n", sql);
   return database.executar(sql);
