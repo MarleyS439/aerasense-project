@@ -12,7 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
   setTimeout(exibirBannerCookies, 3000);
 });
 
+window.onload = function banner() {};
+
 // Função para esconder o banner de cookies
 function esconderBannerCookies() {
   banner.style.display = "none";
 }
+

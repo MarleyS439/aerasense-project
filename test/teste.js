@@ -6,10 +6,10 @@ let val2 = 0;
 
 let poolBancoDados = mysql
   .createPool({
-    host: "",
-    user: "",
-    database: "",
-    password: "",
+    host: "localhost",
+    user: "marley",
+    database: "aerasense",
+    password: "8147Jm110m$$",
     port: 3306,
   })
   .promise();

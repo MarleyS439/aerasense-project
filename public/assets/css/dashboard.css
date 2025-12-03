@@ -304,10 +304,9 @@ body {
 }
 
 .sectores {
-    height: 200px;
+    height: 250px;
     overflow-y: scroll;
     scrollbar-width: 2px;
-    border: 1px solid var(--color-very-dark-blue);
     border-radius: 10px;
 }
 

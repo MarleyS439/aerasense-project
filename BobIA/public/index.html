@@ -84,7 +84,7 @@
                             <path d="M200-200v-440h80v360h360v80H200Zm200-200v-440h80v360h360v80H400Z" />
                             </svg>
                             <span>Área de Suporte</span>
-                    
+
                         </a>
 
                     </li>
@@ -124,22 +124,22 @@
 
             <div class="
             ">
-                
+
                 <h1>Bob IA</h1>
-            
+
             </div>
-    
+
             <div>
 
                 <div id="resposta">Esperando a pergunta...</div>
-                
+
             </div>
 
             <div class="caixa-input">
-                
+
                 <button onclick="gerarResposta()">Gerar Resposta</button>
                 <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
-                
+
             </div>
 
         </div>
@@ -228,12 +228,18 @@
                 modalLogout.style.display = "flex";
             }
 
+            window.onload = function acionarFuncoes() {
+              gerarGraficoDistribuicaoSensores();
+              validarSessao();
+              pegarKPISensorproblema();
+            }
+
             // Chama a função de gerar a distribuição em gráfico de sensores por setor (ao cerregar a página)
-            document.addEventListener("DOMContentLoaded", () => {
-                gerarGraficoDistribuicaoSensores();
-                validarSessao();
-                pegarKPISensorproblema();
-            });
+            // document.addEventListener("DOMContentLoaded", () => {
+            //     gerarGraficoDistribuicaoSensores();
+            //     validarSessao();
+            //     pegarKPISensorproblema();
+            // });
 
             function pegarKPISensorproblema() {
                 var idEmpresa = sessionStorage.getItem('ID_EMPRESA')
