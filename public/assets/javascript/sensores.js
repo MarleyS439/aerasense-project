@@ -72,6 +72,9 @@ function listarSensores() {
           sensores = JSON.parse(dados);
 
           sensores.forEach((sensor) => {
+            document.getElementById("qtd_sensores").innerHTML =
+              `Total de sensores ${sensores.length}`;
+
             document.getElementById("sensor-container").innerHTML += `
             <div class="card-sensor" onclick="modalSensor(${sensor.id})">
                 <div>

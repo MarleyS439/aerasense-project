@@ -213,7 +213,8 @@
                     </div>
                     <div class="card3">
                         <span>Maior incidência de alertas * </span>
-                        <span class="info" id="IDMaiorIncidencia">Setor C ·
+                        <span class="info" id="IDMaiorIncidencia"
+                            >Setor C ·
                             <span style="color: var(--color-alert)"
                                 >13</span
                             ></span
@@ -221,12 +222,14 @@
                         <span class="information">* incidência diária</span>
                     </div>
                     <div class="card4">
-                        <span>Sensores ativos</span>
-                        <span id="Sensores_Ativos" class="info" style="color: var(--color-success)"
-                            ></span
-                        >
+                        <span>Sensores ativos *</span>
+                        <span
+                            id="Sensores_Ativos"
+                            class="info"
+                            style="color: var(--color-success)"
+                        ></span>
                         <span class="information"
-                            >* distribuição por setor no gráfico 3
+                            >* distribuição por setor no gráfico ao lado
                         </span>
                     </div>
                     <div class="quantidade_sensores">
@@ -308,7 +311,6 @@
                 <!--<canvas id="media_setor"></canvas>-->
 
                 <div class="charts">
-                    
                     <div class="container-alertas">
                         <canvas id="alertas_por_setor"></canvas>
                     </div>
@@ -437,7 +439,6 @@
 
             // Chama a função de gerar a distribuição em gráfico de sensores por setor (ao cerregar a página)
             document.addEventListener("DOMContentLoaded", () => {
-                
                 validarSessao();
                 KPIS();
                 ObterDadosGraficos();
@@ -453,15 +454,12 @@
                 pegarKPIMairIncidencia();
             }
 
-
-
-
-            var dadosGraficoDonuts = []
-            var dadosGraficoBarras = []
-            var dadosRanking = []
-            function ObterDadosGraficos(){
+            var dadosGraficoDonuts = [];
+            var dadosGraficoBarras = [];
+            var dadosRanking = [];
+            function ObterDadosGraficos() {
                 // OBTER DADOS GRAFICO DUNUTS
-                 var idEmpresa = sessionStorage.getItem("ID_EMPRESA");
+                var idEmpresa = sessionStorage.getItem("ID_EMPRESA");
                 fetch("/dashboard/obterdadosDonuts", {
                     method: "POST",
                     headers: {
@@ -470,24 +468,30 @@
                     body: JSON.stringify({
                         ID_EMPRESA: idEmpresa,
                     }),
-                }).then(function (resposta) {
-                    if (resposta) {
+                })
+                    .then(function (resposta) {
+                        if (resposta) {
                             return resposta.json();
-                    }else{
-                        resposta.text().then((texto) => { console.error("Erro na resposta do servidor: " + texto,) });
-                        throw new Error("Erro na resposta da API");
-                    }
-                }).then(function (resposta) {
-                    console.log( "Tranformado para JSON com sucesso, RESULTADO MAIOR INCIDENCIA DE ALERTAS:" );
-                    console.log(JSON.stringify(resposta));  
-                    dadosGraficoDonuts = resposta  
-                    PlotarGraficos('GraficoDonuts');
-
-                }).catch(function (resposta) {
-                    console.log(`#ERRO: ${resposta}`);
-                });
-
-
+                        } else {
+                            resposta.text().then((texto) => {
+                                console.error(
+                                    "Erro na resposta do servidor: " + texto,
+                                );
+                            });
+                            throw new Error("Erro na resposta da API");
+                        }
+                    })
+                    .then(function (resposta) {
+                        console.log(
+                            "Tranformado para JSON com sucesso, RESULTADO MAIOR INCIDENCIA DE ALERTAS:",
+                        );
+                        console.log(JSON.stringify(resposta));
+                        dadosGraficoDonuts = resposta;
+                        PlotarGraficos("GraficoDonuts");
+                    })
+                    .catch(function (resposta) {
+                        console.log(`#ERRO: ${resposta}`);
+                    });
 
                 fetch("/dashboard/obterdadosBarra", {
                     method: "POST",
@@ -497,62 +501,79 @@
                     body: JSON.stringify({
                         ID_EMPRESA: idEmpresa,
                     }),
-                }).then(function (resposta) {
-                    if (resposta) {
+                })
+                    .then(function (resposta) {
+                        if (resposta) {
                             return resposta.json();
-                    }else{
-                        resposta.text().then((texto) => { console.error("Erro na resposta do servidor: " + texto,) });
-                        throw new Error("Erro na resposta da API");
-                    }
-                }).then(function (resposta) {
-                    console.log( "Tranformado para JSON com sucesso, RESULTADO GRAFICO BARRAS:" );
-                    console.log(JSON.stringify(resposta));  
-                    dadosGraficoBarras = resposta
-                    PlotarGraficos('GraficoBarra')
-
-                }).catch(function (resposta) {
-                    console.log(`#ERRO: ${resposta}`);
-                });
-
-
+                        } else {
+                            resposta.text().then((texto) => {
+                                console.error(
+                                    "Erro na resposta do servidor: " + texto,
+                                );
+                            });
+                            throw new Error("Erro na resposta da API");
+                        }
+                    })
+                    .then(function (resposta) {
+                        console.log(
+                            "Tranformado para JSON com sucesso, RESULTADO GRAFICO BARRAS:",
+                        );
+                        console.log(JSON.stringify(resposta));
+                        dadosGraficoBarras = resposta;
+                        PlotarGraficos("GraficoBarra");
+                    })
+                    .catch(function (resposta) {
+                        console.log(`#ERRO: ${resposta}`);
+                    });
             }
-             function PlotarGraficos(tipoGrafico){
+            function PlotarGraficos(tipoGrafico) {
                 // PLOTAR
-                if(tipoGrafico == 'GraficoDonuts'){
-                    console.log("GRAFICO DONUTS DADOS: " + JSON.stringify(dadosGraficoDonuts))
-                    var setores = []
-                    var valores = []
+                if (tipoGrafico == "GraficoDonuts") {
+                    console.log(
+                        "GRAFICO DONUTS DADOS: " +
+                            JSON.stringify(dadosGraficoDonuts),
+                    );
+                    var setores = [];
+                    var valores = [];
                     for (var i = 0; i < dadosGraficoDonuts.length; i++) {
-                        setores.push(dadosGraficoDonuts[i].setorname)
+                        setores.push(dadosGraficoDonuts[i].setorname);
                     }
-                     for (var i = 0; i < dadosGraficoDonuts.length; i++) {
-                        valores.push(dadosGraficoDonuts[i].valor)
+                    for (var i = 0; i < dadosGraficoDonuts.length; i++) {
+                        valores.push(dadosGraficoDonuts[i].valor);
                     }
                     gerarGraficoDistribuicaoSensores(setores, valores);
+                } else if (tipoGrafico == "GraficoBarra") {
+                    console.log(
+                        "GRAFICO BARRAS DADOS: " +
+                            JSON.stringify(dadosGraficoBarras),
+                    );
 
-                }else if (tipoGrafico == 'GraficoBarra'){
-                    console.log("GRAFICO BARRAS DADOS: " + JSON.stringify(dadosGraficoBarras))
-
-                    var setores = []
-                    var qtdAlertasTotais = []
-                    var QtdAlertasRiscos = []
+                    var setores = [];
+                    var qtdAlertasTotais = [];
+                    var QtdAlertasRiscos = [];
                     for (var i = 0; i < dadosGraficoBarras.length; i++) {
-                        setores.push(dadosGraficoBarras[i].Setor)
-                    }
-                     for (var i = 0; i < dadosGraficoBarras.length; i++) {
-                        qtdAlertasTotais.push(dadosGraficoBarras[i].Alertas_Críticos)
+                        setores.push(dadosGraficoBarras[i].Setor);
                     }
                     for (var i = 0; i < dadosGraficoBarras.length; i++) {
-                        QtdAlertasRiscos.push(dadosGraficoBarras[i].Alertas_Risco)
+                        qtdAlertasTotais.push(
+                            dadosGraficoBarras[i].Alertas_Críticos,
+                        );
                     }
-                    gerarGraficoAlertasSetor(setores,qtdAlertasTotais,QtdAlertasRiscos)
+                    for (var i = 0; i < dadosGraficoBarras.length; i++) {
+                        QtdAlertasRiscos.push(
+                            dadosGraficoBarras[i].Alertas_Risco,
+                        );
+                    }
+                    gerarGraficoAlertasSetor(
+                        setores,
+                        qtdAlertasTotais,
+                        QtdAlertasRiscos,
+                    );
                 }
-
             }
-      
 
-            function pegarKPIMairIncidencia(){
-                  var idEmpresa = sessionStorage.getItem("ID_EMPRESA");
+            function pegarKPIMairIncidencia() {
+                var idEmpresa = sessionStorage.getItem("ID_EMPRESA");
                 fetch("/dashboard/pegarKPIMairIncidencia", {
                     method: "POST",
                     headers: {
@@ -575,18 +596,21 @@
                         }
                     })
                     .then(function (resposta) {
-                        console.log( "Tranformado para JSON com sucesso, RESULTADO MAIOR INCIDENCIA DE ALERTAS:" );
+                        console.log(
+                            "Tranformado para JSON com sucesso, RESULTADO MAIOR INCIDENCIA DE ALERTAS:",
+                        );
                         console.log(JSON.stringify(resposta));
-                        var IDMaiorIncidencia = document.getElementById('IDMaiorIncidencia')
+                        var IDMaiorIncidencia =
+                            document.getElementById("IDMaiorIncidencia");
                         IDMaiorIncidencia.innerHTML = `
                             Setor ${resposta[0].Setor} · <span style="color: var(--color-alert)">${resposta[0].Alertas}</span
-                        `
+                        `;
                     })
                     .catch(function (resposta) {
                         console.log(`#ERRO: ${resposta}`);
                     });
             }
-           
+
             function pegarKPIMaiorLeitura() {
                 var idEmpresa = sessionStorage.getItem("ID_EMPRESA");
                 fetch("/dashboard/pegarKPIMaiorLeitura", {
@@ -618,7 +642,7 @@
                         var MaiorLeitura =
                             document.getElementById("IDMaiorLeitura");
                         MaiorLeitura.innerHTML = `
-                Setor ${resposta[0].Setor} · <span style="color: var(--color-danger)">${resposta[0].Maior_Medição}</span>
+                Setor ${resposta[0].Setor} · <span style="color: var(--color-danger)">${resposta[0].Maior_Medição}%</span>
                `;
                     })
                     .catch(function (resposta) {
@@ -821,18 +845,15 @@
                         console.log(
                             "Tranformado para JSON com sucesso, RESULTADO:",
                         );
-                        console.log('flamengo')
-                        console.log(resposta[0].Sensores_Ativos)
-                        console.log(resposta[0].Sensores_Inativos)
-                        Sensores_Ativos.innerHTML = `${resposta[0].Sensores_Ativos} / ${Number(resposta[0].Sensores_Ativos) + Number(resposta[0].Sensores_Inativos)} sensores`
+                        console.log("flamengo");
+                        console.log(resposta[0].Sensores_Ativos);
+                        console.log(resposta[0].Sensores_Inativos);
+                        Sensores_Ativos.innerHTML = `${resposta[0].Sensores_Ativos} / ${Number(resposta[0].Sensores_Ativos) + Number(resposta[0].Sensores_Inativos)} sensores`;
                     })
                     .catch(function (resposta) {
                         console.log(`#ERRO: ${resposta}`);
                     });
             }
-            
         </script>
     </body>
 </html>
-
-

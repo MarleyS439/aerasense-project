@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
-@import url("default.css");
+
+@import url("../assets/css/default.css");
+
 * {
     font-family: "Kanit", sans-serif;
 }
@@ -82,6 +84,7 @@ nav .buttons select {
     padding: 2px 5px;
     cursor: pointer;
     transition: 250ms ease-in-out;
+    outline: none;
 }
 
 nav #login,
@@ -130,7 +133,6 @@ nav #register a:hover {
     margin-top: 100px;
 }
 
-
 .conteudo-section span {
     width: 450px;
     /* margin: auto; */
@@ -143,9 +145,8 @@ nav #register a:hover {
     display: block;
     justify-content: center;
     align-items: center;
-    
 }
-.image img{
+.image img {
     width: 20%;
     height: auto;
     margin-bottom: 0.1%;
