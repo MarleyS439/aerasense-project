@@ -8,6 +8,7 @@ let poolBancoDados = mysql
   .createPool({
     host: "",
     user: "",
+    database: "",
     password: "",
     port: 3306,
   })

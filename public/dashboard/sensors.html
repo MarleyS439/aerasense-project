@@ -234,7 +234,7 @@
                                 <?xml version="1.0" encoding="utf-8"?>
                                 <svg
                                     width="25px"
-                                    height="25pxpx"
+                                    height="25px"
                                     viewBox="0 0 512 512"
                                     version="1.1"
                                     xmlns="http://www.w3.org/2000/svg"
@@ -321,6 +321,8 @@
         <script>
             let proximaAtualizacao;
 
+            let myChart;
+
             // Aciona um evento carregar a página
             document.addEventListener("DOMContentLoaded", () => {
                 listarSensores();
@@ -358,23 +360,15 @@
 
                 document.body.style.overflowY = "hidden";
                 obterDadosGrafico(idSensor);
-                gerarGrafico(idSensor);
-
-                plotarGrafico(idSensor);
             }
 
+            // Função para fechar o modal do grafico
             function fecharModalSensor() {
                 document.getElementById("modal-sensor").style.display = "none";
                 document.body.style.overflow = "auto";
-            }
-
-            // Função para gerar grafico
-            function gerarGrafico(idSensor) {
-                const canvas = document.getElementById("chart1");
-
-                const ctxCanvas = canvas.getContext("2d");
-
-                let chart = new Chart(ctxCanvas, config);
+                if (myChart) {
+                    myChart.destroy();
+                }
             }
 
             // Função para obter os dados do grafico
@@ -408,6 +402,8 @@
 
             // Função para plotar o grafico
             function plotarGrafico(resposta, idSensor) {
+                const canvas = document.getElementById("chart1");
+
                 console.log("iniciando plotagem do gráfico...");
                 // Criando estrutura para plotar gráfico - labels
                 let labels = [];
@@ -419,7 +415,7 @@
                         {
                             label: "Nível de concentração de GLP",
                             data: [],
-                            backgroundColor: "#1f77b4",
+                            backgroundColor: "rgb(59, 157, 220)",
                             borderWidth: 5,
                             borderColor: "rgb(59, 157, 220)",
                             font: {
@@ -477,7 +473,6 @@
                                 title: {
                                     display: true,
                                     text: "Horário da Medição",
-                                    color: "#555",
                                     font: {
                                         size: 12,
                                         weight: "600",
@@ -509,13 +504,13 @@
                                         label: {
                                             display: false,
                                             content:
-                                                "Valor limítrofe de explosividade",
+                                                "Valor limítrofe de explosividade (LEL)",
                                             position: "end",
                                             backgroundColor:
                                                 "rgba(255,0,0,0.65)",
-                                            color: "white",
-                                            padding: 6,
-                                            borderRadius: 6,
+                                            color: "rgb(255, 255, 255)",
+                                            padding: 16,
+                                            margin: 5,
                                             font: {
                                                 weight: "bold",
                                                 family: "Kanit",
@@ -561,10 +556,7 @@
                 };
 
                 // Adicionando gráfico criado em div na tela
-                let myChart = new Chart(
-                    document.getElementById(`chart1`),
-                    config,
-                );
+                myChart = new Chart(canvas, config);
 
                 setTimeout(
                     () => atualizarGrafico(idSensor, dados, myChart),
@@ -578,7 +570,7 @@
                     .then(function (response) {
                         if (response.ok) {
                             response.json().then(function (novoRegistro) {
-                                obterDadosGrafico(idSensor);
+                                // obterDadosGrafico(idSensor);
                                 // alertar(novoRegistro, idAquario);
                                 console.log(
                                     `Dados recebidos: ${JSON.stringify(novoRegistro)}`,
@@ -586,10 +578,10 @@
                                 console.log(`Dados atuais do gráfico:`);
                                 console.log(dados);
 
-                                let avisoCaptura = document.getElementById(
-                                    `avisoCaptura${idSensor}`,
-                                );
-                                avisoCaptura.innerHTML = "";
+                                // let avisoCaptura = document.getElementById(
+                                //     `avisoCaptura${idSensor}`,
+                                // );
+                                // avisoCaptura.innerHTML = "";
 
                                 if (
                                     novoRegistro[0].momento_grafico ==
@@ -601,8 +593,8 @@
                                     console.log(
                                         "Como não há dados novos para captura, o gráfico não atualizará.",
                                     );
-                                    avisoCaptura.innerHTML =
-                                        "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará.";
+                                    // avisoCaptura.innerHTML =
+                                    //     "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará.";
                                     console.log(
                                         "Horário do novo dado capturado:",
                                     );
@@ -625,15 +617,10 @@
                                         novoRegistro[0].momento_grafico,
                                     ); // incluir um novo momento
 
-                                    dados.datasets[0].data.shift(); // apagar o primeiro de umidade
+                                    dados.datasets[0].data.shift(); // apagar o primeiro de umde
                                     dados.datasets[0].data.push(
-                                        novoRegistro[0].valor_sensor,
+                                        novoRegistro[0].valor_medicao,
                                     ); // incluir uma nova medida de umidade
-
-                                    // dados.datasets[1].data.shift(); // apagar o primeiro de temperatura
-                                    // dados.datasets[1].data.push(
-                                    //     novoRegistro[0].temperatura,
-                                    // ); // incluir uma nova medida de temperatura
 
                                     myChart.update();
                                 }
@@ -642,7 +629,7 @@
                                 proximaAtualizacao = setTimeout(
                                     () =>
                                         atualizarGrafico(
-                                            idAquario,
+                                            idSensor,
                                             dados,
                                             myChart,
                                         ),
