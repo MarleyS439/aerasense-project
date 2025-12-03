@@ -277,7 +277,7 @@
                             <div class="cards-kpi">
                                 <div class="card-individual">
                                     <span class="titulo-card">Maior pico</span>
-                                    <span class="dado-kpi">22:14</span>
+                                    <span class="dado-kpi" id="horario"></span>
                                     <span class="legenda-kpi"
                                         >*Dados dos últimos 10 minutos</span
                                     >
@@ -287,7 +287,7 @@
                                     <span class="titulo-card"
                                         >Valor do pico</span
                                     >
-                                    <span class="dado-kpi">0.7%</span>
+                                    <span class="dado-kpi" id="percentual"></span>
                                     <span class="legenda-kpi"
                                         >*A partir de 2% passa a ser
                                         explosivo</span
@@ -320,9 +320,17 @@
         <script src="../assets/javascript/logout.js"></script>
 
         <script>
+
+
             let proximaAtualizacao;
 
             let myChart;
+
+            
+            horario.innerHTML = '__:__:__';
+            percentual.innerHTML = '_%';
+                    
+            var maior = {};
 
             // Aciona um evento carregar a página
             document.addEventListener("DOMContentLoaded", () => {
@@ -352,6 +360,7 @@
 
             // Função para abrir o modal de sensor
             function modalSensor(idSensor) {
+                maior = {};
                 document.getElementById("modal-sensor").style.display = "flex";
                 window.scrollTo(0, 0);
                 var tituloSensor = document.getElementById(
@@ -369,6 +378,9 @@
                 document.body.style.overflow = "auto";
                 if (myChart) {
                     myChart.destroy();
+                    horario.innerHTML = '__:__:__';
+                    percentual.innerHTML = '_%';
+                    maior = {};
                 }
             }
 
@@ -405,6 +417,8 @@
             function plotarGrafico(resposta, idSensor) {
                 const canvas = document.getElementById("chart1");
 
+                var resKPI = resposta;
+
                 console.log("iniciando plotagem do gráfico...");
                 // Criando estrutura para plotar gráfico - labels
                 let labels = [];
@@ -433,13 +447,24 @@
                     'Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":',
                 );
                 console.log(resposta);
+                
 
                 // Inserindo valores recebidos em estrutura para plotar o gráfico
                 for (i = 0; i < resposta.length; i++) {
                     var registro = resposta[i];
                     labels.push(registro.momento_grafico);
                     dados.datasets[0].data.push(registro.valor_medicao);
+                    if(i == 0){
+                        maior = registro;
+                    }
+
+                    if(registro.valor_medicao > maior.valor_medicao){
+                        maior = registro;
+                    }
                 }
+
+                horario.innerHTML = `${maior.momento_grafico}`;
+                percentual.innerHTML - `${maior.valor_medicao}%`;
 
                 console.log("----------------------------------------------");
                 console.log(
@@ -560,13 +585,13 @@
                 myChart = new Chart(canvas, config);
 
                 setTimeout(
-                    () => atualizarGrafico(idSensor, dados, myChart),
+                    () => atualizarGrafico(idSensor, dados, myChart,maior),
                     2000,
                 );
             }
 
             // Função para atualizar o grafico
-            function atualizarGrafico(idSensor, dados, myChart) {
+            function atualizarGrafico(idSensor, dados, myChart,maior) {
                 fetch(`/sensores/tempo-real/${idSensor}`, { cache: "no-store" })
                     .then(function (response) {
                         if (response.ok) {
@@ -578,6 +603,20 @@
                                 );
                                 console.log(`Dados atuais do gráfico:`);
                                 console.log(dados);
+
+                                console.log('Valor do Maior: '+maior.valor_medicao);
+
+                                if(novoRegistro[novoRegistro.length-1].valor_medicao > maior.valor_medicao){
+
+                                    maior = novoRegistro[novoRegistro.length-1];
+
+                                }
+
+                                console.log(novoRegistro[novoRegistro.length-1].valor_medicao);
+                                console.log(novoRegistro[novoRegistro.length-1].momento_grafico);
+
+                                horario.innerHTML = maior.momento_grafico;
+                                percentual.innerHTML = maior.valor_medicao;
 
                                 // let avisoCaptura = document.getElementById(
                                 //     `avisoCaptura${idSensor}`,
@@ -633,6 +672,7 @@
                                             idSensor,
                                             dados,
                                             myChart,
+                                            maior
                                         ),
                                     2000,
                                 );

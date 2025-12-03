@@ -7,16 +7,16 @@ let val2 = 0;
 let poolBancoDados = mysql
   .createPool({
     host: "localhost",
-    user: "marley",
+    user: "aluno",
     database: "aerasense",
-    password: "8147Jm110m$$",
-    port: 3306,
+    password: "Sptech#2024",
+    port: 3307,
   })
   .promise();
 
 function rand() {
-  val1 = Math.random() * (0.3 - 0);
-  val2 = Math.random() * (3.9 - 0);
+  val1 = Math.random() * (100 - 0);
+  val2 = Math.random() * (100 - 0);
 }
 
 const SERVIDOR_PORTA = 3300;
@@ -57,7 +57,7 @@ const pros = async (ArrayVal1, Arrayval2) => {
 
     poolBancoDados.execute(
       "INSERT INTO medicao(valor_medicao, fk_id_sensor) VALUES (?, ?)",
-      [val2, 2],
+      [val2, 3],
     );
 
     console.log("dados inseridos");

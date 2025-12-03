@@ -232,6 +232,7 @@ body {
     display: flex;
     flex-direction: row-reverse;
     gap: 2em;
+    margin: 3em;
 
 }
 
@@ -246,6 +247,14 @@ body {
 
     position: sticky;
     top: 0;
+
+}
+
+.Bob-Container button{
+
+    background-color: var(--color-very-dark-blue);
+    color: white;
+    border: ipx solid var(--color-very-dark-blue);
 
 }
 

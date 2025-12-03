@@ -91,7 +91,7 @@ function KPIMaiorPropCriticos(idempresa) {
 
 function ranking(idempresa) {
   var sql = `
-    select str.id as Setor,
+    select str.nome as Setor,
       sum(case when a.nivel = 'Crítico' then 1 else 0 end) as 'Alertas_Criticos',
       sum(case when a.nivel = 'Risco' then 1 else 0 end) as 'Alertas_Risco'
       from alerta as a join sensor as sen 
