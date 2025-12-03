@@ -91,7 +91,7 @@ function listarSensores() {
                     </svg>
                 </div>
                 <div>
-                    <h3>${sensor.nome}</h3>
+                    <h3 id="sensor-${sensor.id}">${sensor.nome}</h3>
                 </div>
                 <span
                     >Status:

@@ -222,7 +222,49 @@
             <div class="modal-sensor-container">
                 <main>
                     <div class="container">
-                        <span class="titulo-dash">Sensor GLP0010001</span>
+                        <span class="titulo-dash" id="sensor_nome">...</span>
+                        <div class="close-modal">
+                            <button
+                                type="button"
+                                onclick="
+                                    window.location.href =
+                                        'http://localhost:3000'
+                                "
+                            >
+                                <?xml version="1.0" encoding="utf-8"?>
+                                <svg
+                                    width="25px"
+                                    height="25pxpx"
+                                    viewBox="0 0 512 512"
+                                    version="1.1"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <title>support</title>
+                                    <g
+                                        id="Page-1"
+                                        stroke="none"
+                                        stroke-width="1"
+                                        fill="none"
+                                        fill-rule="evenodd"
+                                    >
+                                        <g
+                                            id="support"
+                                            fill="#000000"
+                                            transform="translate(42.666667, 42.666667)"
+                                        >
+                                            <path
+                                                d="M379.734355,174.506667 C373.121022,106.666667 333.014355,-2.13162821e-14 209.067688,-2.13162821e-14 C85.1210217,-2.13162821e-14 45.014355,106.666667 38.4010217,174.506667 C15.2012632,183.311569 -0.101643453,205.585799 0.000508304259,230.4 L0.000508304259,260.266667 C0.000508304259,293.256475 26.7445463,320 59.734355,320 C92.7241638,320 119.467688,293.256475 119.467688,260.266667 L119.467688,230.4 C119.360431,206.121456 104.619564,184.304973 82.134355,175.146667 C86.4010217,135.893333 107.307688,42.6666667 209.067688,42.6666667 C310.827688,42.6666667 331.521022,135.893333 335.787688,175.146667 C313.347976,184.324806 298.68156,206.155851 298.667688,230.4 L298.667688,260.266667 C298.760356,283.199651 311.928618,304.070103 332.587688,314.026667 C323.627688,330.88 300.801022,353.706667 244.694355,360.533333 C233.478863,343.50282 211.780225,336.789048 192.906491,344.509658 C174.032757,352.230268 163.260418,372.226826 167.196286,392.235189 C171.132153,412.243552 188.675885,426.666667 209.067688,426.666667 C225.181549,426.577424 239.870491,417.417465 247.041022,402.986667 C338.561022,392.533333 367.787688,345.386667 376.961022,317.653333 C401.778455,309.61433 418.468885,286.351502 418.134355,260.266667 L418.134355,230.4 C418.23702,205.585799 402.934114,183.311569 379.734355,174.506667 Z M76.8010217,260.266667 C76.8010217,269.692326 69.1600148,277.333333 59.734355,277.333333 C50.3086953,277.333333 42.6676884,269.692326 42.6676884,260.266667 L42.6676884,230.4 C42.6676884,224.302667 45.9205765,218.668499 51.2010216,215.619833 C56.4814667,212.571166 62.9872434,212.571166 68.2676885,215.619833 C73.5481336,218.668499 76.8010217,224.302667 76.8010217,230.4 L76.8010217,260.266667 Z M341.334355,230.4 C341.334355,220.97434 348.975362,213.333333 358.401022,213.333333 C367.826681,213.333333 375.467688,220.97434 375.467688,230.4 L375.467688,260.266667 C375.467688,269.692326 367.826681,277.333333 358.401022,277.333333 C348.975362,277.333333 341.334355,269.692326 341.334355,260.266667 L341.334355,230.4 Z"
+                                                style="fill: rgb(255, 255, 255)"
+                                            />
+                                        </g>
+                                    </g>
+                                </svg>
+                                <span>Obter suporte</span>
+                            </button>
+                            <button type="button" onclick="fecharModalSensor()">
+                                Fechar
+                            </button>
+                        </div>
 
                         <div class="container-sensor">
                             <div class="container-graficos">
@@ -245,92 +287,6 @@
                                         >Valor do pico</span
                                     >
                                     <span class="dado-kpi">0.7%</span>
-                                    <span class="legenda-kpi"
-                                        >*A partir de 2% passa a ser
-                                        explosivo</span
-                                    >
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="container-sensor">
-                            <div class="container-graficos">
-                                <div class="grafico-secundario">
-                                    <canvas id="GraficoDiaSensor1"></canvas>
-                                </div>
-                            </div>
-
-                            <div class="cards-kpi">
-                                <div class="card-individual">
-                                    <span class="titulo-card">Maior pico</span>
-                                    <span class="dado-kpi">12:00</span>
-                                    <span class="legenda-kpi"
-                                        >*Médias das porcentagens por hora</span
-                                    >
-                                </div>
-
-                                <div class="card-individual">
-                                    <span class="titulo-card"
-                                        >Valor do pico</span
-                                    >
-                                    <span class="dado-kpi">1.8%</span>
-                                    <span class="legenda-kpi"
-                                        >*A partir de 2% passa a ser
-                                        explosivo</span
-                                    >
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="container-sensor">
-                            <div class="container-graficos">
-                                <div class="grafico-secundario">
-                                    <canvas id="GraficoSemanaSensor1"></canvas>
-                                </div>
-                            </div>
-
-                            <div class="cards-kpi">
-                                <div class="card-individual">
-                                    <span class="titulo-card">Maior pico</span>
-                                    <span class="dado-kpi">Sábado</span>
-                                    <span class="legenda-kpi"
-                                        >*Médias das porcentagens por hora</span
-                                    >
-                                </div>
-
-                                <div class="card-individual">
-                                    <span class="titulo-card"
-                                        >Valor do pico</span
-                                    >
-                                    <span class="dado-kpi">1.1%</span>
-                                    <span class="legenda-kpi"
-                                        >*A partir de 2% passa a ser
-                                        explosivo</span
-                                    >
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="container-sensor">
-                            <div class="container-graficos">
-                                <div class="grafico-secundario">
-                                    <canvas id="GraficoMesSensor1"></canvas>
-                                </div>
-                            </div>
-                            <div class="cards-kpi">
-                                <div class="card-individual">
-                                    <span class="titulo-card">Maior pico</span>
-                                    <span class="dado-kpi">Dia 12</span>
-                                    <span class="legenda-kpi"
-                                        >*Médias das porcentagens por hora</span
-                                    >
-                                </div>
-
-                                <div class="card-individual">
-                                    <span class="titulo-card"
-                                        >Valor do pico</span
-                                    >
-                                    <span class="dado-kpi">1.3%</span>
                                     <span class="legenda-kpi"
                                         >*A partir de 2% passa a ser
                                         explosivo</span
@@ -394,10 +350,22 @@
             // Função para abrir o modal de sensor
             function modalSensor(idSensor) {
                 document.getElementById("modal-sensor").style.display = "flex";
+                window.scrollTo(0, 0);
+                var tituloSensor = document.getElementById(
+                    `sensor-${idSensor}`,
+                ).innerHTML;
+                document.getElementById("sensor_nome").innerHTML = tituloSensor;
+
+                document.body.style.overflowY = "hidden";
                 obterDadosGrafico(idSensor);
                 gerarGrafico(idSensor);
 
                 plotarGrafico(idSensor);
+            }
+
+            function fecharModalSensor() {
+                document.getElementById("modal-sensor").style.display = "none";
+                document.body.style.overflow = "auto";
             }
 
             // Função para gerar grafico
@@ -441,7 +409,6 @@
             // Função para plotar o grafico
             function plotarGrafico(resposta, idSensor) {
                 console.log("iniciando plotagem do gráfico...");
-                myChart.destroy();
                 // Criando estrutura para plotar gráfico - labels
                 let labels = [];
 
@@ -450,11 +417,16 @@
                     labels: labels,
                     datasets: [
                         {
-                            label: "Concentração",
+                            label: "Nível de concentração de GLP",
                             data: [],
-                            fill: false,
-                            borderColor: "rgb(75, 192, 192)",
-                            tension: 0.1,
+                            backgroundColor: "#1f77b4",
+                            borderWidth: 5,
+                            borderColor: "rgb(59, 157, 220)",
+                            font: {
+                                family: "Kanit",
+                            },
+                            color: "rgb(10, 43, 64)",
+                            tension: 0.2,
                         },
                     ],
                 };
@@ -482,10 +454,110 @@
                 console.log(dados.datasets);
                 console.log("----------------------------------------------");
 
-                // Criando estrutura para plotar gráfico - config
                 const config = {
                     type: "line",
                     data: dados,
+                    options: {
+                        scales: {
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: "Concentração de GLP (%)",
+                                    font: {
+                                        size: 12,
+                                        weight: "600",
+                                        family: "Kanit",
+                                    },
+                                    color: "rgb(10, 43, 64)",
+                                    padding: { bottom: 8 },
+                                },
+                                beginAtZero: true,
+                            },
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: "Horário da Medição",
+                                    color: "#555",
+                                    font: {
+                                        size: 12,
+                                        weight: "600",
+                                        family: "Kanit",
+                                    },
+                                    padding: { top: 8 },
+                                    color: "rgb(10, 43, 64)",
+                                },
+                                ticks: {
+                                    font: {
+                                        weight: "bold",
+                                        family: "Kanit",
+                                    },
+                                    color: "rgb(10, 43, 64)",
+                                },
+                            },
+                        },
+                        plugins: {
+                            annotation: {
+                                drawtime: "afterdraw",
+                                annotations: {
+                                    linhaLimite: {
+                                        type: "line",
+                                        yMin: limiteExplosivo,
+                                        yMax: limiteExplosivo,
+                                        borderWidth: 3,
+                                        borderColor: "#ff0000",
+                                        borderDash: [8, 4],
+                                        label: {
+                                            display: false,
+                                            content:
+                                                "Valor limítrofe de explosividade",
+                                            position: "end",
+                                            backgroundColor:
+                                                "rgba(255,0,0,0.65)",
+                                            color: "white",
+                                            padding: 6,
+                                            borderRadius: 6,
+                                            font: {
+                                                weight: "bold",
+                                                family: "Kanit",
+                                            },
+                                        },
+                                        enter: function (
+                                            GraphMomentoSensor,
+                                            event,
+                                        ) {
+                                            GraphMomentoSensor.element.label.options.display = true;
+                                            GraphMomentoSensor.chart.draw(); //aparece a box na linha fixa
+                                        },
+                                        leave: function (
+                                            GraphMomentoSensor,
+                                            event,
+                                        ) {
+                                            GraphMomentoSensor.element.label.options.display = false;
+                                            GraphMomentoSensor.chart.draw(); //some a box da linha fixa
+                                        },
+                                    },
+                                },
+                            },
+
+                            legend: {
+                                labels: {
+                                    font: {},
+                                },
+                            },
+
+                            title: {
+                                display: true,
+                                text: "Dados em tempo real",
+                                position: "top",
+                                align: "center",
+                                font: {
+                                    size: 20,
+                                    family: "Kanit",
+                                },
+                                color: "rgb(10, 43, 64)",
+                            },
+                        },
+                    },
                 };
 
                 // Adicionando gráfico criado em div na tela

@@ -47,8 +47,31 @@
     backdrop-filter: blur(2px);
 }
 
+.close-modal {
+    display: flex;
+    justify-content: flex-end;
+    bottom: 10%;
+    padding: -0;
+    background-color: var(--color-white);
+}
+
+.close-modal button {
+    display: flex;
+    align-items: center;
+    margin: 0px 5px;
+    padding: 10px 30px;
+    border: none;
+    background-color: var(--color-very-dark-blue);
+    color: var(--color-white);
+    border-radius: 16px;
+}
+
+.close-modal svg {
+    margin: 5px;
+}
+
 .modal-sensor-container {
-    height: 80vh;
+    height: auto;
     overflow-y: auto;
     padding: 2%;
     width: 90%;
