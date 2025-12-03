@@ -1,0 +1,13 @@
+Acessos de Usuários Fictícios
+
+1. Acesso:
+    Usuário: godofredo@saborexpress.com.br
+    Senha: Senha#123
+
+2.Acesso:
+    Usuário: fernando.brandao@casafrancesa.com.br
+    Senha: Fernando#123
+
+3. Acesso:
+    Usuário: regiane_lima@alimentamais.com
+    Senha: Regiane#123
