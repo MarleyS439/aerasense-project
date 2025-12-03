@@ -190,7 +190,6 @@
         <script src="../assets/javascript/logout.js"></script>
 
         <script>
-
             async function gerarResposta() {
                 const pergunta = document.getElementById('pergunta').value;
 
@@ -208,8 +207,6 @@
                 document.getElementById('resposta').innerText = data.resultado;
             }
 
-
-
             var modalLogout = document.getElementById("modal-logout");
 
             // Função para cancelar o Logout
@@ -218,9 +215,7 @@
             }
 
             function Redirecionar(){
-
                 window.location.href = 'http://localhost:3333/login.html'
-
             }
 
             // Função para abrir o modal de logout
@@ -233,13 +228,6 @@
               validarSessao();
               pegarKPISensorproblema();
             }
-
-            // Chama a função de gerar a distribuição em gráfico de sensores por setor (ao cerregar a página)
-            // document.addEventListener("DOMContentLoaded", () => {
-            //     gerarGraficoDistribuicaoSensores();
-            //     validarSessao();
-            //     pegarKPISensorproblema();
-            // });
 
             function pegarKPISensorproblema() {
                 var idEmpresa = sessionStorage.getItem('ID_EMPRESA')
@@ -280,8 +268,6 @@
                 }).catch(function (resposta) {
                     console.log(`#ERRO: ${resposta}`);
                 });
-
-
             }
         </script>
 </body>

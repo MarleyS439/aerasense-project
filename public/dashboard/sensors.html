@@ -324,10 +324,9 @@
 
             let myChart;
 
-            // Aciona um evento carregar a página
-            document.addEventListener("DOMContentLoaded", () => {
+            window.onload = function () {
                 listarSensores();
-            });
+            };
 
             nome_empresa.innerHTML = sessionStorage.NOME_EMPRESA.replaceAll(
                 '"',
