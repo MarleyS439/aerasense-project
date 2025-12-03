@@ -1,6 +1,5 @@
 var database = require("../database/config");
 
-
 // Comando SQL para criar um registro de acesso de log de usuário
 function pegarsetores() {
   var sql = `
@@ -18,12 +17,12 @@ function pegaralertas() {
   return database.executar(sql);
 }
 
-function updateLido(idAlerta,Lido) {
-  if(!Lido){
+function updateLido(idAlerta, Lido) {
+  if (!Lido) {
     var sql = `
       UPDATE alerta SET lido = '!Lido' WHERE idAlerta = ${idAlerta};
     `;
-  }else{
+  } else {
     var sql = `
       UPDATE alerta SET lido = 'Lido' WHERE idAlerta = ${idAlerta};
     `;
@@ -32,12 +31,11 @@ function updateLido(idAlerta,Lido) {
   return database.executar(sql);
 }
 
-
 function pegarKPISensorproblema(idEmpresa) {
   var sql = `
 select emp.nome_fantasia as 'Empresa',
     sum(case when sen.status_sensor != 'ativo' then 1 else 0 end) as 'inativos'
-    from empresa as emp 
+    from empresa as emp
 		join setor as str on str.fk_id_empresa = emp.id
 		join sensor as sen on sen.fk_id_setor = str.id
     group by emp.nome_fantasia;
@@ -51,12 +49,12 @@ function pegarKPIAlertasCriticos(idEmpresa) {
   var sql = `
   select emp.id as Empresa,
     sum(case when a.nivel = 'Crítico' then 1 else 0 end) as 'Alertas_Críticos'
-    from alerta as a join sensor as sen 
-    on a.idSensor = sen.id 
-    join setor as str 
+    from alerta as a join sensor as sen
+    on a.idSensor = sen.id
+    join setor as str
     on sen.fk_id_setor = str.id
-    join empresa as emp 
-    on str.fk_id_empresa = emp.id 
+    join empresa as emp
+    on str.fk_id_empresa = emp.id
     where str.fk_id_empresa = ${idEmpresa}
   group by emp.id;
   `;
@@ -77,13 +75,12 @@ function KPIMaiorPropCriticos(idempresa) {
     select str.id as Setor,
       sum(case when a.nivel = 'Crítico' then 1 else 0 end) as 'Alertas_Críticos',
       sum(case when a.nivel = 'Risco' then 1 else 0 end) as 'Alertas_Risco'
-      from alerta as a join sensor as sen 
-      on a.idSensor = sen.id 
-      join setor as str 
-      on sen.fk_id_setor = str.id 
+      from alerta as a join sensor as sen
+      on a.idSensor = sen.id
+      join setor as str
+      on sen.fk_id_setor = str.id
       where str.fk_id_empresa = ${idempresa}
-      group by str.id
-      LIMIT 1;
+      group by str.id;
   `;
   console.log("Executando a seguinte instrução SQL: \n", sql);
   return database.executar(sql);
@@ -94,10 +91,10 @@ function ranking(idempresa) {
     select str.nome as Setor,
       sum(case when a.nivel = 'Crítico' then 1 else 0 end) as 'Alertas_Criticos',
       sum(case when a.nivel = 'Risco' then 1 else 0 end) as 'Alertas_Risco'
-      from alerta as a join sensor as sen 
-      on a.idSensor = sen.id 
-      join setor as str 
-      on sen.fk_id_setor = str.id 
+      from alerta as a join sensor as sen
+      on a.idSensor = sen.id
+      join setor as str
+      on sen.fk_id_setor = str.id
       where str.fk_id_empresa = ${idempresa}
       group by str.id;
   `;
@@ -121,7 +118,6 @@ function pegarKPIMaiorLeitura(idempresa) {
   return database.executar(sql);
 }
 
-
 function pegarSetoresCadastrados(idEmpresa) {
   var sql = `
   SELECT COUNT(id) as 'setoresCadastrados' FROM setor WHERE ${idEmpresa} = fk_id_empresa;
@@ -130,9 +126,8 @@ function pegarSetoresCadastrados(idEmpresa) {
   return database.executar(sql);
 }
 
-
 function KPISensoresAtivos(idEmpresa) {
- var sql = `
+  var sql = `
 select emp.nome_fantasia as 'Empresa',
 count(sen.id) as 'Sensores_Ativos',
     sum(case when sen.status_sensor != 'ativo' then 1 else 0 end) as 'Sensores_Inativos'
@@ -143,18 +138,18 @@ count(sen.id) as 'Sensores_Ativos',
     where str.fk_id_empresa = ${idEmpresa}
     group by emp.nome_fantasia;
     `;
-    console.log("Executando a seguinte instrução SQL: \n", sql);
+  console.log("Executando a seguinte instrução SQL: \n", sql);
   return database.executar(sql);
 }
 
 function pegarKPIMairIncidencia(idEmpresa) {
   var sql = `
   select str.id as Setor,
-count(a.idAlerta) as 'Alertas' 
-from alerta as a join sensor as sen 
-on a.idSensor = sen.id 
-join setor as str 
-on sen.fk_id_setor = str.id 
+count(a.idAlerta) as 'Alertas'
+from alerta as a join sensor as sen
+on a.idSensor = sen.id
+join setor as str
+on sen.fk_id_setor = str.id
 where str.fk_id_empresa = ${idEmpresa}
 group by str.id;
   `;
@@ -170,7 +165,7 @@ function obterdadosDonuts(idEmpresa) {
         JOIN setor on setor.id = sensor.fk_id_setor
         where fk_EmpresaSetor = ${idEmpresa}
         GROUP BY setor.nome;
-  `;    
+  `;
   console.log("Executando a seguinte instrução SQL: \n", sql);
   return database.executar(sql);
 }
@@ -180,17 +175,16 @@ function obterdadosBarra(idEmpresa) {
    select str.nome as Setor,
       sum(case when a.nivel = 'Crítico' then 1 else 0 end) as 'Alertas_Críticos',
       sum(case when a.nivel = 'Risco' then 1 else 0 end) as 'Alertas_Risco'
-      from alerta as a join sensor as sen 
-      on a.idSensor = sen.id 
-      join setor as str 
-      on sen.fk_id_setor = str.id 
+      from alerta as a join sensor as sen
+      on a.idSensor = sen.id
+      join setor as str
+      on sen.fk_id_setor = str.id
       where str.fk_id_empresa = ${idEmpresa}
       group by str.id;
   `;
   console.log("Executando a seguinte instrução SQL: \n", sql);
   return database.executar(sql);
 }
-
 
 function obterdadosRanking(idEmpresa) {
   var sql = `
@@ -213,11 +207,9 @@ module.exports = {
   pegarKPIMairIncidencia,
   KPISensoresAtivos,
   ranking,
-  
+
   // GRAFICOS
   obterdadosDonuts,
   obterdadosBarra,
-  obterdadosRanking
-
- 
+  obterdadosRanking,
 };

@@ -455,8 +455,6 @@
                 ranking(ul_ranking);
             }
 
-            
-
             var dadosGraficoDonuts = [];
             var dadosGraficoBarras = [];
             var dadosRanking = [];
@@ -684,8 +682,27 @@
                         var MaiorPropSetor = document.getElementById(
                             "IDMaiorProporçãoCriticosSetor",
                         );
+                        var valor = [];
+                        for (var i = 0; i < resposta.length; i++) {
+                            var a =
+                                resposta[i].Alertas_Críticos /
+                                (resposta[i].Alertas_Críticos +
+                                    resposta[i].Alertas_Risco);
+                            console.log("A", a, resposta[i].Alertas_Críticos);
+                            valor.push(a);
+                            i++;
+                        }
+                        MaiorProp = 0;
+                        console.log("TESTE: " + valor);
+                        for (var i = 0; i < valor.length; i++) {
+                            if (valor[i] > MaiorProp) {
+                                MaiorProp = valor[i];
+                            }
+                            i++;
+                        }
+
                         MaiorPropSetor.innerHTML = `
-                    Setor ${resposta[0].Setor} · <span style="color: var(--color-danger)">${resposta[0].Alertas_Críticos}</span>
+                    Setor ${resposta[0].Setor} · <span style="color: var(--color-danger)">${MaiorProp}</span>
                 `;
                     })
                     .catch(function (resposta) {
@@ -858,19 +875,18 @@
                     });
             }
 
-            function ranking(ul){
-
-                console.log('ngfjddfbjdkljkldfjg ' + sessionStorage.ID_EMPRESA);
+            function ranking(ul) {
+                console.log("ngfjddfbjdkljkldfjg " + sessionStorage.ID_EMPRESA);
 
                 var ulRank = ul;
 
-                console.log("id DA EMRESA", sessionStorage.ID_EMPRESA); 
+                console.log("id DA EMRESA", sessionStorage.ID_EMPRESA);
                 var idEmpresa = sessionStorage.ID_EMPRESA;
                 fetch(`/dashboard/ranking/${idEmpresa}`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                    }
+                    },
                 })
                     .then(function (resposta) {
                         if (resposta) {
@@ -890,26 +906,21 @@
                         );
                         console.log(JSON.stringify(resposta));
 
-                        ul.innerHTML = '';
-                        
-                        for(var i = 0; i < resposta.length; i++){
+                        ul.innerHTML = "";
 
-                            ul.innerHTML +=`
+                        for (var i = 0; i < resposta.length; i++) {
+                            ul.innerHTML += `
                              <li>
                                 <span class="setor">${resposta[i].Setor}</span>
                                 <span class="quantidade">${Number(resposta[i].Alertas_Criticos) + Number(resposta[i].Alertas_Risco)}</span>
                             </li>
                             `;
-
                         }
-
                     })
                     .catch(function (resposta) {
                         console.log(`#ERRO: ${resposta}`);
                     });
-
             }
-
         </script>
     </body>
 </html>

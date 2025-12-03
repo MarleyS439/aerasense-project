@@ -273,7 +273,7 @@
                 modalLogout.style.display = "flex";
             }
 
-            document.addEventListener("DOMContentLoaded", function () {
+            window.onload = function () {
                 fetch("/dashboard/pegarsetores", {
                     method: "GET",
                 })
@@ -307,7 +307,8 @@
                     .catch(function (resposta) {
                         console.log(`#ERRO: ${resposta}`);
                     });
-            });
+            };
+
             function plotarSetores(setor) {
                 var ContainerPaiSetores = document.getElementById(
                     "setores-containerID",
