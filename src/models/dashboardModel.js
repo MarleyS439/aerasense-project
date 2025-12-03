@@ -89,6 +89,21 @@ function KPIMaiorPropCriticos(idempresa) {
   return database.executar(sql);
 }
 
+function ranking(idempresa) {
+  var sql = `
+    select str.id as Setor,
+      sum(case when a.nivel = 'Crítico' then 1 else 0 end) as 'Alertas_Criticos',
+      sum(case when a.nivel = 'Risco' then 1 else 0 end) as 'Alertas_Risco'
+      from alerta as a join sensor as sen 
+      on a.idSensor = sen.id 
+      join setor as str 
+      on sen.fk_id_setor = str.id 
+      where str.fk_id_empresa = ${idempresa}
+      group by str.id;
+  `;
+  console.log("Executando a seguinte instrução SQL: \n", sql);
+  return database.executar(sql);
+}
 
 function pegarKPIMaiorLeitura(idempresa) {
   var sql = `
@@ -197,6 +212,7 @@ module.exports = {
   pegarKPIMaiorLeitura,
   pegarKPIMairIncidencia,
   KPISensoresAtivos,
+  ranking,
   
   // GRAFICOS
   obterdadosDonuts,

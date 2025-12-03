@@ -41,6 +41,11 @@ router.post("/pegarKPIMairIncidencia", function (req, res) {
   dashboardController.pegarKPIMairIncidencia(req, res);
 });
 
+router.post("/ranking/:idEmpresa", function(req, res){
+
+  dashboardController.ranking(req,res);
+})
+
 ///////////////////////////// GRAFICOS //////////////////////
 
 router.post("/obterdadosDonuts", function (req, res) {

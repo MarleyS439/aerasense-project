@@ -320,7 +320,7 @@
                             <h2>Ranking de alertas por setor</h2>
                         </div>
                         <div class="sectores">
-                            <ul>
+                            <ul id="ul_ranking">
                                 <li>
                                     <span class="setor">Setor A</span>
                                     <span class="quantidade">13</span>
@@ -452,7 +452,10 @@
                 pegarSetoresCadastrados();
                 KPISensoresAtivos();
                 pegarKPIMairIncidencia();
+                ranking(ul_ranking);
             }
+
+            
 
             var dadosGraficoDonuts = [];
             var dadosGraficoBarras = [];
@@ -854,6 +857,59 @@
                         console.log(`#ERRO: ${resposta}`);
                     });
             }
+
+            function ranking(ul){
+
+                console.log('ngfjddfbjdkljkldfjg ' + sessionStorage.ID_EMPRESA);
+
+                var ulRank = ul;
+
+                console.log("id DA EMRESA", sessionStorage.ID_EMPRESA); 
+                var idEmpresa = sessionStorage.ID_EMPRESA;
+                fetch(`/dashboard/ranking/${idEmpresa}`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                })
+                    .then(function (resposta) {
+                        if (resposta) {
+                            return resposta.json();
+                        } else {
+                            resposta.text().then((texto) => {
+                                console.error(
+                                    "Erro na resposta do servidor: " + texto,
+                                );
+                            });
+                            throw new Error("Erro na resposta da API");
+                        }
+                    })
+                    .then(function (resposta) {
+                        console.log(
+                            "Tranformado para JSON com sucesso, RESULTADO MAIOR PROP Critico:",
+                        );
+                        console.log(JSON.stringify(resposta));
+
+                        ul.innerHTML = '';
+                        
+                        for(var i = 0; i < resposta.length; i++){
+
+                            ul.innerHTML +=`
+                             <li>
+                                <span class="setor">${resposta[i].Setor}</span>
+                                <span class="quantidade">${Number(resposta[i].Alertas_Criticos) + Number(resposta[i].Alertas_Risco)}</span>
+                            </li>
+                            `;
+
+                        }
+
+                    })
+                    .catch(function (resposta) {
+                        console.log(`#ERRO: ${resposta}`);
+                    });
+
+            }
+
         </script>
     </body>
 </html>

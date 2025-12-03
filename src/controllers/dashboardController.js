@@ -115,6 +115,29 @@ function KPIMaiorPropCriticos(req, res) {
       return res.status(500).send(erro);
     });
 }
+
+function ranking(req, res) {
+
+  var IdEmpresa = req.params.idEmpresa;
+
+  console.log(IdEmpresa)
+
+  dashboardModel
+    .ranking(IdEmpresa)
+    .then(function (resposta) {
+      if (resposta) {
+        console.log("Quey feita com sucesso");
+        return res.status(200).send(resposta);
+      } else {
+        console.log("Quey NÂO feita com sucesso");
+      }
+    })
+    .catch(function (erro) {
+      console.log("Ocorreu um erro ao realizar a requisição: ", erro);
+      return res.status(500).send(erro);
+    });
+}
+
 function pegarKPIMaiorLeitura(req, res) {
   var IdEmpresa = req.body.ID_EMPRESA;
 
@@ -259,6 +282,7 @@ module.exports = {
   KPISensoresAtivos,
   pegarKPIMairIncidencia,
   pegarKPIMaiorLeitura,
+  ranking,
   // GRAFICOS
 
   obterdadosDonuts,
