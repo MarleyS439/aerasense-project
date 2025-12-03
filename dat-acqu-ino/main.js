@@ -18,11 +18,11 @@ const serial = async (
     // conexão com o banco de dados MySQL
     let poolBancoDados = mysql.createPool(
         {
-            host: '127.0.0.1',
-            user: 'marley',
-            password: '8147Jm110m$$',
+            host: 'localhost',
+            user: 'aluno',
+            password: 'Sptech#2024',
             database: 'aerasense',
-            port: 3306
+            port: 3307
         }
     ).promise();
 
@@ -50,20 +50,44 @@ const serial = async (
     arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
         console.log(data);
         const valores = data.split(';');
-        const sensorDigital = parseInt(valores[1]);
+        const sensorDigital = valores[1];
 
         // armazena os valores dos sensores nos arrays correspondentes
         valoresSensorDigital.push(sensorDigital);
 
         // insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
+            console.log(sensorDigital)
+            var IDSensorRandom = Math.floor((Math.random() * 4) + 1);
+            var NivelAlerta = null
+            if(sensorDigital >= 2.00){
+                NivelAlerta = 'Crítico'
+            }else if(sensorDigital >= 0.5){
+                NivelAlerta = 'Risco'
+            }
 
             // este insert irá inserir os dados na tabela "medida"
-            await poolBancoDados.execute(
-                'INSERT INTO medicao(valor_medicao, fk_id_sensor) VALUES (?, ?)',
-                [sensorDigital, 1]
-            );
-            console.log("valores inseridos no banco: ", sensorDigital);
+            if(NivelAlerta == null){
+                await poolBancoDados.execute(
+                    'INSERT INTO medicao(valor_medicao, fk_id_sensor) VALUES (?, ?)',
+                    [sensorDigital, IDSensorRandom]
+                )
+                console.log("Valor comum inserido no banco: " + sensorDigital);
+                console.log("ID SENSOR (COMUM): " + IDSensorRandom);
+            }else{
+                await poolBancoDados.execute(
+                    'INSERT INTO medicao(valor_medicao, fk_id_sensor) VALUES (?, ?)',
+                    [sensorDigital, IDSensorRandom]
+                );
+                await poolBancoDados.execute(
+                    'insert into alerta(idMedicao, idSensor, nivel) values ((select id from medicao ORDER by id desc LIMIT 1), ?, ?)',
+                    [IDSensorRandom, NivelAlerta]
+                );
+                console.log("Valor com risco inserido no banco: " + sensorDigital + '/' + NivelAlerta);
+                console.log("ID SENSOR (RISCO): " + IDSensorRandom);
+
+            }
+                
 
         }
 
