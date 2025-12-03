@@ -29,12 +29,10 @@ function listarSensores(idEmpresa) {
 // Função par abuscar as últimas medidas
 function buscarUltimasMedidas(idSensor, limite_linhas) {
   var instrucaoSql = `SELECT
-        dht11_temperatura as temperatura,
-        dht11_umidade as umidade,
-                        momento,
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
-                    FROM medida
-                    WHERE fk_aquario = ${idAquario}
+                        valor_medicao,
+                        DATE_FORMAT(data_hora_medicao,'%H:%i:%s') as momento_grafico
+                    FROM medicao
+                    WHERE fk_id_sensor = ${idSensor}
                     ORDER BY id DESC LIMIT ${limite_linhas}`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -44,12 +42,11 @@ function buscarUltimasMedidas(idSensor, limite_linhas) {
 // Função de buscar as medidas em tempo real
 function buscarMedidasEmTempoReal(idSensor) {
   var instrucaoSql = `SELECT
-        dht11_temperatura as temperatura,
-        dht11_umidade as umidade,
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico,
-                        fk_aquario
-                        FROM medida WHERE fk_aquario = ${idSensor}
-                    ORDER BY id DESC LIMIT 1`;
+                        valor_medicao,
+                        DATE_FORMAT(data_hora_medicao,'%H:%i:%s') as momento_grafico
+                    FROM medicao
+                    WHERE fk_id_sensor = ${idSensor}
+                    ORDER BY id DESC LIMIT 7`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
@@ -57,4 +54,6 @@ function buscarMedidasEmTempoReal(idSensor) {
 
 module.exports = {
   listarSensores,
+  buscarUltimasMedidas,
+  buscarMedidasEmTempoReal,
 };

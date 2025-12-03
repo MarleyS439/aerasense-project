@@ -67,9 +67,9 @@ function listarSensores() {
         resposta.json().then((json) => {
           console.log(json);
 
-          var jsonm = JSON.stringify(json);
+          var dados = JSON.stringify(json);
 
-          sensores = JSON.parse(jsonm);
+          sensores = JSON.parse(dados);
 
           sensores.forEach((sensor) => {
             document.getElementById("sensor-container").innerHTML += `

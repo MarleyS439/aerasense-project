@@ -6,7 +6,14 @@ const GraphDiaSensor = document.getElementById(`GraficoDiaSensor1`);
 const GraphSemanaSensor = document.getElementById(`GraficoSemanaSensor1`);
 const GraphMesSensor = document.getElementById(`GraficoMesSensor1`);
 
-new Chart(GraphMomentoSensor, {
+const graficoTempoReal = document.getElementById("GraficoMomentoSensor1");
+
+// Função para gerar o grafico em tempo real do sensor
+function gerarGraficoTempoReal() {
+  chart();
+}
+
+const chart = new Chart(GraphMomentoSensor, {
   type: "line",
   data: {
     labels: [
