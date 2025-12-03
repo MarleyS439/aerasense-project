@@ -33,6 +33,26 @@ router.post("/pegarSetoresCadastrados", function (req, res) {
   dashboardController.pegarSetoresCadastrados(req, res);
 });
 
+router.post("/KPISensoresAtivos", function (req, res) {
+  dashboardController.KPISensoresAtivos(req, res);
+});
+
+router.post("/pegarKPIMairIncidencia", function (req, res) {
+  dashboardController.pegarKPIMairIncidencia(req, res);
+});
+
+///////////////////////////// GRAFICOS //////////////////////
+
+router.post("/obterdadosDonuts", function (req, res) {
+  dashboardController.obterdadosDonuts(req, res);
+});
+router.post("/obterdadosBarra", function (req, res) {
+  dashboardController.obterdadosBarra(req, res);
+});
+router.post("/obterdadosRanking", function (req, res) {
+  dashboardController.obterdadosRanking(req, res);
+});
+
 module.exports = router;
 
 

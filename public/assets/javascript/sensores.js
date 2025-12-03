@@ -4,15 +4,15 @@ var ctxSensores = document.getElementById("quantidade_sensores");
 function distribuicaoDeSensores() {}
 
 // Função para gerar o gráfico de distribuição de sensores
-function gerarGraficoDistribuicaoSensores() {
+function gerarGraficoDistribuicaoSensores(setores, valores) {
   var opcoes = {
     type: "doughnut",
     data: {
-      labels: ["Setor A", "Setor B", "Setor C", "Setor D"],
+      labels: setores,
       datasets: [
         {
           label: "Quantidade de sensores",
-          data: [8, 7, 4, 3],
+          data: valores,
           backgroundColor: [
             "rgb(59, 158, 219)",
             "rgb(59, 208, 219)",
