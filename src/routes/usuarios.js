@@ -21,6 +21,7 @@ router.post("/registrar/log/", function (req, res) {
 });
 
 router.post('/checkout', function(req,res){
+  console.log('çpçpçpçpçpççpçpçpçpç');
   usuarioController.Checkout(req,res);
 })
 

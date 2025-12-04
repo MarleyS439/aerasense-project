@@ -72,6 +72,8 @@ function criarLogUsuario(idUsuario, idEmpresa) {
 
 function Checkout(id){
 
+  
+
   var sql = `
   update acesso set dtHrLogout = default where idAcesso = ${id}
   `;

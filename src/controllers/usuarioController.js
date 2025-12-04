@@ -169,6 +169,7 @@ function criarLogUsuario(req, res) {
 function Checkout(req, res) {
 
   var id = req.body.idAcesso;
+  console.log(id);
 
   usuarioModel.Checkout(id)
     .then(function (resposta) {

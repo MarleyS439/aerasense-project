@@ -160,7 +160,7 @@ CREATE TABLE alerta (
     nivel VARCHAR(45), -- Nível do alerta
     lido VARCHAR(45),
     CONSTRAINT chkLido
-        CHECK (lido in('Lido', '!Lido'))
+        CHECK (lido in('Lido', '!Lido')),
     CONSTRAINT chkNivel
     	CHECK (nivel in ('Crítico', 'Risco')),
     CONSTRAINT pkComposta
